@@ -90,6 +90,8 @@ public class ModeloZona extends Conector{
 		
 		zona.setId(rs.getInt("id_zona"));
 		zona.setNombre(rs.getString("nombre"));
+		zona.setDescripcion(rs.getString("descripcion"));
+		
 		return zona;
 	}
 	
