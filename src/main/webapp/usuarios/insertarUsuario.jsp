@@ -11,27 +11,35 @@
   </head>
   <body>
     <h1>Insertar Actividad</h1>
-    <form class="container" method="POST" action="InsertarActividad">
-        <div class="mb-3">
-          <label for="zona" class="form-label">Zona</label>
-          <select name="id_zona" id="zona">
-            <c:forEach items="${ zonas }" var="zona">
-              <option value="${zona.id}">${zona.nombre}</option>
-            </c:forEach>
-          </select>
-        </div>
+    <form class="container" method="POST" action="InsertarUsuario">
         <div class="mb-3">
           <label for="nombre" class="form-label">Nombre</label>
           <input type="text" class="form-control" id="nombre" name="nombre">
         </div>
         <div class="mb-3">
-          <label for="cantidad_max" class="form-label">Cantidad Maxima de Personas</label>
-          <input type="number" class="form-control" id="cantidad_max" name="cantidad_max">
+          <label for="apellidos" class="form-label">Apellidos</label>
+          <input type="text" class="form-control" id="apellidos" name="apellidos">
         </div>
         <div class="mb-3">
-            <label for="edad_min" class="form-label">Edad Minima</label>
-            <input type="number" class="form-control" id="edad_min" name="edad_min">
-          </div>
+          <label for="dni" class="form-label">DNI</label>
+          <input type="text" class="form-control" id="dni" name="dni">
+        </div>
+        <div class="mb-3">
+          <label for="email" class="form-label">Correo electronico</label>
+          <input type="email" class="form-control" id="email" name="email">
+        </div>
+        <div class="mb-3">
+          <label for="contrasena" class="form-label">Contraseña</label>
+          <input type="password" class="form-control" id="contrasena" name="contrasena">
+        </div>
+        <div class="mb-3">
+          <label for="telf" class="form-label">Telefono</label>
+          <input type="tel" class="form-control" id="telf" name="telf">
+        </div>
+        <div class="mb-3">
+          <label for="fecha_nacimiento" class="form-label">Fecha nacimiento</label>
+          <input type="date" class="form-control" id="fecha_nacimiento" name="fecha_nacimiento">
+        </div>
         <button type="submit" class="btn btn-primary">Submit</button>
       </form>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
