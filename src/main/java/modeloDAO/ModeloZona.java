@@ -46,12 +46,14 @@ public class ModeloZona extends Conector{
 	}
 	
 	public boolean modificarZona(Zona zona) {
-		String st = "UPDATE zonas SET nombre=? WHERE id_zona=?";
+		String st = "UPDATE zonas SET nombre=?, descripcion=? WHERE id_zona=?";
 		
 		try {
 			PreparedStatement pst = super.connection.prepareStatement(st);
 			
 			pst.setString(1, zona.getNombre());
+			pst.setString(2, zona.getDescripcion());
+			pst.setInt(3, zona.getId());
 			
 			pst.execute();
 			return true;
