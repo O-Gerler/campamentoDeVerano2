@@ -45,7 +45,7 @@ public class ModeloZona extends Conector{
 	}
 	
 	public boolean modificarZona(Zona zona) {
-		String st = "UPDATE zonas SET nombre=? WHERE id=?";
+		String st = "UPDATE zonas SET nombre=? WHERE id_zona=?";
 		
 		try {
 			PreparedStatement pst = super.connection.prepareStatement(st);
@@ -63,7 +63,7 @@ public class ModeloZona extends Conector{
 	}
 	
 	public Zona getZona(int id) {
-		String st = "SELECT * FROM zonas WHERE id=?";
+		String st = "SELECT * FROM zonas WHERE id_zona=?";
 		
 		try {
 			PreparedStatement pst = super.connection.prepareStatement(st);
@@ -110,7 +110,6 @@ public class ModeloZona extends Conector{
 			e.printStackTrace();
 		}
 		
-		System.out.println("a");
 		return null;
 	}
 }
