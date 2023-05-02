@@ -9,12 +9,13 @@ import modeloDTO.Zona;
 
 public class ModeloZona extends Conector{
 	public boolean insertarZona(Zona zona) {
-		String st = "INSERT INTO zonas(nombre) VALUES ?";
+		String st = "INSERT INTO zonas(nombre, descripcion) VALUES (?,?)";
 		
 		try {
 			PreparedStatement pst = super.connection.prepareStatement(st);
 			
 			pst.setString(1, zona.getNombre());
+			pst.setString(2, zona.getDescripcion());
 			
 			pst.execute();
 			return true;
@@ -27,7 +28,7 @@ public class ModeloZona extends Conector{
 	}
 	
 	public boolean eliminarZona(int id) {
-		String st = "DELETE FROM zonas WHERE id=?";
+		String st = "DELETE FROM zonas WHERE id_zona=?";
 		
 		try {
 			PreparedStatement pst = super.connection.prepareStatement(st);
