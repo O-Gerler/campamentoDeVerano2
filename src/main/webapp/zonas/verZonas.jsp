@@ -12,6 +12,7 @@
     
 </head>
 <body>
+	<a class="btn btn-primary" href="InsertarZona">Insertar</a>
 	 <div class="accordion" id="accordionExample">
   	   <c:forEach items="${ zonas }" var="zona">
 	    
@@ -23,12 +24,10 @@
 	      </h2>
 	      <div id="a${zona.id}" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
 	        <div class="accordion-body">
-	          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eveniet ab voluptates quia voluptatum repudiandae 
-	          fugit similique rerum? Necessitatibus, in. Fuga, ut eaque facilis nemo porro beatae deserunt praesentium 
-	          eum magnam.
+	          ${ zona.descripcion }
 	          <br><br>
-	          <a class="btn btn-primary" href="ModificarActividad?id=${zona.id}">Modificar</a>
-	          <a class="btn btn-danger" href="EliminarActividad?id=${zona.id}">Eliminar</a>
+	          <a class="btn btn-primary" href="ModificarZona?id=${zona.id}">Modificar</a>
+	          <a class="btn btn-danger" href="EliminarZona?id=${zona.id}">Eliminar</a>
 	        </div>
 	      </div>
 	      
