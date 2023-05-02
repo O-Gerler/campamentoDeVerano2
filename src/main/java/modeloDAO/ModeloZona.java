@@ -87,7 +87,7 @@ public class ModeloZona extends Conector{
 	private Zona rellenarZona(ResultSet rs) throws SQLException {
 		Zona zona = new Zona();
 		
-		zona.setId(rs.getInt("id"));
+		zona.setId(rs.getInt("id_zona"));
 		zona.setNombre(rs.getString("nombre"));
 		return zona;
 	}
