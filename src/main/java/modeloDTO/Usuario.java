@@ -68,4 +68,5 @@ public class Usuario {
 	public void agregarVehiculo(Vehiculo vehiculo) {
 		vehiculos.add(vehiculo);
 	}
+	
 }
