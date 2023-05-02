@@ -40,7 +40,7 @@ public class ModificarZona extends HttpServlet {
 		modeloZona.cerrar();
 		
 		request.setAttribute("zona", zona);
-		request.getRequestDispatcher("zonas/modificarZona.jsp");
+		request.getRequestDispatcher("zonas/modificarZona.jsp").forward(request, response);;
 	}
 
 	/**
@@ -57,6 +57,15 @@ public class ModificarZona extends HttpServlet {
 		zona.setId(id);
 		zona.setNombre(nombre);
 		zona.setDescripcion(descripcion);
+		
+		ModeloZona modeloZona = new ModeloZona();
+		modeloZona.conectar();
+		
+		modeloZona.modificarZona(zona);
+		
+		modeloZona.cerrar();
+		
+		request.getRequestDispatcher("MostrarZonas").forward(request, response);
 	}
 
 }
