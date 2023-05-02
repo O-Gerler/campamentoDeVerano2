@@ -12,7 +12,7 @@ public class ModeloUsuario extends Conector{
 	
 	public boolean insertarUsuario(Usuario usuario) {
 
-		String st = "INSERT INTO usuarios (nombre, apellido, dni, email, contrasena, telefono, fecha_nacimiento) VALUES (?,?,?,?,?,?,?)";
+		String st = "INSERT INTO usuario (nombre, apellidos, dni, email, contrasena, telf, fecha_nacimiento) VALUES (?,?,?,?,?,?,?)";
 
 		try {
 			PreparedStatement pst = super.connection.prepareStatement(st);
@@ -22,7 +22,7 @@ public class ModeloUsuario extends Conector{
 			pst.setString(3, usuario.getDni());
 			pst.setString(4, usuario.getEmail());
 			pst.setString(5, usuario.getContrasena());
-			pst.setInt(6, usuario.getTelefono());
+			pst.setString(6, usuario.getTelefono());
 			pst.setDate(7, new Date(usuario.getFechaNacimiento().getTime()));
 
 			pst.execute();
@@ -38,7 +38,7 @@ public class ModeloUsuario extends Conector{
 	
 	public boolean eliminarUsuario(int id) {
 		
-		String st = "DELETE FROM usuarios WHERE id = ?";
+		String st = "DELETE FROM usuario WHERE id_usuario = ?";
 		
 		try {
 			PreparedStatement pst = super.connection.prepareStatement(st);
@@ -58,7 +58,7 @@ public class ModeloUsuario extends Conector{
 	
 	public boolean modificarUsuario(Usuario usuario) {
 		
-		String st = "UPDATE usuarios SET nombre = ?, apellido = ?, dni = ?, email = ?, contrasena = ?, telefono = ?, fecha_nacimiento = ? WHERE id = ?";
+		String st = "UPDATE usuario SET nombre = ?, apellidos = ?, dni = ?, email = ?, contrasena = ?, telf = ?, fecha_nacimiento = ? WHERE id_usuario = ?";
 		
 		try {
 			PreparedStatement pst = super.connection.prepareStatement(st);
@@ -68,7 +68,7 @@ public class ModeloUsuario extends Conector{
 			pst.setString(3, usuario.getDni());
 			pst.setString(4, usuario.getEmail());
 			pst.setString(5, usuario.getContrasena());
-			pst.setInt(6, usuario.getTelefono());
+			pst.setString(6, usuario.getTelefono());
 			pst.setDate(7, new Date(usuario.getFechaNacimiento().getTime()));
 			pst.setInt(8, usuario.getId());
 
@@ -84,9 +84,7 @@ public class ModeloUsuario extends Conector{
 	}
 	
 	public Usuario getUsuarios(int id) {
-		
-		Usuario usuario = new Usuario();
-		String st = "SELECT * FROM usuarios WHERE id = ?";
+		String st = "SELECT * FROM usuario WHERE id_usuario = ?";
 		
 		try {
 			PreparedStatement pst = super.connection.prepareStatement(st);
@@ -96,7 +94,7 @@ public class ModeloUsuario extends Conector{
 			ResultSet rs = pst.executeQuery();
 			rs.next();
 			
-			rellenarUsuario(usuario, rs);
+			Usuario usuario = rellenarUsuario(rs);
 			
 			return usuario;
 		} catch (SQLException e) {
@@ -107,20 +105,25 @@ public class ModeloUsuario extends Conector{
 		return null;
 	}
 
-	private void rellenarUsuario(Usuario usuario, ResultSet rs) throws SQLException {
-		usuario.setId(rs.getInt("id"));
+	private Usuario rellenarUsuario(ResultSet rs) throws SQLException {
+		Usuario usuario = new Usuario();
+		
+		usuario.setId(rs.getInt("id_usuario"));
+		usuario.setDni(rs.getString("dni"));
 		usuario.setNombre(rs.getString("nombre"));
-		usuario.setApellido(rs.getString("apellido"));
+		usuario.setApellido(rs.getString("apellidos"));
 		usuario.setEmail(rs.getString("email"));
-		usuario.setContrasena(rs.getString("email"));
-		usuario.setTelefono(rs.getInt("telefono"));
+		usuario.setContrasena(rs.getString("contrasena"));
+		usuario.setTelefono(rs.getString("telf"));
 		usuario.setFechaNacimiento(rs.getDate("fecha_nacimiento"));
+		
+		return usuario;
 	}
 	
 	public ArrayList<Usuario> getAllUsuarios() {
 		
 		ArrayList<Usuario> usuarios = new ArrayList<>();
-		String st = "SELECT * FROM clientes";
+		String st = "SELECT * FROM usuario";
 		
 		try {
 			PreparedStatement pst = super.connection.prepareStatement(st);
@@ -128,9 +131,7 @@ public class ModeloUsuario extends Conector{
 			ResultSet rs = pst.executeQuery();
 			
 			while (rs.next()) {
-				Usuario usuario = new Usuario();
-				rellenarUsuario(new Usuario(), rs);
-				usuarios.add(usuario);
+				usuarios.add(rellenarUsuario(rs));
 			}
 			
 			return usuarios;
