@@ -1,0 +1,88 @@
+package controlador;
+
+import java.io.IOException;
+import java.util.ArrayList;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import modeloDAO.ModeloActividad;
+import modeloDAO.ModeloZona;
+import modeloDTO.Actividad;
+import modeloDTO.Zona;
+
+/**
+ * Servlet implementation class insertarActividad
+ */
+@WebServlet("/InsertarActividad")
+public class InsertarActividad extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public InsertarActividad() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		ModeloZona modeloZona = new ModeloZona();
+		modeloZona.conectar();
+		
+		ArrayList<Zona> zonas = modeloZona.getAllZonas();
+		
+		
+		
+		System.out.println(modeloZona.getZona(1));
+		System.out.println(zonas);
+		
+		modeloZona.cerrar();
+		
+		request.setAttribute("zonas", zonas);
+		
+		request.getRequestDispatcher("actividades/insertarActividad.jsp").forward(request, response);
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		int idZona = Integer.parseInt(request.getParameter("id_zona"));
+		String nombre = request.getParameter("nombre");
+		int cantidadMax = Integer.parseInt(request.getParameter("cantidad_max"));
+		int edadMin = Integer.parseInt(request.getParameter("edad_min"));
+		
+		Actividad actividad = new Actividad();
+		
+		ModeloZona modeloZona = new ModeloZona();
+		modeloZona.conectar();
+		
+		actividad.setZona(modeloZona.getZona(idZona));
+		actividad.setNombre(nombre);
+		actividad.setCantidad_max(cantidadMax);
+		actividad.setEdad_min(edadMin);
+		
+		modeloZona.cerrar();
+		
+		ModeloActividad modeloActividad = new ModeloActividad();
+		modeloActividad.conectar();
+		
+		if(modeloActividad.insertarActividad(actividad)) {
+			request.getRequestDispatcher("MostrarActividades").forward(request, response);
+		}
+		
+		modeloActividad.cerrar();
+		
+		
+	}
+
+}
