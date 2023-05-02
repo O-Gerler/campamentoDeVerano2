@@ -12,7 +12,7 @@ public class Conector {
 
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			connection = DriverManager.getConnection("jdbc:mysql://localhost/campamentoverano", "root", "");
+			connection = DriverManager.getConnection("jdbc:mysql://localhost/campamento", "root", "");
 			System.out.println("funciona");
 
 		} catch (Exception e) {
