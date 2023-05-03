@@ -16,7 +16,7 @@ public class ModeloMascota extends Conector{
 			PreparedStatement pst = super.connection.prepareStatement(st);
 			
 			pst.setString(1, mascota.getNombre());
-			pst.setInt(2, mascota.getNumChip());
+			pst.setString(2, mascota.getNumChip());
 			pst.setString(3, mascota.getRaza());
 			
 			pst.execute();
@@ -57,7 +57,7 @@ public class ModeloMascota extends Conector{
 			PreparedStatement pst = super.connection.prepareStatement(st);
 			
 			pst.setString(1, mascota.getNombre());
-			pst.setInt(2, mascota.getNumChip());
+			pst.setString(2, mascota.getNumChip());
 			pst.setString(3, mascota.getRaza());
 			pst.setInt(4, mascota.getId());
 			
@@ -99,7 +99,7 @@ public class ModeloMascota extends Conector{
 		
 		mascota.setId(rs.getInt("id_mascota"));
 		mascota.setNombre(rs.getString("nombre"));
-		mascota.setNumChip(rs.getInt("num_chip"));
+		mascota.setNumChip(rs.getString("num_chip"));
 		mascota.setRaza(rs.getString("raza"));
 		return mascota;
 	}
