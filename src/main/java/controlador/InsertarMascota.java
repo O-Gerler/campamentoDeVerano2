@@ -7,6 +7,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import modeloDAO.ModeloMascota;
+import modeloDTO.Mascota;
+
 /**
  * Servlet implementation class InsertarMascota
  */
@@ -35,7 +38,24 @@ public class InsertarMascota extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		doGet(request, response);
+		String nombre = request.getParameter("nombre");
+		String numChip = request.getParameter("numChip");
+		String raza = request.getParameter("raza");
+		
+		Mascota mascota = new Mascota();
+		
+		mascota.setNombre(nombre);
+		mascota.setNumChip(numChip);
+		mascota.setRaza(raza);
+		
+		ModeloMascota modeloMascota = new ModeloMascota();
+		modeloMascota.conectar();
+		
+		modeloMascota.insertarMascota(mascota);
+		
+		modeloMascota.cerrar();
+		
+		request.getRequestDispatcher("MostrarMascotas").forward(request, response);
 	}
 
 }
