@@ -32,7 +32,7 @@ public class ModeloMascota extends Conector{
 	
 	public boolean eliminarMascota(int id) {
 		
-		String st = "DELETE FROM mascotas WHERE id = ?";
+		String st = "DELETE FROM mascotas WHERE id_mascota = ?";
 		
 		try {
 			PreparedStatement pst = super.connection.prepareStatement(st);
@@ -51,7 +51,7 @@ public class ModeloMascota extends Conector{
 	
 	public boolean modificarMascota(Mascota mascota) {
 		
-		String st = "UPDATE mascotas SET nombre = ?, num_chip = ?, raza = ? WHERE id = ?";
+		String st = "UPDATE mascotas SET nombre = ?, num_chip = ?, raza = ? WHERE id_mascota = ?";
 		
 		try {
 			PreparedStatement pst = super.connection.prepareStatement(st);
@@ -73,7 +73,7 @@ public class ModeloMascota extends Conector{
 	
 	
 	public Mascota getMascota(int id) {
-		String st = "SELECT * FROM mascotas WHERE id =?";
+		String st = "SELECT * FROM mascotas WHERE id_mascota =?";
 		
 		try {
 			PreparedStatement pst = super.connection.prepareStatement(st);
@@ -97,7 +97,7 @@ public class ModeloMascota extends Conector{
 	private Mascota rellenarMascota(ResultSet rs) throws SQLException {
 		Mascota mascota = new Mascota();
 		
-		mascota.setId(rs.getInt("id"));
+		mascota.setId(rs.getInt("id_mascota"));
 		mascota.setNombre(rs.getString("nombre"));
 		mascota.setNumChip(rs.getInt("num_chip"));
 		mascota.setRaza(rs.getString("raza"));
