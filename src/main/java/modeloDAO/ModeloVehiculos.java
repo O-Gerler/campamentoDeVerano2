@@ -9,7 +9,7 @@ import modeloDTO.Vehiculo;
 
 public class ModeloVehiculos extends Conector{
 	public boolean insertarVehiculo(Vehiculo vehiculo) {
-		String st = "INSERT INTO vehiculos(matricula, marca, modelo, color) VALUES ?,?,?,?";
+		String st = "INSERT INTO vehiculos(matricula, marca, modelo, color) VALUES (?,?,?,?)";
 		
 		try {
 			PreparedStatement pst = super.connection.prepareStatement(st);
@@ -30,7 +30,7 @@ public class ModeloVehiculos extends Conector{
 	}
 	
 	public boolean eliminarVehiculo(int id) {
-		String st = "DELETE FROM vehiculos WHERE id=?";
+		String st = "DELETE FROM vehiculos WHERE id_vehiculo=?";
 		
 		try {
 			PreparedStatement pst = super.connection.prepareStatement(st);
@@ -48,7 +48,7 @@ public class ModeloVehiculos extends Conector{
 	}
 	
 	public boolean modificarVehiculo(Vehiculo vehiculo) {
-		String st = "UPDATE vehiculos SET matricula=?, marca=?, modelo=?, color=? WHERE id=?";
+		String st = "UPDATE vehiculos SET matricula=?, marca=?, modelo=?, color=? WHERE id_vehiculo=?";
 		
 		try {
 			PreparedStatement pst = super.connection.prepareStatement(st);
@@ -70,7 +70,7 @@ public class ModeloVehiculos extends Conector{
 	}
 	
 	public Vehiculo getVehiculo(int id) {
-		String st = "SELECT * FROM vehiculos WHERE id=?";
+		String st = "SELECT * FROM vehiculos WHERE id_vehiculo=?";
 		
 		try {
 			PreparedStatement pst = super.connection.prepareStatement(st);
@@ -94,7 +94,7 @@ public class ModeloVehiculos extends Conector{
 	private Vehiculo rellenarVehiculo(ResultSet rs) throws SQLException {
 		Vehiculo vehiculo = new Vehiculo();
 		
-		vehiculo.setId(rs.getInt("id"));
+		vehiculo.setId(rs.getInt("id_vehiculo"));
 		vehiculo.setMatricula(rs.getString("matricula"));
 		vehiculo.setMarca(rs.getString("marca"));
 		vehiculo.setModelo(rs.getString("modelo"));
