@@ -10,7 +10,7 @@ import modeloDTO.Mascota;
 public class ModeloMascota extends Conector{
 	public boolean insertarMascota(Mascota mascota) {
 		
-		String st = "INSERT INTO mascotas (nombre, num_chip, raza) VALUES (? ?, ?)";
+		String st = "INSERT INTO mascotas (nombre, num_chip, raza) VALUES (?, ?, ?)";
 		
 		try {
 			PreparedStatement pst = super.connection.prepareStatement(st);
