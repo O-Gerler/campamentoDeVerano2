@@ -9,7 +9,7 @@ import modeloDTO.Tipo;
 
 public class ModeloTipo extends Conector{
 	public boolean insertarTipo(Tipo tipo) {
-		String st = "INSERT INTO tipos (nombre, cantidad_personas, descripcion) VALUES ?, ? ,?";
+		String st = "INSERT INTO tipos (nombre, cantidad_personas, descripcion) VALUES (?, ? ,?)";
 		
 		try {
 			PreparedStatement pst = super.connection.prepareStatement(st);
@@ -29,7 +29,7 @@ public class ModeloTipo extends Conector{
 	}
 	
 	public boolean eliminarTipo(int id) {
-		String st = "DELETE FROM tipos WHERE id = ?";
+		String st = "DELETE FROM tipos WHERE id_tipo = ?";
 		
 		try {
 			PreparedStatement pst = super.connection.prepareStatement(st);
@@ -47,7 +47,7 @@ public class ModeloTipo extends Conector{
 	}
 	
 	public boolean modificarTipo(Tipo tipo) {
-		String st = "UPDATE tipos SET nombre=?, cantidad_personas=?, descripcion=? WHERE id=?";
+		String st = "UPDATE tipos SET nombre=?, cantidad_personas=?, descripcion=? WHERE id_tipo=?";
 		
 		try {
 			PreparedStatement pst = super.connection.prepareStatement(st);
@@ -68,7 +68,7 @@ public class ModeloTipo extends Conector{
 	}
 	
 	public Tipo getTipo(int id) {
-		String st = "SELECT * FROM tipos WHERE id = ?";
+		String st = "SELECT * FROM tipos WHERE id_tipo = ?";
 		
 		try {
 			PreparedStatement pst = super.connection.prepareStatement(st);
@@ -92,7 +92,7 @@ public class ModeloTipo extends Conector{
 	private Tipo rellenarTipo(ResultSet rs) throws SQLException {
 		Tipo tipo = new Tipo();
 		
-		tipo.setId(rs.getInt("id"));
+		tipo.setId(rs.getInt("id_tipo"));
 		tipo.setNombre(rs.getString("nombre"));
 		tipo.setCantidad_personas(rs.getInt("cantidad_personas"));
 		tipo.setDescripcion(rs.getString("descripcion"));
