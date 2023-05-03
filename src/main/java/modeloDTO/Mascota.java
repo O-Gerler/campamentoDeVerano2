@@ -3,7 +3,7 @@ package modeloDTO;
 public class Mascota {
 	private int id;
 	private String nombre;
-	private int numChip;
+	private String numChip;
 	private String raza;
 	
 	public int getId() {
@@ -18,10 +18,10 @@ public class Mascota {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-	public int getNumChip() {
+	public String getNumChip() {
 		return numChip;
 	}
-	public void setNumChip(int numChip) {
+	public void setNumChip(String numChip) {
 		this.numChip = numChip;
 	}
 	public String getRaza() {
