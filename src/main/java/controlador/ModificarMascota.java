@@ -48,7 +48,26 @@ public class ModificarMascota extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		doGet(request, response);
+		int id = Integer.parseInt(request.getParameter("id"));
+		String nombre = request.getParameter("nombre");
+		String numChip = request.getParameter("numChip");
+		String raza = request.getParameter("raza");
+		
+		Mascota mascota = new Mascota();
+		
+		mascota.setId(id);
+		mascota.setNombre(nombre);
+		mascota.setNumChip(numChip);
+		mascota.setRaza(raza);
+		
+		ModeloMascota modeloMascota = new ModeloMascota();
+		modeloMascota.conectar();
+		
+		modeloMascota.modificarMascota(mascota);
+		
+		modeloMascota.cerrar();
+		
+		request.getRequestDispatcher("MostrarMascotas").forward(request, response);
 	}
 
 }
