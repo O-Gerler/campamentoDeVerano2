@@ -7,6 +7,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import modeloDAO.ModeloTipo;
+import modeloDTO.Tipo;
+
 /**
  * Servlet implementation class InsertarTipo
  */
@@ -27,7 +30,7 @@ public class InsertarTipo extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		request.getRequestDispatcher("tipos/insertarTipo.jsp").forward(request, response);
 	}
 
 	/**
@@ -35,7 +38,24 @@ public class InsertarTipo extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		doGet(request, response);
+		String nombre = request.getParameter("nombre");
+		int cantidad_personas = Integer.parseInt(request.getParameter("cantidad_personas"));
+		String descripcion = request.getParameter("descripcion");
+		
+		Tipo tipo = new Tipo();
+		
+		tipo.setNombre(nombre);
+		tipo.setCantidad_personas(cantidad_personas);
+		tipo.setDescripcion(descripcion);
+		
+		ModeloTipo modeloTipo = new ModeloTipo();
+		modeloTipo.conectar();
+		
+		modeloTipo.insertarTipo(tipo);
+		
+		modeloTipo.cerrar();
+		
+		request.getRequestDispatcher("MostrarTipos").forward(request, response);
 	}
 
 }
