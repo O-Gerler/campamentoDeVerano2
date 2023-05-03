@@ -7,6 +7,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import modeloDAO.ModeloMascota;
+import modeloDTO.Mascota;
+
 /**
  * Servlet implementation class ModificarMascota
  */
@@ -27,7 +30,17 @@ public class ModificarMascota extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		int id = Integer.parseInt(request.getParameter("id"));
+		
+		ModeloMascota modeloMascota = new ModeloMascota();
+		modeloMascota.conectar();
+		
+		Mascota mascota = modeloMascota.getMascota(id);
+		
+		modeloMascota.cerrar();
+		
+		request.setAttribute("mascota", mascota);
+		request.getRequestDispatcher("mascotas/modificarMascota.jsp").forward(request, response);
 	}
 
 	/**
