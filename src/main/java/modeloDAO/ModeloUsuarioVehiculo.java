@@ -9,7 +9,7 @@ import modeloDTO.UsuarioVehiculo;
 
 public class ModeloUsuarioVehiculo extends Conector{
 	public boolean insertarUsuarioVehiculo(UsuarioVehiculo usuarioVehiculo) {
-		String st = "INSERT INTO usuario_vehiculo VALUES ?,?";
+		String st = "INSERT INTO usuario_vehiculo VALUES (?,?)";
 		
 		try {
 			PreparedStatement pst = super.connection.prepareStatement(st);
