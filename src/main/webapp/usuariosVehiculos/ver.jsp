@@ -41,7 +41,7 @@
 	            </div>
 	          </div>
 	          <br><br>
-	          <a class="btn btn-danger" href="EliminarUsuVehiculo?id=${usuarioVehiculo.vehiculo.id}">Eliminar</a>
+	          <a class="btn btn-danger" href="EliminarUsuarioVehiculo?id_usuario=${usuarioVehiculo.usuario.id}&id_vehiculo=${usuarioVehiculo.vehiculo.id}">Eliminar</a>
 	        </div>
 	      </div>
 	      
