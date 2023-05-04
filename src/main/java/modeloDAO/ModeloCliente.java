@@ -6,13 +6,25 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import modeloDTO.Cliente;
+import modeloDTO.Usuario;
 
 public class ModeloCliente extends Conector{
 	private Cliente clienteHeredaUsuario(int id) {
 		ModeloUsuario modeloUsuario = new ModeloUsuario();
 		modeloUsuario.conectar();
 		
-		Cliente cliente = (Cliente) modeloUsuario.getUsuarios(id);
+		Usuario usuario = modeloUsuario.getUsuarios(id);
+		
+		Cliente cliente = new Cliente();
+		
+		cliente.setId(usuario.getId());
+		cliente.setNombre(usuario.getNombre());
+		cliente.setApellido(usuario.getApellido());
+		cliente.setDni(usuario.getDni());
+		cliente.setContrasena(usuario.getContrasena());
+		cliente.setEmail(usuario.getEmail());
+		cliente.setFechaNacimiento(usuario.getFechaNacimiento());
+		cliente.setTelefono(usuario.getTelefono());
 		
 		return cliente;
 	}
@@ -96,7 +108,7 @@ public class ModeloCliente extends Conector{
 	}
 
 	private Cliente rellenarCliente(ResultSet rs) throws SQLException {
-		Cliente cliente = clienteHeredaUsuario(rs.getInt("id"));
+		Cliente cliente = clienteHeredaUsuario(rs.getInt("id_cliente"));
 		
 		ModeloGrupo modeloGrupo = new ModeloGrupo();
 		modeloGrupo.conectar();
