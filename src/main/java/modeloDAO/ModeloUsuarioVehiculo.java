@@ -27,14 +27,14 @@ public class ModeloUsuarioVehiculo extends Conector{
 		return false;
 	}
 	
-	public boolean eliminarUsuarioVehiculo(UsuarioVehiculo usuarioVehiculo) {
+	public boolean eliminarUsuarioVehiculo(int id_usuario, int id_vehiculo) {
 		String st = "DELETE FROM usuario_vehiculo WHERE id_usuario=? and id_vehiculo=?";
 		
 		try {
 			PreparedStatement pst = super.connection.prepareStatement(st);
 
-			pst.setInt(1, usuarioVehiculo.getUsuario().getId());
-			pst.setInt(2, usuarioVehiculo.getVehiculo().getId());
+			pst.setInt(1, id_usuario);
+			pst.setInt(2, id_vehiculo);
 			
 			pst.execute();
 			return true;
