@@ -64,7 +64,7 @@ public class ModeloGrupo extends Conector{
 	}
 	
 	public Grupo getGrupo(int id) {
-		String st = "SELECT * FROM grupos WHERE id=?";
+		String st = "SELECT * FROM grupos WHERE id_grupo=?";
 		
 		try {
 			PreparedStatement pst = super.connection.prepareStatement(st);
