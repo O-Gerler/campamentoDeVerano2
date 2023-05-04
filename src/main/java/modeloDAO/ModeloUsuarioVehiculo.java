@@ -46,9 +46,8 @@ public class ModeloUsuarioVehiculo extends Conector{
 		return false;
 	}
 	
-	public ArrayList<UsuarioVehiculo> getUsuarioVehiculoIDUsuario(int id) {
+	public UsuarioVehiculo getUsuarioVehiculo(int id) {
 		String st = "SELECT * FROM usuario_vehiculo WHERE id_usuario=?";
-		ArrayList<UsuarioVehiculo> usuarioVehiculos = new ArrayList<>();
 		ModeloUsuario modeloUsuario = new ModeloUsuario();
 		ModeloVehiculos modeloVehiculos = new ModeloVehiculos();
 		
@@ -61,13 +60,31 @@ public class ModeloUsuarioVehiculo extends Conector{
 			pst.setInt(1, id);
 			
 			ResultSet rs = pst.executeQuery();
+			
+			return rellenarUsuarioVehiculo(modeloUsuario, modeloVehiculos, rs);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
+	
+	public ArrayList<UsuarioVehiculo> getAllUsuarioVehiculoIDUsuario() {
+		String st = "SELECT * FROM usuario_vehiculo";
+		ArrayList<UsuarioVehiculo> usuarioVehiculos = new ArrayList<>();
+		ModeloUsuario modeloUsuario = new ModeloUsuario();
+		ModeloVehiculos modeloVehiculos = new ModeloVehiculos();
+		
+		modeloUsuario.conectar();
+		modeloVehiculos.conectar();
+		
+		try {
+			PreparedStatement pst = super.connection.prepareStatement(st);
+			
+			ResultSet rs = pst.executeQuery();
 			while(rs.next()) {
-				UsuarioVehiculo usuarioVehiculo = new UsuarioVehiculo();
-				
-				usuarioVehiculo.setUsuario(modeloUsuario.getUsuarios(rs.getInt("id_usuario")));
-				usuarioVehiculo.setVehiculo(modeloVehiculos.getVehiculo(rs.getInt("id_vehiculo")));
-				
-				usuarioVehiculos.add(usuarioVehiculo);
+				usuarioVehiculos.add(rellenarUsuarioVehiculo(modeloUsuario, modeloVehiculos, rs));
 			}
 			
 			return usuarioVehiculos;
@@ -77,5 +94,14 @@ public class ModeloUsuarioVehiculo extends Conector{
 		}
 		
 		return null;
+	}
+
+	private UsuarioVehiculo rellenarUsuarioVehiculo(ModeloUsuario modeloUsuario, ModeloVehiculos modeloVehiculos,
+			ResultSet rs) throws SQLException {
+		UsuarioVehiculo usuarioVehiculo = new UsuarioVehiculo();
+		
+		usuarioVehiculo.setUsuario(modeloUsuario.getUsuarios(rs.getInt("id_usuario")));
+		usuarioVehiculo.setVehiculo(modeloVehiculos.getVehiculo(rs.getInt("id_vehiculo")));
+		return usuarioVehiculo;
 	}
 }
