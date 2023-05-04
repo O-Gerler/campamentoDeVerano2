@@ -62,7 +62,7 @@ public class ModeloMonitor extends Conector{
 	//NO SE PUEDE MODIFICAR MONITOR, TENDRIAMOS QUE MODIFICAR USUARIO
 	
 	public Monitor getMonitor(int id) {
-		String st = "SELECT * FROM monitores WHERE id=?";
+		String st = "SELECT * FROM monitores WHERE id_monitor=?";
 		
 		try {
 			PreparedStatement pst = super.connection.prepareStatement(st);
@@ -72,7 +72,7 @@ public class ModeloMonitor extends Conector{
 			ResultSet rs = pst.executeQuery();
 			rs.next();
 			
-			return monitorHeredaUsuario(rs.getInt("id"));
+			return monitorHeredaUsuario(rs.getInt("id_monitor"));
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
