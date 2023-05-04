@@ -88,7 +88,7 @@ public class ModeloGrupo extends Conector{
 	private Grupo rellenarGrupo(ResultSet rs) throws SQLException {
 		Grupo grupo = new Grupo();
 		
-		grupo.setId(rs.getInt("id"));
+		grupo.setId(rs.getInt("id_grupo"));
 		
 		ModeloMonitor modeloMonitor = new ModeloMonitor();
 		modeloMonitor.conectar();
