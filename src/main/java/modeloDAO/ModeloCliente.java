@@ -32,7 +32,7 @@ public class ModeloCliente extends Conector{
 	}
 	
 	public boolean insertarCliente(Cliente cliente) {
-		String st = "INSERT INTO clientes VALUES ?,?";
+		String st = "INSERT INTO clientes VALUES (?,?)";
 		
 		try {
 			PreparedStatement pst = super.connection.prepareStatement(st);
@@ -69,7 +69,7 @@ public class ModeloCliente extends Conector{
 	}
 	
 	public boolean modificarCliente(Cliente cliente) {
-		String st = "UPDATE clientes SET id_grupo WHERE id=?";
+		String st = "UPDATE clientes SET id_grupo WHERE id_cliente=?";
 		
 		try {
 			PreparedStatement pst = super.connection.prepareStatement(st);
@@ -88,7 +88,7 @@ public class ModeloCliente extends Conector{
 	}
 	
 	public Cliente getCliente(int id) {
-		String st = "SELECT * FROM clientes WHERE id=?";
+		String st = "SELECT * FROM clientes WHERE id_cliente=?";
 		
 		try {
 			PreparedStatement pst = super.connection.prepareStatement(st);
