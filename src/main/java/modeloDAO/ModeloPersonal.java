@@ -90,7 +90,7 @@ public class ModeloPersonal extends Conector{
 	}
 	
 	public Personal getPersonal(int id) {
-		String st = "SELECT * FROM personal WHERE id=?";
+		String st = "SELECT * FROM personal WHERE id_personal=?";
 		
 		try {
 			PreparedStatement pst = super.connection.prepareStatement(st);
@@ -112,10 +112,10 @@ public class ModeloPersonal extends Conector{
 	}
 
 	private Personal rellenarPersonal(ResultSet rs) throws SQLException {
-		Personal personal = personalHeredaUsuario(rs.getInt("id_usuario"));
+		Personal personal = personalHeredaUsuario(rs.getInt("id_personal"));
 		
 		personal.setFechaIngreso(rs.getDate("fecha_ingreso"));
-		personal.setDirector(rs.getInt("director"));
+		personal.setDirector(rs.getInt("dirige"));
 		return personal;
 	}
 	
