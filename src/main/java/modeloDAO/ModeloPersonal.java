@@ -33,7 +33,7 @@ public class ModeloPersonal extends Conector{
 	}
 	
 	public boolean insertarPersonal(Personal personal) {
-		String st = "INSERT INTO personal VALUES ?,?,?";
+		String st = "INSERT INTO personal VALUES (?,?,?)";
 		
 		try {
 			PreparedStatement pst = super.connection.prepareStatement(st);
@@ -71,7 +71,7 @@ public class ModeloPersonal extends Conector{
 	}
 	
 	public boolean modificarPersonal(Personal personal) {
-		String st = "UPDATE personal SET fech_ingreso=?, dirige=? WHERE id=?";
+		String st = "UPDATE personal SET fech_ingreso=?, dirige=? WHERE id_personal=?";
 		
 		try {
 			PreparedStatement pst = super.connection.prepareStatement(st);
