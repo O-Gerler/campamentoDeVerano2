@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import modeloDTO.ClienteMascota;
+import modeloDTO.Mascota;
 
 public class ModeloClienteMascota extends Conector{
 	public boolean insertarClienteMascota(ClienteMascota clienteMascota) {
@@ -46,8 +47,11 @@ public class ModeloClienteMascota extends Conector{
 		return false;
 	}
 	
-	public ClienteMascota getClienteMascota(int id_cliente) {
+	public ArrayList<Mascota> getClienteMascota(int id_cliente) {
 		String st = "SELECT * FROM cliente_mascota WHERE id_cliente=?";
+		ArrayList<Mascota> mascotas = new ArrayList<>();
+		ModeloMascota modeloMascota = new ModeloMascota();
+		modeloMascota.conectar();
 		
 		try {
 			PreparedStatement pst = super.connection.prepareStatement(st);
@@ -55,11 +59,12 @@ public class ModeloClienteMascota extends Conector{
 			pst.setInt(1, id_cliente);
 			
 			ResultSet rs = pst.executeQuery();
-			rs.next();
+			while(rs.next()) {
+				mascotas.add(rellenarClienteMascota(rs).getMascota());
+			}
 			
-			ClienteMascota clienteMascota = rellenarClienteMascota(rs);
 			
-			return clienteMascota;
+			return mascotas;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
