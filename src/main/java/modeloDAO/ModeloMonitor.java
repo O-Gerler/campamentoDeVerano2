@@ -25,6 +25,9 @@ public class ModeloMonitor extends Conector{
 		monitor.setEmail(personal.getEmail());
 		monitor.setFechaNacimiento(personal.getFechaNacimiento());
 		monitor.setTelefono(personal.getTelefono());
+		monitor.setVehiculos(personal.getVehiculos());
+		monitor.setDirector(personal.getDirector());
+		monitor.setFechaIngreso(personal.getFechaIngreso());
 		
 		return monitor;
 	}
@@ -102,7 +105,7 @@ public class ModeloMonitor extends Conector{
 			
 			ResultSet rs = pst.executeQuery();
 			while(rs.next()) {
-				monitores.add(monitorHeredaUsuario(rs.getInt("id")));
+				monitores.add(monitorHeredaUsuario(rs.getInt("id_monitor")));
 			}
 			
 			return monitores;
