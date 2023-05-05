@@ -65,6 +65,10 @@ public class Usuario {
 	public ArrayList<Vehiculo> getVehiculos() {
 		return vehiculos;
 	}
+	
+	public void setVehiculos(ArrayList<Vehiculo> vehiculos) {
+		this.vehiculos = vehiculos;
+	}
 	public void agregarVehiculo(Vehiculo vehiculo) {
 		vehiculos.add(vehiculo);
 	}
