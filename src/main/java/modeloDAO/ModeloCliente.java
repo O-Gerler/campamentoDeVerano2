@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import modeloDTO.Cliente;
+import modeloDTO.Mascota;
 import modeloDTO.Usuario;
 
 public class ModeloCliente extends Conector{
@@ -25,6 +26,7 @@ public class ModeloCliente extends Conector{
 		cliente.setEmail(usuario.getEmail());
 		cliente.setFechaNacimiento(usuario.getFechaNacimiento());
 		cliente.setTelefono(usuario.getTelefono());
+		cliente.setVehiculos(usuario.getVehiculos());
 		
 		return cliente;
 	}
@@ -116,6 +118,15 @@ public class ModeloCliente extends Conector{
 		cliente.setGrupo(modeloGrupo.getGrupo(rs.getInt("id_grupo")));
 		
 		modeloGrupo.cerrar();
+		ModeloClienteMascota modeloClienteMascota = new ModeloClienteMascota();
+		modeloClienteMascota.conectar();
+		
+		ArrayList<Mascota> mascotas = modeloClienteMascota.getClienteMascota(rs.getInt("id_cliente"));
+		
+		modeloClienteMascota.cerrar();
+		
+		cliente.setMascotas(mascotas);
+		
 		return cliente;
 	}
 	
