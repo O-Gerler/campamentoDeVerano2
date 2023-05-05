@@ -117,6 +117,13 @@ public class ModeloUsuario extends Conector{
 		usuario.setTelefono(rs.getString("telf"));
 		usuario.setFechaNacimiento(rs.getDate("fecha_nacimiento"));
 		
+		ModeloUsuarioVehiculo modeloUsuarioVehiculo = new ModeloUsuarioVehiculo();
+		modeloUsuarioVehiculo.conectar();
+		
+		usuario.setVehiculos(modeloUsuarioVehiculo.getUsuarioVehiculo(0));
+		
+		modeloUsuarioVehiculo.cerrar();
+		
 		return usuario;
 	}
 	
