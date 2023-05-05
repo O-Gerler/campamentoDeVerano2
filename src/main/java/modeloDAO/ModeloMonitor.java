@@ -6,13 +6,25 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import modeloDTO.Monitor;
+import modeloDTO.Personal;
 
 public class ModeloMonitor extends Conector{
 	private Monitor monitorHeredaUsuario(int id) {
 		ModeloPersonal modeloPersonal = new ModeloPersonal();
 		modeloPersonal.conectar();
 		
-		Monitor monitor = (Monitor) modeloPersonal.getPersonal(id);
+		Personal personal = modeloPersonal.getPersonal(id);
+		
+		Monitor monitor = new Monitor();
+
+		monitor.setId(personal.getId());
+		monitor.setNombre(personal.getNombre());
+		monitor.setApellido(personal.getApellido());
+		monitor.setDni(personal.getDni());
+		monitor.setContrasena(personal.getContrasena());
+		monitor.setEmail(personal.getEmail());
+		monitor.setFechaNacimiento(personal.getFechaNacimiento());
+		monitor.setTelefono(personal.getTelefono());
 		
 		return monitor;
 	}
