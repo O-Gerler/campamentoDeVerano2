@@ -17,6 +17,10 @@ public class Cliente extends Usuario{
 	public ArrayList<Mascota> getMascotas() {
 		return mascotas;
 	}
+	
+	public void setMascotas(ArrayList<Mascota> mascotas) {
+		this.mascotas = mascotas;
+	}
 
 	public void agregarMascota(Mascota mascota) {
 		mascotas.add(mascota);
