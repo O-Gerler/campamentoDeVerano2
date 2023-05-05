@@ -80,7 +80,7 @@ public class ModeloClienteMascota extends Conector{
 		
 		ClienteMascota clienteMascota = new ClienteMascota();
 		
-		clienteMascota.setCliente(modeloCliente.getCliente(rs.getInt("id_cliente")));
+		//clienteMascota.setCliente(modeloCliente.getCliente(rs.getInt("id_cliente")));
 		clienteMascota.setMascota(modeloMascota.getMascota(rs.getInt("id_mascota")));
 		
 		modeloCliente.cerrar();
