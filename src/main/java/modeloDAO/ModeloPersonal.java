@@ -6,14 +6,27 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import modeloDTO.Cliente;
 import modeloDTO.Personal;
+import modeloDTO.Usuario;
 
 public class ModeloPersonal extends Conector{
 	private Personal personalHeredaUsuario(int id) {
 		ModeloUsuario modeloUsuario = new ModeloUsuario();
 		modeloUsuario.conectar();
 		
-		Personal personal = (Personal) modeloUsuario.getUsuarios(id);
+		Usuario usuario = modeloUsuario.getUsuarios(id);
+		
+		Personal personal = new Personal();
+		
+		personal.setId(usuario.getId());
+		personal.setNombre(usuario.getNombre());
+		personal.setApellido(usuario.getApellido());
+		personal.setDni(usuario.getDni());
+		personal.setContrasena(usuario.getContrasena());
+		personal.setEmail(usuario.getEmail());
+		personal.setFechaNacimiento(usuario.getFechaNacimiento());
+		personal.setTelefono(usuario.getTelefono());
 		
 		return personal;
 	}
