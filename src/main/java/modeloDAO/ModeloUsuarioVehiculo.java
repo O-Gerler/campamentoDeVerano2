@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import modeloDTO.UsuarioVehiculo;
+import modeloDTO.Vehiculo;
 
 public class ModeloUsuarioVehiculo extends Conector{
 	public boolean insertarUsuarioVehiculo(UsuarioVehiculo usuarioVehiculo) {
@@ -46,8 +47,9 @@ public class ModeloUsuarioVehiculo extends Conector{
 		return false;
 	}
 	
-	public UsuarioVehiculo getUsuarioVehiculo(int id) {
+	public ArrayList<Vehiculo> getUsuarioVehiculo(int id) {
 		String st = "SELECT * FROM usuario_vehiculo WHERE id_usuario=?";
+		ArrayList<Vehiculo> vehiculos = new ArrayList<>();
 		ModeloUsuario modeloUsuario = new ModeloUsuario();
 		ModeloVehiculos modeloVehiculos = new ModeloVehiculos();
 		
@@ -60,8 +62,11 @@ public class ModeloUsuarioVehiculo extends Conector{
 			pst.setInt(1, id);
 			
 			ResultSet rs = pst.executeQuery();
+			while (rs.next()) {
+				vehiculos.add(rellenarUsuarioVehiculo(modeloUsuario, modeloVehiculos, rs).getVehiculo());
+			}
 			
-			return rellenarUsuarioVehiculo(modeloUsuario, modeloVehiculos, rs);
+			return vehiculos;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
