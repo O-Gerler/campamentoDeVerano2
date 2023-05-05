@@ -48,7 +48,7 @@ public class ModeloClienteMascota extends Conector{
 	}
 	
 	public ArrayList<Mascota> getClienteMascota(int id_cliente) {
-		String st = "SELECT * FROM cliente_mascota WHERE id_cliente=?";
+		String st = "SELECT * FROM clientes_mascota WHERE id_cliente=?";
 		ArrayList<Mascota> mascotas = new ArrayList<>();
 		ModeloMascota modeloMascota = new ModeloMascota();
 		modeloMascota.conectar();
@@ -91,7 +91,7 @@ public class ModeloClienteMascota extends Conector{
 	}
 	
 	public ArrayList<ClienteMascota> getAllClienteMascotas() {
-		String st = "SELECT * FROM cliente_mascota";
+		String st = "SELECT * FROM clientes_mascota";
 		ArrayList<ClienteMascota> clienteMascotas = new ArrayList<>();
 		
 		try {
