@@ -50,8 +50,6 @@ public class ModeloClienteMascota extends Conector{
 	public ArrayList<Mascota> getClienteMascota(int id_cliente) {
 		String st = "SELECT * FROM clientes_mascota WHERE id_cliente=?";
 		ArrayList<Mascota> mascotas = new ArrayList<>();
-		ModeloMascota modeloMascota = new ModeloMascota();
-		modeloMascota.conectar();
 		
 		try {
 			PreparedStatement pst = super.connection.prepareStatement(st);

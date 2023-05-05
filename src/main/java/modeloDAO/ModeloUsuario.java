@@ -120,7 +120,7 @@ public class ModeloUsuario extends Conector{
 		ModeloUsuarioVehiculo modeloUsuarioVehiculo = new ModeloUsuarioVehiculo();
 		modeloUsuarioVehiculo.conectar();
 		
-		usuario.setVehiculos(modeloUsuarioVehiculo.getUsuarioVehiculo(0));
+		usuario.setVehiculos(modeloUsuarioVehiculo.getUsuarioVehiculo(rs.getInt("id_usuario")));
 		
 		modeloUsuarioVehiculo.cerrar();
 		

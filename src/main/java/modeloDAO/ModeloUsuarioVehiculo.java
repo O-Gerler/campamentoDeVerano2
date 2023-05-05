@@ -105,7 +105,7 @@ public class ModeloUsuarioVehiculo extends Conector{
 			ResultSet rs) throws SQLException {
 		UsuarioVehiculo usuarioVehiculo = new UsuarioVehiculo();
 		
-		usuarioVehiculo.setUsuario(modeloUsuario.getUsuarios(rs.getInt("id_usuario")));
+		//usuarioVehiculo.setUsuario(modeloUsuario.getUsuarios(rs.getInt("id_usuario")));
 		usuarioVehiculo.setVehiculo(modeloVehiculos.getVehiculo(rs.getInt("id_vehiculo")));
 		return usuarioVehiculo;
 	}

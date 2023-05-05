@@ -24,7 +24,43 @@
 	      </h2>
 	      <div id="a${cliente.id}" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
 	        <div class="accordion-body">
-	          <strong>Nombre:</strong> ${ cliente.nombre }<br>
+	          <div>
+	            <h3>Cliente</h3>
+	            <strong>Nombre:</strong> ${ cliente.nombre }<br>
+	            <strong>Apellido:</strong> ${ cliente.apellido } <br>
+	            <strong>DNI:</strong> ${ cliente.dni } <br>
+	            <strong>email:</strong> ${ cliente.email } <br>
+	            <strong>Telefono:</strong> ${ cliente.telefono } <br>
+	            <strong>Fecha nacimiento:</strong> ${ cliente.fechaNacimiento }
+	          </div>
+	          <div>
+	          	<br>
+	            <h3>Grupo</h3>
+	            <strong>Numero:</strong> ${ cliente.grupo.id }<br>
+	          </div>
+	          <div>
+	            <br>
+	            <h3>Monitor</h3>
+	            <strong>Nombre:</strong> ${ cliente.grupo.monitor.nombre } ${ cliente.grupo.monitor.apellido }<br>
+	          </div>
+	          <div>
+	          	<br>
+	            <h3>Mascotas</h3>
+	            <c:forEach items="${ cliente.mascotas }" var="mascota">
+	              <strong>Numero:</strong> ${ mascota.nombre }<br>
+	              <strong>Raza:</strong> ${ mascota.raza } <br>
+	          	  <strong>Numero del chip:</strong> ${ mascota.numChip } <br><br>
+	            </c:forEach>
+	          </div>
+	          <div>
+	            <h3>Vehiculo</h3>
+	          	<c:forEach items="${ cliente.vehiculos }" var="vehiculo">
+	              <strong>Matricula:</strong> ${ vehiculo.matricula }<br>
+	              <strong>Marca:</strong> ${ vehiculo.marca } <br>
+	          	  <strong>Modelo:</strong> ${ vehiculo.modelo } <br>
+	          	  <strong>Color:</strong> ${ vehiculo.color } <br><br>
+	            </c:forEach>
+	          </div>
 	          <br><br>
 	          <a class="btn btn-primary" href="ModificarCliente?id=${cliente.id}">Modificar</a>
 	          <a class="btn btn-danger" href="EliminarCliente?id=${cliente.id}">Eliminar</a>

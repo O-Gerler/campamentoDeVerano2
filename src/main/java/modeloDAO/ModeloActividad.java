@@ -70,7 +70,7 @@ public class ModeloActividad extends Conector{
 	}
 	
 	public Actividad getActividad(int id) {
-		String st = "SELECT * FROM actividades WHERE id=?";
+		String st = "SELECT * FROM actividades WHERE id_actividad=?";
 		
 		try {
 			PreparedStatement pst = super.connection.prepareStatement(st);
@@ -97,11 +97,14 @@ public class ModeloActividad extends Conector{
 		
 		Actividad actividad = new Actividad();
 		
-		actividad.setId(rs.getInt("id"));
+		actividad.setId(rs.getInt("id_actividad"));
 		actividad.setZona(modeloZona.getZona(rs.getInt("id_zona")));
 		actividad.setNombre(rs.getString("nombre"));
 		actividad.setCantidad_max(rs.getInt("cantidad_max"));
 		actividad.setEdad_min(rs.getInt("edad_min"));
+		
+		modeloZona.cerrar();
+		
 		return actividad;
 	}
 	
