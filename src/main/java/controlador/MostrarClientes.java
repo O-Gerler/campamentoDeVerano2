@@ -40,7 +40,7 @@ public class MostrarClientes extends HttpServlet {
 		modeloCliente.cerrar();
 		
 		request.setAttribute("clientes", clientes);
-		request.getRequestDispatcher("usuarios/verUsuarios.jsp").forward(request, response);
+		request.getRequestDispatcher("clientes/verClientes.jsp").forward(request, response);
 	}
 
 	/**
