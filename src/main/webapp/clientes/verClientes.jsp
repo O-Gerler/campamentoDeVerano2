@@ -58,7 +58,7 @@
 	              <strong>Matricula:</strong> ${ vehiculo.matricula }<br>
 	              <strong>Marca:</strong> ${ vehiculo.marca } <br>
 	          	  <strong>Modelo:</strong> ${ vehiculo.modelo } <br>
-	          	  <strong>Color:</strong> ${ vehiculo.color } <br><br>
+	          	  <strong>Color:</strong> ${ vehiculo.color }
 	            </c:forEach>
 	          </div>
 	          <br><br>
