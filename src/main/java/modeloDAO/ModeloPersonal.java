@@ -27,6 +27,7 @@ public class ModeloPersonal extends Conector{
 		personal.setEmail(usuario.getEmail());
 		personal.setFechaNacimiento(usuario.getFechaNacimiento());
 		personal.setTelefono(usuario.getTelefono());
+		personal.setVehiculos(usuario.getVehiculos());
 		
 		return personal;
 	}
