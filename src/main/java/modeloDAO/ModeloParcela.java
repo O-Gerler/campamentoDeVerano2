@@ -30,7 +30,7 @@ public class ModeloParcela extends Conector{
 	}
 	
 	public boolean eliminarParcela(int id) {
-		String st = "DELETE FROM parcelas WHERE id = ?";
+		String st = "DELETE FROM parcelas WHERE id_parcela = ?";
 		
 		try {
 			PreparedStatement pst = super.connection.prepareStatement(st);
@@ -48,7 +48,7 @@ public class ModeloParcela extends Conector{
 	}
 	
 	public boolean modificarParcela(Parcela parcela) {
-		String st = "UPDATE parcelas SET id_tipo = ?, id_zona = ?, id_grupo = ?, limpia = ? WHERE id = ?";
+		String st = "UPDATE parcelas SET id_tipo = ?, id_zona = ?, id_grupo = ?, limpia = ? WHERE id_parcela = ?";
 		
 		try {
 			PreparedStatement pst = super.connection.prepareStatement(st);
@@ -70,7 +70,7 @@ public class ModeloParcela extends Conector{
 	}
 
 	public Parcela getParcela(int id) {
-		String st = "SELECT * FROM parcelas WHERE id=?";
+		String st = "SELECT * FROM parcelas WHERE id_parcela=?";
 		
 		try {
 			PreparedStatement pst = super.connection.prepareStatement(st);
@@ -100,7 +100,7 @@ public class ModeloParcela extends Conector{
 		
 		Parcela parcela = new Parcela();
 		
-		parcela.setId(rs.getInt("id"));
+		parcela.setId(rs.getInt("id_parcela"));
 		parcela.setTipo(modeloTipo.getTipo(rs.getInt("id_tipo")));
 		parcela.setZona(modeloZona.getZona(rs.getInt("id_zona")));
 		parcela.setGrupo(modeloGrupo.getGrupo(rs.getInt("id_grupo")));
