@@ -12,28 +12,31 @@
     
 </head>
 <body>
-	<a class="btn btn-primary" href="InsertarUsuario">Insertar</a>
+	<a class="btn btn-primary" href="InsertarPersonal">Insertar</a>
 	 <div class="accordion" id="accordionExample">
-  	   <c:forEach items="${ usuarios }" var="usuario">
+  	   <c:forEach items="${ personals }" var="personal">
 	    
 	    <div class="accordion-item">
 	      <h2 class="accordion-header" id="headingOne">
-	        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#a${usuario.id}" aria-expanded="true" aria-controls="a${usuario.id}">
-	          ${usuario.nombre}
+	        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#a${personal.id}" aria-expanded="true" aria-controls="a${personal.id}">
+	          ${personal.nombre}
 	        </button>
 	      </h2>
-	      <div id="a${usuario.id}" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+	      <div id="a${personal.id}" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
 	        <div class="accordion-body">
-	          <strong>Nombre:</strong> ${ usuario.nombre } <br>
-	          <strong>Apellido:</strong> ${ usuario.apellido } <br>
-	          <strong>DNI:</strong> ${ usuario.dni } <br>
-	          <strong>email:</strong> ${ usuario.email } <br>
-	          <strong>Telefono:</strong> ${ usuario.telefono } <br>
-	          <strong>Fecha nacimiento:</strong> ${ usuario.fechaNacimiento } <br>
-	          <strong>Vehiculos:</strong> ${ usuario.dni } <br>
+	          <strong>Nombre:</strong> ${ personal.nombre } <br>
+	          <strong>Apellido:</strong> ${ personal.apellido } <br>
+	          <strong>DNI:</strong> ${ personal.dni } <br>
+	          <strong>email:</strong> ${ personal.email } <br>
+	          <strong>Telefono:</strong> ${ personal.telefono } <br>
+	          <strong>Fecha nacimiento:</strong> ${ personal.fechaNacimiento } <br>
+	          <strong>Fecha Ingreso:</strong> ${ personal.fechaIngreso } <br>
+	          <strong>Jefe:</strong> ${ personal.director } <br>
+	          <strong>Vehiculos:</strong> ${ personal.dni } <br>
+	          
 	          <br><br>
-	          <a class="btn btn-primary" href="ModificarUsuario?id=${usuario.id}">Modificar</a>
-	          <a class="btn btn-danger" href="EliminarUsuario?id=${usuario.id}">Eliminar</a>
+	          <a class="btn btn-primary" href="ModificarPersonal?id=${personal.id}">Modificar</a>
+	          <a class="btn btn-danger" href="EliminarPersonal?id=${personal.id}">Eliminar</a>
 	        </div>
 	      </div>
 	      

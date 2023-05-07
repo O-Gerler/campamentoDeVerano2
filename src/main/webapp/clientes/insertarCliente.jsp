@@ -6,39 +6,27 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Insertar Usuario</title>
+    <title>Insertar Cliente</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
   </head>
   <body>
-    <h1>Insertar Usuario</h1>
-    <form class="container" method="POST" action="InsertarUsuario">
+    <h1>Insertar Cliente</h1>
+    <form class="container" method="POST" action="InsertarCliente">
         <div class="mb-3">
-          <label for="nombre" class="form-label">Nombre</label>
-          <input type="text" class="form-control" id="nombre" name="nombre">
+        <label for="id_usuario" class="form-label">Usuario</label>
+          <select id="id_usuario" name="id_cliente">
+          	<c:forEach items="${ usuarios }" var="usuario">
+          		<option value="${usuario.id}">${usuario.dni}</option>
+          	</c:forEach>
+          </select>
         </div>
         <div class="mb-3">
-          <label for="apellidos" class="form-label">Apellidos</label>
-          <input type="text" class="form-control" id="apellidos" name="apellidos">
-        </div>
-        <div class="mb-3">
-          <label for="dni" class="form-label">DNI</label>
-          <input type="text" class="form-control" id="dni" name="dni">
-        </div>
-        <div class="mb-3">
-          <label for="email" class="form-label">Correo electronico</label>
-          <input type="email" class="form-control" id="email" name="email">
-        </div>
-        <div class="mb-3">
-          <label for="contrasena" class="form-label">Contraseña</label>
-          <input type="password" class="form-control" id="contrasena" name="contrasena">
-        </div>
-        <div class="mb-3">
-          <label for="telf" class="form-label">Telefono</label>
-          <input type="tel" class="form-control" id="telf" name="telf">
-        </div>
-        <div class="mb-3">
-          <label for="fecha_nacimiento" class="form-label">Fecha nacimiento</label>
-          <input type="date" class="form-control" id="fecha_nacimiento" name="fecha_nacimiento">
+          <label for="id_grupo" class="form-label">Grupo</label>
+          <select id="id_grupo" name="id_grupo">
+          	<c:forEach items="${ grupos }" var="grupo">
+          		<option value="${grupo.id}">${grupo.id}</option>
+          	</c:forEach>
+          </select>
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
       </form>
