@@ -13,9 +13,9 @@
 
     <title>Inicio de Sesion</title>
   </head>
-  <body class="d-flex justify-content-center align-center flex-column">
+  <body class="d-flex justify-content-center align-items-center flex-column">
   	<h1>Inicio Sesion</h1>
-  	<form class="container" method="POST" action="InsertarTipo">
+  	<form class="container" method="POST" action="../ComprobarLogin">
         <div class="mb-3">
           <label for="usuario" class="form-label">Usuario</label>
           <input type="text" class="form-control" id="usuario" name="usuario">
@@ -24,7 +24,7 @@
           <label for="contrasena" class="form-label">Contraseña</label>
           <input type="text" class="form-control" id="contrasena" name="contrasena">
         </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" class="btn btn-primary">Iniciar Sesion</button>
       </form>
     <small>¿Eres un trabajador? <a href="#" >Click aqui</a> </small>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
