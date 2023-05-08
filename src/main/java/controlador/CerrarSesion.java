@@ -30,7 +30,7 @@ public class CerrarSesion extends HttpServlet {
 		// TODO Auto-generated method stub
 		HttpSession sesion = request.getSession();
 	    sesion.invalidate();
-	    response.sendRedirect("/MostrarLogin");
+	    response.sendRedirect("ComprobarLogin");
 	}
 
 	/**
