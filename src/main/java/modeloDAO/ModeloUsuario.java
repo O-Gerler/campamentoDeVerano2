@@ -12,7 +12,7 @@ public class ModeloUsuario extends Conector{
 	
 	public boolean insertarUsuario(Usuario usuario) {
 
-		String st = "INSERT INTO usuario (nombre, apellidos, dni, email, contrasena, telf, fecha_nacimiento) VALUES (?,?,?,?,?,?,?)";
+		String st = "INSERT INTO usuarios (nombre, apellidos, dni, email, contrasena, telf, fecha_nacimiento) VALUES (?,?,?,?,?,?,?)";
 
 		try {
 			PreparedStatement pst = super.connection.prepareStatement(st);
@@ -38,7 +38,7 @@ public class ModeloUsuario extends Conector{
 	
 	public boolean eliminarUsuario(int id) {
 		
-		String st = "DELETE FROM usuario WHERE id_usuario = ?";
+		String st = "DELETE FROM usuarios WHERE id_usuario = ?";
 		
 		try {
 			PreparedStatement pst = super.connection.prepareStatement(st);
@@ -58,7 +58,7 @@ public class ModeloUsuario extends Conector{
 	
 	public boolean modificarUsuario(Usuario usuario) {
 		
-		String st = "UPDATE usuario SET nombre = ?, apellidos = ?, dni = ?, email = ?, contrasena = ?, telf = ?, fecha_nacimiento = ? WHERE id_usuario = ?";
+		String st = "UPDATE usuarios SET nombre = ?, apellidos = ?, dni = ?, email = ?, contrasena = ?, telf = ?, fecha_nacimiento = ? WHERE id_usuario = ?";
 		
 		try {
 			PreparedStatement pst = super.connection.prepareStatement(st);
@@ -84,7 +84,7 @@ public class ModeloUsuario extends Conector{
 	}
 	
 	public Usuario getUsuarios(int id) {
-		String st = "SELECT * FROM usuario WHERE id_usuario = ?";
+		String st = "SELECT * FROM usuarios WHERE id_usuario = ?";
 		
 		try {
 			PreparedStatement pst = super.connection.prepareStatement(st);
@@ -106,7 +106,7 @@ public class ModeloUsuario extends Conector{
 	}
 	
 	public Usuario getUsuariosViaDNI(String dni) {
-		String st = "SELECT * FROM usuario WHERE DNI = ?";
+		String st = "SELECT * FROM usuarios WHERE DNI = ?";
 		
 		try {
 			PreparedStatement pst = super.connection.prepareStatement(st);
@@ -150,7 +150,7 @@ public class ModeloUsuario extends Conector{
 	}
 	
 	public boolean getLogin(String dni, String contrasena) {
-		String st = "SELECT * FROM usuario WHERE dni=? and contrasena=?";
+		String st = "SELECT * FROM usuarios WHERE dni=? and contrasena=?";
 		
 		try {
 			PreparedStatement pst = super.connection.prepareStatement(st);
@@ -174,7 +174,7 @@ public class ModeloUsuario extends Conector{
 	public ArrayList<Usuario> getAllUsuarios() {
 		
 		ArrayList<Usuario> usuarios = new ArrayList<>();
-		String st = "SELECT * FROM usuario";
+		String st = "SELECT * FROM usuarios";
 		
 		try {
 			PreparedStatement pst = super.connection.prepareStatement(st);
