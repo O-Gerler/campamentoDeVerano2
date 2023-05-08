@@ -3,6 +3,7 @@ package modeloDAO;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import modeloDTO.Personal;
 import modeloDTO.Recepcion;
@@ -77,6 +78,29 @@ public class ModeloRecepcion extends Conector{
 			
 			ResultSet rs = pst.executeQuery();
 			rs.next();
+			
+			return recepcionHeredaUsuario(rs.getInt("id_recepcion"));
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
+	
+	public ArrayList<Recepcion> getAllRecepcion() {
+		String st = "SELECT * FROM recepcion";
+		ArrayList<Recepcion> recepcions = new ArrayList<>();
+		
+		try {
+			PreparedStatement pst = super.connection.prepareStatement(st);
+			
+			ResultSet rs = pst.executeQuery();
+			while(rs.next()) {
+				recepcions.add(recepcionHeredaUsuario(rs.getInt("id_recepcion")));
+			}
+			
+			return recepcions;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
