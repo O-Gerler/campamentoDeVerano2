@@ -118,14 +118,6 @@ public class ModeloCliente extends Conector{
 		cliente.setGrupo(modeloGrupo.getGrupo(rs.getInt("id_grupo")));
 		
 		modeloGrupo.cerrar();
-		ModeloClienteMascota modeloClienteMascota = new ModeloClienteMascota();
-		modeloClienteMascota.conectar();
-		
-		ArrayList<Mascota> mascotas = modeloClienteMascota.getClienteMascota(rs.getInt("id_cliente"));
-		
-		modeloClienteMascota.cerrar();
-		
-		cliente.setMascotas(mascotas);
 		
 		return cliente;
 	}
