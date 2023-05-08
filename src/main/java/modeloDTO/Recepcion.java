@@ -1,5 +1,5 @@
 package modeloDTO;
 
-public class Recepcionista extends Personal {
+public class Recepcion extends Personal {
 
 }
