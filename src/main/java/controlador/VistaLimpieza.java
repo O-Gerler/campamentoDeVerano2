@@ -6,6 +6,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import modeloDTO.Limpieza;
 
 /**
  * Servlet implementation class VistaLimpieza
@@ -27,7 +30,15 @@ public class VistaLimpieza extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		HttpSession session = request.getSession();
+		
+		Limpieza limpieza = (Limpieza) session.getAttribute("limpieza");
+		
+		if (limpieza != null) {
+			request.getRequestDispatcher("vistaLimpieza/vistaLimpieza.jsp").forward(request, response);
+		}else {
+			request.getRequestDispatcher("vistaLimpieza/vistaLimpieza.jsp").forward(request, response);
+		}
 	}
 
 	/**
