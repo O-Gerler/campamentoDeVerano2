@@ -12,22 +12,22 @@
     
 </head>
 <body>
-	<a class="btn btn-primary" href="InsertarZona">Insertar</a>
+	<a class="btn btn-primary" href="InsertarReserva">Insertar</a>
 	 <div class="accordion" id="accordionExample">
-  	   <c:forEach items="${ zonas }" var="zona">
+  	   <c:forEach items="${ reservas }" var="reserva">
 	    
 	    <div class="accordion-item">
 	      <h2 class="accordion-header" id="headingOne">
-	        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#a${zona.id}" aria-expanded="true" aria-controls="a${zona.id}">
-	          ${zona.nombre}
+	        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#a${reserva.parcela.id}${reserva.cliente.id}${reserva.fecha_ingreso}${reserva.fecha_salida}" aria-expanded="true" aria-controls="a${reserva.parcela.id}${reserva.cliente.id}${reserva.fecha_ingreso}${reserva.fecha_salida}">
+	          Parcela: ${reserva.parcela.id} - Cliente: ${reserva.cliente.dni}
 	        </button>
 	      </h2>
-	      <div id="a${zona.id}" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+	      <div id="a${reserva.parcela.id}${reserva.cliente.id}${reserva.fecha_ingreso}${reserva.fecha_salida}" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
 	        <div class="accordion-body">
-	          ${ zona.descripcion }
+	          aaaaaaaa
 	          <br><br>
-	          <a class="btn btn-primary" href="ModificarZona?id=${zona.id}">Modificar</a>
-	          <a class="btn btn-danger" href="EliminarZona?id=${zona.id}">Eliminar</a>
+	          <a class="btn btn-primary" href="ModificarZona?id_parcela=${reserva.parcela.id}&id_cliente${reserva.cliente.id}&fecha_ingreso${reserva.fecha_ingreso}&fecha_salida${reserva.fecha_salida}">Modificar</a>
+	          <a class="btn btn-danger" href="EliminarZona?id_parcela=${reserva.parcela.id}&id_cliente${reserva.cliente.id}&fecha_ingreso${reserva.fecha_ingreso}&fecha_salida${reserva.fecha_salida}">Eliminar</a>
 	        </div>
 	      </div>
 	      
