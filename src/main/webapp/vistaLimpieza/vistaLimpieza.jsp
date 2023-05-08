@@ -34,12 +34,13 @@
 	            <li><a class="dropdown-item" href="#">Mi Perfil</a></li>
 	            <li><a class="dropdown-item" href="#">Vehiculos</a></li>
 	            <li><hr class="dropdown-divider"></li>
-	            <li><a class="dropdown-item" href="../CerrarSesion">Salir</a></li>
+	            <li><a class="dropdown-item" href="CerrarSesion">Salir</a></li>
 	          </ul>
 	      </div>
 	    </div>
 	  </div>
 	</nav>
+	<h1>Limpieza de la Zona ${ limpieza.zona.id }</h1>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 
   </body>
