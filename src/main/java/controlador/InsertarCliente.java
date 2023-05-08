@@ -8,12 +8,14 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import modeloDAO.ModeloCliente;
 import modeloDAO.ModeloGrupo;
 import modeloDAO.ModeloUsuario;
 import modeloDTO.Cliente;
 import modeloDTO.Grupo;
+import modeloDTO.Recepcion;
 import modeloDTO.Usuario;
 
 /**
@@ -36,21 +38,31 @@ public class InsertarCliente extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		ModeloUsuario modeloUsuario = new ModeloUsuario();
-		ModeloGrupo modeloGrupo = new ModeloGrupo();
+		HttpSession sesion = request.getSession();
 		
-		modeloGrupo.conectar();
-		modeloUsuario.conectar();
+		Recepcion recepcion = (Recepcion) sesion.getAttribute("recepcion");
 		
-		ArrayList<Usuario> usuarios = modeloUsuario.getAllUsuarios();
-		ArrayList<Grupo> grupos = modeloGrupo.getAllGrupos();
+		if (recepcion != null) {
+			ModeloUsuario modeloUsuario = new ModeloUsuario();
+			ModeloGrupo modeloGrupo = new ModeloGrupo();
+			
+			modeloGrupo.conectar();
+			modeloUsuario.conectar();
+			
+			ArrayList<Usuario> usuarios = modeloUsuario.getAllUsuarios();
+			ArrayList<Grupo> grupos = modeloGrupo.getAllGrupos();
+			
+			modeloGrupo.cerrar();
+			modeloUsuario.cerrar();
+			
+			request.setAttribute("grupos", grupos);
+			request.setAttribute("usuarios", usuarios);
+			request.getRequestDispatcher("clientes/insertarCliente.jsp").forward(request, response);
+		}else {
+			request.getRequestDispatcher("error404.jsp").forward(request, response);
+		}
 		
-		modeloGrupo.cerrar();
-		modeloUsuario.cerrar();
 		
-		request.setAttribute("grupos", grupos);
-		request.setAttribute("usuarios", usuarios);
-		request.getRequestDispatcher("clientes/insertarCliente.jsp").forward(request, response);
 	}
 
 	/**
@@ -83,7 +95,15 @@ public class InsertarCliente extends HttpServlet {
 		modeloCliente.insertarCliente(cliente);
 		modeloCliente.cerrar();
 		
-		request.getRequestDispatcher("MostrarClientes").forward(request, response);
+		HttpSession sesion = request.getSession();
+		
+		Recepcion recepcion = (Recepcion) sesion.getAttribute("recepcion");
+		
+		if (recepcion != null) {
+			request.getRequestDispatcher("VistaRecepcion").forward(request, response);
+		}else {
+			request.getRequestDispatcher("error404.jsp").forward(request, response);
+		}	
 	}
 
 }
