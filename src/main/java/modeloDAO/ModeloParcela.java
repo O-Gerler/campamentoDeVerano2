@@ -75,6 +75,8 @@ public class ModeloParcela extends Conector{
 		try {
 			PreparedStatement pst = super.connection.prepareStatement(st);
 			
+			pst.setInt(1, id);
+			
 			ResultSet rs = pst.executeQuery();
 			rs.next();
 			
