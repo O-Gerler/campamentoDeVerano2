@@ -37,7 +37,7 @@ public class ComprobarLoginPersonal extends HttpServlet implements Roles{
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.sendRedirect("login/loginPersonal.jsp");
+		request.getRequestDispatcher("login/loginPersonal.jsp").forward(request, response);
 	}
 
 	/**
