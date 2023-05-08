@@ -1,11 +1,20 @@
 package controlador;
 
 import java.io.IOException;
+import java.net.http.HttpRequest;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import com.mysql.cj.Session;
+
+import modeloDAO.ModeloUsuario;
+import modeloDAO.ModeloUsuarioVehiculo;
+import modeloDTO.Usuario;
 
 /**
  * Servlet implementation class ComprobarLogin
@@ -27,14 +36,31 @@ public class ComprobarLogin extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		response.sendRedirect("login/loginUsuario.jsp");
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		String dni = request.getParameter("usuario");
+		String contrasena = request.getParameter("contrasena");
+		
+		ModeloUsuario modeloUsuario = new ModeloUsuario();
+		modeloUsuario.conectar();
+		
+		if (modeloUsuario.getLogin(dni, contrasena)) {
+			HttpSession sesion = request.getSession();
+			
+			Usuario usuario = modeloUsuario.getUsuariosViaDNI(dni);
+			
+			sesion.setAttribute("usuario", usuario);
+			
+			response.sendRedirect("vistaUsuario/homeUsuario.jsp");
+		}else {
+			request.getRequestDispatcher("login/loginUsuario.jsp").forward(request, response);
+		}
+		
+		modeloUsuario.cerrar();
 	}
 }
