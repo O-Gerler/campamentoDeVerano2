@@ -17,8 +17,8 @@
   	<h1>Inicio Sesion</h1>
   	<form class="container" method="POST" action="../ComprobarLogin">
         <div class="mb-3">
-          <label for="usuario" class="form-label">Usuario</label>
-          <input type="text" class="form-control" id="usuario" name="usuario">
+          <label for="usuario" class="form-label">DNI</label>
+          <input type="text" class="form-control" id="usuario" name="dni">
         </div>
         <div class="mb-3">
           <label for="contrasena" class="form-label">Contraseña</label>

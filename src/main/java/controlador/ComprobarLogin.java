@@ -43,7 +43,7 @@ public class ComprobarLogin extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String dni = request.getParameter("usuario");
+		String dni = request.getParameter("dni");
 		String contrasena = request.getParameter("contrasena");
 		
 		ModeloUsuario modeloUsuario = new ModeloUsuario();

@@ -1,6 +1,8 @@
 package controlador;
 
 import java.io.IOException;
+import java.util.ArrayList;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -8,7 +10,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import modeloDAO.ModeloLimpieza;
 import modeloDAO.ModeloMonitor;
+import modeloDTO.Limpieza;
 import modeloDTO.Monitor;
 
 /**
@@ -48,19 +52,39 @@ public class ComprobarLoginPersonal extends HttpServlet implements Roles{
 			ModeloMonitor modeloMonitor = new ModeloMonitor();
 			modeloMonitor.conectar();
 			
-			if (modeloMonitor.getLogin(dni, contrasena)) {
-				HttpSession sesion = request.getSession();
-				
-				Monitor monitor = modeloMonitor.getMonitorViaDNI(dni);
-				
-				sesion.setAttribute("monitor", monitor);
-				
-				response.sendRedirect(contrasena);
+			System.out.println("aaaaaaaaaaaaaa");
+			
+			ArrayList<Monitor> monitores = modeloMonitor.getAllMonitor();
+			
+			for (Monitor monitor : monitores) {
+				System.out.println(monitor.getDni() + " " + (dni) + " " + monitor.getContrasena() + " " + (contrasena));
+				if (monitor.getDni().equals(dni) && monitor.getContrasena().equals(contrasena)) {
+					HttpSession sesion = request.getSession();
+
+					sesion.setAttribute("monitor", monitor);
+					System.out.println("b");
+					
+					response.sendRedirect("VistaMonitor");
+//					request.getRequestDispatcher("vistaMonitor/vistaMonitor.jsp").forward(request, response);
+				}
 			}
 			
 			break;
 		case Roles.LIMPIEZA: 
-			break;
+			ModeloLimpieza modeloLimpieza = new ModeloLimpieza();
+			modeloLimpieza.conectar();
+			
+			ArrayList<Limpieza> limpiezas = modeloLimpieza.getAllLimpieza();
+			
+			for (Limpieza limpieza : limpiezas) {
+				if (limpieza.getDni().equals(dni) && limpieza.getContrasena().equals(contrasena)) {
+					HttpSession sesion = request.getSession();
+
+					sesion.setAttribute("limpieza", limpieza);
+					
+					response.sendRedirect("vistaLimpieza/vistaLimpieza.jsp");
+				}
+			}
 		case Roles.RECEPCION: 
 			break;
 		case Roles.ADMIN: 

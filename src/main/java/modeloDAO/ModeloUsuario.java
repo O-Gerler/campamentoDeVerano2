@@ -104,6 +104,28 @@ public class ModeloUsuario extends Conector{
 		
 		return null;
 	}
+	
+	public Usuario getUsuariosViaDNI(String dni) {
+		String st = "SELECT * FROM usuario WHERE DNI = ?";
+		
+		try {
+			PreparedStatement pst = super.connection.prepareStatement(st);
+			
+			pst.setString(1, dni);
+			
+			ResultSet rs = pst.executeQuery();
+			rs.next();
+			
+			Usuario usuario = rellenarUsuario(rs);
+			
+			return usuario;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
 
 	private Usuario rellenarUsuario(ResultSet rs) throws SQLException {
 		Usuario usuario = new Usuario();
@@ -125,6 +147,28 @@ public class ModeloUsuario extends Conector{
 		modeloUsuarioVehiculo.cerrar();
 		
 		return usuario;
+	}
+	
+	public boolean getLogin(String dni, String contrasena) {
+		String st = "SELECT * FROM usuario WHERE dni=? and contrasena=?";
+		
+		try {
+			PreparedStatement pst = super.connection.prepareStatement(st);
+			
+			pst.setString(1, dni);
+			pst.setString(2, contrasena);
+			
+			ResultSet rs = pst.executeQuery();
+			rs.next();
+			
+			return true;
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return false;
 	}
 	
 	public ArrayList<Usuario> getAllUsuarios() {

@@ -6,13 +6,29 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import modeloDTO.Limpieza;
+import modeloDTO.Monitor;
+import modeloDTO.Personal;
 
 public class ModeloLimpieza extends Conector{
 	private Limpieza limpiezaHeredaPersonal(int id) {
 		ModeloPersonal modeloPersonal = new ModeloPersonal();
 		modeloPersonal.conectar();
 		
-		Limpieza limpieza = (Limpieza) modeloPersonal.getPersonal(id);
+		Personal personal = modeloPersonal.getPersonal(id);
+		
+		Limpieza limpieza = new Limpieza();
+
+		limpieza.setId(personal.getId());
+		limpieza.setNombre(personal.getNombre());
+		limpieza.setApellido(personal.getApellido());
+		limpieza.setDni(personal.getDni());
+		limpieza.setContrasena(personal.getContrasena());
+		limpieza.setEmail(personal.getEmail());
+		limpieza.setFechaNacimiento(personal.getFechaNacimiento());
+		limpieza.setTelefono(personal.getTelefono());
+		limpieza.setVehiculos(personal.getVehiculos());
+		limpieza.setDirector(personal.getDirector());
+		limpieza.setFechaIngreso(personal.getFechaIngreso());
 		
 		return limpieza;
 	}
@@ -24,7 +40,7 @@ public class ModeloLimpieza extends Conector{
 			return false;
 		}
 		
-		String st = "INSERT INTO limpieza VALUES ?,?";
+		String st = "INSERT INTO limpieza VALUES (?,?)";
 		
 		try {
 			PreparedStatement pst = super.connection.prepareStatement(st);
@@ -43,7 +59,7 @@ public class ModeloLimpieza extends Conector{
 	}
 	
 	public boolean eliminarLimpieza(int id) {
-		String st = "DELETE FROM limpieza WHERE id=?";
+		String st = "DELETE FROM limpieza WHERE id_limpieza=?";
 		
 		try {
 			PreparedStatement pst = super.connection.prepareStatement(st);
@@ -61,7 +77,7 @@ public class ModeloLimpieza extends Conector{
 	}
 	
 	public boolean modificarLimpieza(Limpieza limpieza) {
-		String st = "UPDATE FROM limpieza SET id_zona=? WHERE id=?";
+		String st = "UPDATE FROM limpieza SET id_zona=? WHERE id_limpieza=?";
 		
 		try {
 			PreparedStatement pst = super.connection.prepareStatement(st);
@@ -80,7 +96,7 @@ public class ModeloLimpieza extends Conector{
 	}
 	
 	public Limpieza getLimpieza(int id) {
-		String st = "SELECT * FROM limpieza WHERE id=?";
+		String st = "SELECT * FROM limpieza WHERE id_limpieza=?";
 		
 		try {
 			PreparedStatement pst = super.connection.prepareStatement(st);
@@ -102,7 +118,7 @@ public class ModeloLimpieza extends Conector{
 	}
 
 	private Limpieza rellenarLimpieza(ResultSet rs) throws SQLException {
-		Limpieza limpieza = limpiezaHeredaPersonal(rs.getInt("id"));
+		Limpieza limpieza = limpiezaHeredaPersonal(rs.getInt("id_limpieza"));
 		
 		ModeloZona modeloZona = new ModeloZona();
 		modeloZona.conectar();

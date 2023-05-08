@@ -76,6 +76,28 @@ public class ModeloMonitor extends Conector{
 	
 	//NO SE PUEDE MODIFICAR MONITOR, TENDRIAMOS QUE MODIFICAR USUARIO
 	
+	public boolean getLogin(String dni, String contrasena) {
+		String st = "SELECT * FROM monitorres WHERE dni=? and contrasena=?";
+		
+		try {
+			PreparedStatement pst = super.connection.prepareStatement(st);
+			
+			pst.setString(1, dni);
+			pst.setString(2, contrasena);
+			
+			ResultSet rs = pst.executeQuery();
+			rs.next();
+			
+			return true;
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return false;
+	}
+	
 	public Monitor getMonitor(int id) {
 		String st = "SELECT * FROM monitores WHERE id_monitor=?";
 		
@@ -83,6 +105,26 @@ public class ModeloMonitor extends Conector{
 			PreparedStatement pst = super.connection.prepareStatement(st);
 			
 			pst.setInt(1, id);
+			
+			ResultSet rs = pst.executeQuery();
+			rs.next();
+			
+			return monitorHeredaUsuario(rs.getInt("id_monitor"));
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
+	
+	public Monitor getMonitorViaDNI(String dni) {
+		String st = "SELECT * FROM monitores WHERE dni=?";
+		
+		try {
+			PreparedStatement pst = super.connection.prepareStatement(st);
+			
+			pst.setString(1, dni);
 			
 			ResultSet rs = pst.executeQuery();
 			rs.next();
