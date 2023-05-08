@@ -23,4 +23,22 @@ public class ModeloRecepcion extends Conector{
 		
 		return false;
 	}
+	
+	public boolean eliminarRecepcion(int id) {
+		String st = "DELETE FROM recepcion WHERE id_recepcion=?";
+		
+		try {
+			PreparedStatement pst = super.connection.prepareStatement(st);
+			
+			pst.setInt(1,id);
+			
+			pst.execute();
+			return true;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return false;
+	}
 }
