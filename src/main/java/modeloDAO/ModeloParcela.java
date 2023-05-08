@@ -88,6 +88,26 @@ public class ModeloParcela extends Conector{
 		
 		return null;
 	}
+	
+	public Parcela getParcelaPorZona(int id) {
+		String st = "SELECT * FROM parcelas WHERE id_zona=?";
+		
+		try {
+			PreparedStatement pst = super.connection.prepareStatement(st);
+			
+			ResultSet rs = pst.executeQuery();
+			rs.next();
+			
+			Parcela parcela = rellenarParcela(rs);
+			
+			return parcela;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
 
 	private Parcela rellenarParcela(ResultSet rs) throws SQLException {
 		ModeloTipo modeloTipo = new ModeloTipo();
