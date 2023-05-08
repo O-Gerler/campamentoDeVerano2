@@ -6,8 +6,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import modeloDAO.ModeloCliente;
+import modeloDTO.Recepcion;
 
 /**
  * Servlet implementation class EliminarCliente
@@ -38,7 +40,15 @@ public class EliminarCliente extends HttpServlet {
 		
 		modeloCliente.cerrar();
 		
-		request.getRequestDispatcher("MostrarClientes").forward(request, response);
+		HttpSession session = request.getSession();
+		
+		Recepcion recepcion = (Recepcion) session.getAttribute("recepcion");
+		
+		if (recepcion != null) {
+			request.getRequestDispatcher("VistaRecepcion").forward(request, response);
+		}else {
+			request.getRequestDispatcher("MostrarUsuarios").forward(request, response);
+		}
 	}
 
 	/**
