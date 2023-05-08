@@ -93,7 +93,7 @@ public class ModeloReserva extends Conector{
 	}
 	
 	public ArrayList<Reserva> getAllReservas() {
-		String st = "SELCT * FROM reservas";
+		String st = "SELECT * FROM reservas";
 		ArrayList<Reserva> reservas = new ArrayList<>();
 		
 		try {
