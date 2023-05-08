@@ -13,9 +13,9 @@
 
     <title>Inicio de Sesion</title>
   </head>
-  <body class="d-flex justify-content-center align-items-center flex-column">
+  <body class="d-flex justify-content-center align-items-center flex-column gap-3" style="height: 100vh">
   	<h1>Inicio Sesion del Personal</h1>
-  	<form class="container" method="POST" action="../ComprobarLoginPersonal">
+  	<form class="container" method="POST" action="ComprobarLoginPersonal" style="max-width: 600px">
         <div class="mb-3">
           <label for="usuario" class="form-label">DNI</label>
           <input type="text" class="form-control" id="usuario" name="dni">
@@ -26,7 +26,7 @@
         </div>
         <div class="mb-3">
           <label for="rol" class="form-label">Rol</label>
-	      <select name="id_rol" id="rol">
+	      <select name="id_rol" id="rol" class="form-select">
 	        <option value="1">Monitor</option>
 	        <option value="2">Limpieza</option>
 	        <option value="3">Recepcion</option>
@@ -35,7 +35,6 @@
         </div>
         <button type="submit" class="btn btn-primary">Iniciar Sesion</button>
       </form>
-    <small>¿Eres un trabajador? <a href="#" >Click aqui</a> </small>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 
   </body>
