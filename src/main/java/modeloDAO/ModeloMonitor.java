@@ -118,26 +118,6 @@ public class ModeloMonitor extends Conector{
 		return null;
 	}
 	
-	public Monitor getMonitorViaDNI(String dni) {
-		String st = "SELECT * FROM monitores WHERE dni=?";
-		
-		try {
-			PreparedStatement pst = super.connection.prepareStatement(st);
-			
-			pst.setString(1, dni);
-			
-			ResultSet rs = pst.executeQuery();
-			rs.next();
-			
-			return monitorHeredaUsuario(rs.getInt("id_monitor"));
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		return null;
-	}
-	
 	public ArrayList<Monitor> getAllMonitor() {
 		String st = "SELECT * FROM monitores";
 		ArrayList<Monitor> monitores = new ArrayList<>();
