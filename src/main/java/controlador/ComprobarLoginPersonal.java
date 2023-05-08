@@ -12,8 +12,10 @@ import javax.servlet.http.HttpSession;
 
 import modeloDAO.ModeloLimpieza;
 import modeloDAO.ModeloMonitor;
+import modeloDAO.ModeloRecepcion;
 import modeloDTO.Limpieza;
 import modeloDTO.Monitor;
+import modeloDTO.Recepcion;
 
 /**
  * Servlet implementation class ComprobarLoginPersonal
@@ -52,12 +54,9 @@ public class ComprobarLoginPersonal extends HttpServlet implements Roles{
 			ModeloMonitor modeloMonitor = new ModeloMonitor();
 			modeloMonitor.conectar();
 			
-			System.out.println("aaaaaaaaaaaaaa");
-			
 			ArrayList<Monitor> monitores = modeloMonitor.getAllMonitor();
 			
 			for (Monitor monitor : monitores) {
-				System.out.println(monitor.getDni() + " " + (dni) + " " + monitor.getContrasena() + " " + (contrasena));
 				if (monitor.getDni().equals(dni) && monitor.getContrasena().equals(contrasena)) {
 					HttpSession sesion = request.getSession();
 
@@ -82,10 +81,24 @@ public class ComprobarLoginPersonal extends HttpServlet implements Roles{
 
 					sesion.setAttribute("limpieza", limpieza);
 					
-					response.sendRedirect("vistaLimpieza/vistaLimpieza.jsp");
+					response.sendRedirect("VistaLimpieza");
 				}
 			}
 		case Roles.RECEPCION: 
+			ModeloRecepcion modeloRecepcion = new ModeloRecepcion();
+			modeloRecepcion.conectar();
+			
+			ArrayList<Recepcion> recepcions = modeloRecepcion.getAllRecepcion();
+			
+			for (Recepcion recepcion : recepcions) {
+				if (recepcion.getDni().equals(dni) && recepcion.getContrasena().equals(contrasena)) {
+					HttpSession sesion = request.getSession();
+
+					sesion.setAttribute("recepcion", recepcion);
+					
+					response.sendRedirect("VistaRecepcion");
+				}
+			}
 			break;
 		case Roles.ADMIN: 
 			break;
