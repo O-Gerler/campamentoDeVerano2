@@ -36,7 +36,7 @@ public class ComprobarLogin extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.sendRedirect("login/loginUsuario.jsp");
+		request.getRequestDispatcher("login/loginUsuario.jsp").forward(request, response);
 	}
 
 	/**
@@ -58,7 +58,7 @@ public class ComprobarLogin extends HttpServlet {
 			
 			response.sendRedirect("vistaUsuario/homeUsuario.jsp");
 		}else {
-			request.getRequestDispatcher("login/loginUsuario.jsp").forward(request, response);
+			doGet(request, response);
 		}
 		
 		modeloUsuario.cerrar();
