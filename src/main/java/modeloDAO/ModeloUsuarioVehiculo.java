@@ -10,7 +10,7 @@ import modeloDTO.Vehiculo;
 
 public class ModeloUsuarioVehiculo extends Conector{
 	public boolean insertarUsuarioVehiculo(UsuarioVehiculo usuarioVehiculo) {
-		String st = "INSERT INTO usuario_vehiculo VALUES (?,?)";
+		String st = "INSERT INTO usuarios_vehiculos VALUES (?,?)";
 		
 		try {
 			PreparedStatement pst = super.connection.prepareStatement(st);
@@ -29,7 +29,7 @@ public class ModeloUsuarioVehiculo extends Conector{
 	}
 	
 	public boolean eliminarUsuarioVehiculo(int id_usuario, int id_vehiculo) {
-		String st = "DELETE FROM usuario_vehiculo WHERE id_usuario=? and id_vehiculo=?";
+		String st = "DELETE FROM usuarios_vehiculos WHERE id_usuario=? and id_vehiculo=?";
 		
 		try {
 			PreparedStatement pst = super.connection.prepareStatement(st);
@@ -48,7 +48,7 @@ public class ModeloUsuarioVehiculo extends Conector{
 	}
 	
 	public ArrayList<Vehiculo> getUsuarioVehiculo(int id) {
-		String st = "SELECT * FROM usuario_vehiculo WHERE id_usuario=?";
+		String st = "SELECT * FROM usuarios_vehiculos WHERE id_usuario=?";
 		ArrayList<Vehiculo> vehiculos = new ArrayList<>();
 		ModeloUsuario modeloUsuario = new ModeloUsuario();
 		ModeloVehiculos modeloVehiculos = new ModeloVehiculos();
@@ -76,7 +76,7 @@ public class ModeloUsuarioVehiculo extends Conector{
 	}
 	
 	public ArrayList<UsuarioVehiculo> getAllUsuarioVehiculoIDUsuario() {
-		String st = "SELECT * FROM usuario_vehiculo";
+		String st = "SELECT * FROM usuarios_vehiculos";
 		ArrayList<UsuarioVehiculo> usuarioVehiculos = new ArrayList<>();
 		ModeloUsuario modeloUsuario = new ModeloUsuario();
 		ModeloVehiculos modeloVehiculos = new ModeloVehiculos();
