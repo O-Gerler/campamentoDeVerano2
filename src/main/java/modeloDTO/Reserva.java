@@ -4,9 +4,10 @@ import java.util.Date;
 
 public class Reserva {
 	private Parcela parcela;
-	private Cliente cliente;
+	private Usuario usuario;
 	private Date fecha_ingreso;
 	private Date fecha_salida;
+	private boolean ocupado;
 	
 	public Parcela getParcela() {
 		return parcela;
@@ -14,11 +15,11 @@ public class Reserva {
 	public void setParcela(Parcela parcela) {
 		this.parcela = parcela;
 	}
-	public Cliente getCliente() {
-		return cliente;
+	public Usuario getUsuario() {
+		return usuario;
 	}
-	public void setCliente(Cliente cliente) {
-		this.cliente = cliente;
+	public void setUsuario(Usuario cliente) {
+		this.usuario = cliente;
 	}
 	public Date getFecha_ingreso() {
 		return fecha_ingreso;
@@ -32,11 +33,16 @@ public class Reserva {
 	public void setFecha_salida(Date fecha_salida) {
 		this.fecha_salida = fecha_salida;
 	}
-	
+	public boolean isOcupado() {
+		return ocupado;
+	}
+	public void setOcupado(boolean ocupado) {
+		this.ocupado = ocupado;
+	}
 	public Reserva(Parcela parcela, Cliente cliente, Date fecha_ingreso, Date fecha_salida) {
 		super();
 		this.parcela = parcela;
-		this.cliente = cliente;
+		this.usuario = cliente;
 		this.fecha_ingreso = fecha_ingreso;
 		this.fecha_salida = fecha_salida;
 	}
