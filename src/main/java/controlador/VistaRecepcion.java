@@ -11,8 +11,10 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import modeloDAO.ModeloCliente;
+import modeloDAO.ModeloReserva;
 import modeloDTO.Cliente;
 import modeloDTO.Recepcion;
+import modeloDTO.Reserva;
 
 /**
  * Servlet implementation class VistaRecepcion
@@ -44,9 +46,20 @@ public class VistaRecepcion extends HttpServlet {
 			
 			ArrayList<Cliente> clientes = modeloCliente.getAllClientes();
 			
-			request.setAttribute("clientes", clientes);
+			modeloCliente.cerrar();
 			
+			ModeloReserva modeloReserva = new ModeloReserva();
+			modeloReserva.conectar();
+			
+			ArrayList<Reserva> reservas = modeloReserva.getAllReservas();
+			
+			modeloReserva.cerrar();
+			
+			request.setAttribute("clientes", clientes);
+			request.setAttribute("reservas", reservas);
 			request.getRequestDispatcher("vistaRecepcion/vistaRecepcion.jsp").forward(request, response);
+		}else {
+			request.getRequestDispatcher("error404.jsp").forward(request, response);
 		}
 	}
 
