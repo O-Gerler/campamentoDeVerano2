@@ -106,7 +106,7 @@ public class ModeloUsuario extends Conector{
 	}
 	
 	public Usuario getUsuariosViaDNI(String dni) {
-		String st = "SELECT * FROM usuarios WHERE DNI = ?";
+		String st = "SELECT * FROM usuarios WHERE dni = ?";
 		
 		try {
 			PreparedStatement pst = super.connection.prepareStatement(st);
