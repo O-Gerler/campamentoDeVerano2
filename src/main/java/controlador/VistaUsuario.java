@@ -35,8 +35,9 @@ public class VistaUsuario extends HttpServlet {
 		Usuario usuario = (Usuario) session.getAttribute("usuario");
 		
 		if (usuario != null) {
-			request.setAttribute("usuario", usuario);
-			request.getRequestDispatcher("vistaUsuario/vistaUsuario.jsp");
+			request.getRequestDispatcher("vistaUsuario/homeUsuario.jsp").forward(request, response);
+		}else {
+			request.getRequestDispatcher("error404.jsp").forward(request, response);
 		}
 	}
 
