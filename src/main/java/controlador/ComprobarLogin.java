@@ -56,7 +56,8 @@ public class ComprobarLogin extends HttpServlet {
 			
 			sesion.setAttribute("usuario", usuario);
 			
-			request.getRequestDispatcher("vistaUsuario/homeUsuario.jsp").forward(request, response);
+			response.sendRedirect("VistaUsuario");
+			//request.getRequestDispatcher("VistaUsuario").forward(request, response);
 		}else {
 			doGet(request, response);
 		}
