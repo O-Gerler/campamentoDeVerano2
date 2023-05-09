@@ -24,7 +24,7 @@
 	    <div class="collapse navbar-collapse" id="navbarSupportedContent">
 	      <ul class="navbar-nav me-auto mb-2 mb-lg-0"></ul>
 	      <div class="nav-item dropdown"> 
-	      	<a class="nav-link btn btn-warning" href="#">Reservar</a>
+	      	<a class="nav-link btn btn-warning" href="InsertarReserva">Reservar</a>
 	      </div>
 	      <div class="nav-item dropdown">
 	          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -32,9 +32,10 @@
 	          </a>
 	          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
 	            <li><a class="dropdown-item" href="#">Mi Perfil</a></li>
+	            <li><a class="dropdown-item" href="#">Mis Reservas</a></li>
 	            <li><a class="dropdown-item" href="#">Vehiculos</a></li>
 	            <li><hr class="dropdown-divider"></li>
-	            <li><a class="dropdown-item" href="../CerrarSesion">Salir</a></li>
+	            <li><a class="dropdown-item" href="CerrarSesion">Salir</a></li>
 	          </ul>
 	      </div>
 	    </div>
