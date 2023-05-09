@@ -10,15 +10,16 @@ import modeloDTO.Reserva;
 
 public class ModeloReserva extends Conector{
 	public boolean insertarReserva(Reserva reserva) {
-		String st = "INSERT INTO reservas (id_parcela,id_clientes,fecha_ingreso,fecha_salida) VALUES (?,?,?,?)";
+		String st = "INSERT INTO reservas (id_parcela,id_usuario,fecha_ingreso,fecha_salida,ocupado) VALUES (?,?,?,?,?)";
 
 		try {
 			PreparedStatement pst = super.connection.prepareStatement(st);
 
 			pst.setInt(1, reserva.getParcela().getId());
-			pst.setInt(2, reserva.getCliente().getId());
+			pst.setInt(2, reserva.getUsuario().getId());
 			pst.setDate(3, new Date(reserva.getFecha_ingreso().getTime()));
 			pst.setDate(4, new Date(reserva.getFecha_salida().getTime()));
+			pst.setBoolean(5, true);
 
 			pst.execute();
 			return true;
@@ -31,13 +32,13 @@ public class ModeloReserva extends Conector{
 	}
 	
 	public boolean eliminarReserva(Reserva reserva) {
-		String st = "DELETE FROM reservas WHERE id_parcela=? and id_clientes=? and fecha_ingreso=? and fecha_salida=?";
+		String st = "DELETE FROM reservas WHERE id_parcela=? and id_usuario=? and fecha_ingreso=? and fecha_salida=?";
 		
 		try {
 			PreparedStatement pst = super.connection.prepareStatement(st);
 
 			pst.setInt(1, reserva.getParcela().getId());
-			pst.setInt(2, reserva.getCliente().getId());
+			pst.setInt(2, reserva.getUsuario().getId());
 			pst.setDate(3, new Date(reserva.getFecha_ingreso().getTime()));
 			pst.setDate(4, new Date(reserva.getFecha_salida().getTime()));
 
@@ -52,7 +53,7 @@ public class ModeloReserva extends Conector{
 	}
 	
 	public Reserva getReserva(int id_cliente) {
-		String st = "SELECT * FROM reservas WHERE id_cliente=?";
+		String st = "SELECT * FROM reservas WHERE id_usuario=?";
 		
 		try {
 			PreparedStatement pst = super.connection.prepareStatement(st);
@@ -74,20 +75,21 @@ public class ModeloReserva extends Conector{
 	}
 
 	private Reserva rellernarReserva(ResultSet rs) throws SQLException {
-		ModeloCliente modeloCliente = new ModeloCliente();
+		ModeloUsuario modeloUsuario = new ModeloUsuario();
 		ModeloParcela modeloParcela = new ModeloParcela();
 		
-		modeloCliente.conectar();
+		modeloUsuario.conectar();
 		modeloParcela.conectar();
 		
 		Reserva reserva = new Reserva();
 		
-		reserva.setCliente(modeloCliente.getCliente(rs.getInt("id_cliente")));
+		reserva.setUsuario(modeloUsuario.getUsuarios(rs.getInt("id_usuario")));
 		reserva.setParcela(modeloParcela.getParcela(rs.getInt("id_parcela")));
 		reserva.setFecha_ingreso(rs.getDate("fecha_ingreso"));
 		reserva.setFecha_salida(rs.getDate("fecha_salida"));
+		reserva.setOcupado(rs.getBoolean("ocupado"));
 		
-		modeloCliente.cerrar();
+		modeloUsuario.cerrar();
 		modeloParcela.cerrar();
 		return reserva;
 	}
