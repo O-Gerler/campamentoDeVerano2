@@ -6,6 +6,12 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import modeloDAO.ModeloCliente;
+import modeloDTO.Cliente;
+import modeloDTO.Manager;
+import modeloDTO.Recepcion;
 
 /**
  * Servlet implementation class ModificarCliente
@@ -27,7 +33,27 @@ public class ModificarCliente extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		HttpSession session = request.getSession();
+		
+		Manager manager = (Manager) session.getAttribute("manager");
+		
+		Recepcion recepcion = (Recepcion) session.getAttribute("recepcion");
+		
+		if (manager != null || recepcion != null) {
+			int id = Integer.parseInt(request.getParameter("id"));
+			
+			ModeloCliente modeloCliente = new ModeloCliente();
+			modeloCliente.conectar();
+			
+			Cliente cliente = modeloCliente.getCliente(id);
+			
+			modeloCliente.cerrar();
+			
+			request.setAttribute("cliente", cliente);
+			request.getRequestDispatcher("clientes/modificarCliente.jsp").forward(request, response);
+		}else {
+			request.getRequestDispatcher("error404.jsp").forward(request, response);
+		}
 	}
 
 	/**
