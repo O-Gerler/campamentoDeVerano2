@@ -38,17 +38,31 @@ public class ModificarUsuario extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		int id = Integer.parseInt(request.getParameter("id"));
+		HttpSession session = request.getSession();
 		
-		ModeloUsuario modeloUsuario = new ModeloUsuario();
-		modeloUsuario.conectar();
+		Recepcion vistaRecepcion = (Recepcion) session.getAttribute("recepcion");
 		
-		Usuario usuario = modeloUsuario.getUsuarios(id);
+		Usuario vistaUsuario = (Usuario) session.getAttribute("usuario");
 		
-		modeloUsuario.cerrar();
+		Monitor vistaMonitor = (Monitor) session.getAttribute("monitor");
 		
-		request.setAttribute("usuario", usuario);
-		request.getRequestDispatcher("usuarios/modificarUsuario.jsp").forward(request, response);
+		Limpieza vistaLimpieza = (Limpieza) session.getAttribute("limpieza");
+		
+		if (vistaLimpieza == null && vistaMonitor == null && vistaRecepcion == null && vistaUsuario == null) {
+			request.getRequestDispatcher("error404.jsp").forward(request, response);
+		}else {
+			int id = Integer.parseInt(request.getParameter("id"));
+			
+			ModeloUsuario modeloUsuario = new ModeloUsuario();
+			modeloUsuario.conectar();
+			
+			Usuario usuario = modeloUsuario.getUsuarios(id);
+			
+			modeloUsuario.cerrar();
+			
+			request.setAttribute("usuario", usuario);
+			request.getRequestDispatcher("usuarios/modificarUsuario.jsp").forward(request, response);
+		}
 	}
 
 	/**
