@@ -15,6 +15,7 @@ import modeloDAO.ModeloGrupo;
 import modeloDAO.ModeloUsuario;
 import modeloDTO.Cliente;
 import modeloDTO.Grupo;
+import modeloDTO.Manager;
 import modeloDTO.Recepcion;
 import modeloDTO.Usuario;
 
@@ -42,7 +43,9 @@ public class InsertarCliente extends HttpServlet {
 		
 		Recepcion recepcion = (Recepcion) sesion.getAttribute("recepcion");
 		
-		if (recepcion != null) {
+		Manager manager = (Manager) sesion.getAttribute("manager");
+		
+		if (recepcion != null || manager != null) {
 			ModeloUsuario modeloUsuario = new ModeloUsuario();
 			ModeloGrupo modeloGrupo = new ModeloGrupo();
 			
@@ -86,6 +89,7 @@ public class InsertarCliente extends HttpServlet {
 		modeloUsuario.cerrar();
 		
 		ModeloCliente modeloCliente = new ModeloCliente();
+		modeloCliente.conectar();
 		
 		Cliente cliente = new Cliente();
 		
@@ -99,9 +103,13 @@ public class InsertarCliente extends HttpServlet {
 		
 		Recepcion recepcion = (Recepcion) sesion.getAttribute("recepcion");
 		
+		Manager manager = (Manager) sesion.getAttribute("manager");
+		
 		if (recepcion != null) {
 			request.getRequestDispatcher("VistaRecepcion").forward(request, response);
-		}else {
+		}else if (manager != null) {
+			request.getRequestDispatcher("VistaManager").forward(request, response);
+		}else{
 			request.getRequestDispatcher("error404.jsp").forward(request, response);
 		}	
 	}
