@@ -122,6 +122,29 @@ public class ModeloCliente extends Conector{
 		return cliente;
 	}
 	
+	public ArrayList<Cliente> getClientesPorMonitor(int id_monitor) {
+		String st = "SELECT * FROM clientes WHERE id_grupo = (SELECT id_grupo FROM grupos WHERE id_monitor=?)";
+		ArrayList<Cliente> clientes = new ArrayList<>();
+		
+		try {
+			PreparedStatement pst = super.connection.prepareStatement(st);
+			
+			pst.setInt(1, id_monitor);
+			
+			ResultSet rs = pst.executeQuery();
+			while (rs.next()) {
+				clientes.add(rellenarCliente(rs));
+			}
+			
+			return clientes;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
+	
 	public ArrayList<Cliente> getAllClientes() {
 		String st = "SELECT * FROM clientes";
 		ArrayList<Cliente> clientes = new ArrayList<>();
