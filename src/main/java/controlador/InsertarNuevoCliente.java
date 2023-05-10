@@ -112,7 +112,7 @@ public class InsertarNuevoCliente extends HttpServlet {
 		}else if (manager != null) {
 			request.getRequestDispatcher("VistaManager").forward(request, response);
 		}else{
-			request.getRequestDispatcher("MostrarUsuarios").forward(request, response);
+			request.getRequestDispatcher("error404.jsp").forward(request, response);
 		}
 	}
 
