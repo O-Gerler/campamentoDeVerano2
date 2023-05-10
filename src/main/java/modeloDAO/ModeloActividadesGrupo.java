@@ -10,7 +10,7 @@ import modeloDTO.ActividadesPorGrupo;
 
 public class ModeloActividadesGrupo extends Conector{
 	public boolean insertarActividadGrupo(ActividadesPorGrupo actividadesPorGrupo) {
-		String st = "INSERT INTO actividades_grupo VALUES (?,?,?,?)";
+		String st = "INSERT INTO actividades_grupos VALUES (?,?,?,?)";
 		
 		try {
 			PreparedStatement pst = super.connection.prepareStatement(st);
@@ -31,7 +31,7 @@ public class ModeloActividadesGrupo extends Conector{
 	}
 	
 	public boolean eliminarActividadGrupo(int id) {
-		String st = "DELETE FROM actividades_grupo WHERE id=?";
+		String st = "DELETE FROM actividades_grupos WHERE id=?";
 		
 		try {
 			PreparedStatement pst = super.connection.prepareStatement(st);
@@ -49,7 +49,7 @@ public class ModeloActividadesGrupo extends Conector{
 	}
 	
 	public ActividadesPorGrupo getActividadesPorGrupo(ActividadesPorGrupo actividadesPorGrupo) {
-		String st = "SELECT * FROM actividades_grupo WHERE id_actividad=?, id_grupo=?, fecha=?, hora=?";
+		String st = "SELECT * FROM actividades_grupos WHERE id_actividad=?, id_grupo=?, fecha=?, hora=?";
 		
 		try {
 			PreparedStatement pst = super.connection.prepareStatement(st);
@@ -72,6 +72,29 @@ public class ModeloActividadesGrupo extends Conector{
 		
 		return null;
 	}
+	
+	public ArrayList<ActividadesPorGrupo> getActividadesViaMonitor(int id) {
+		String st = "SELECT * FROM actividades_grupos WHERE id_grupo = (SELECT id_grupo FROM grupos WHERE id_monitor=?)";
+		ArrayList<ActividadesPorGrupo> actividadesPorGrupos = new ArrayList<>();
+		
+		try {
+			PreparedStatement pst = super.connection.prepareStatement(st);
+			
+			pst.setInt(1, id);
+			
+			ResultSet rs = pst.executeQuery();
+			while (rs.next()) {
+				actividadesPorGrupos.add(rellenarActividadGrupo(rs));
+			}
+			
+			return actividadesPorGrupos;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return null;
+	}	
 
 	private ActividadesPorGrupo rellenarActividadGrupo(ResultSet rs) throws SQLException {
 		ActividadesPorGrupo actividadesPorGrupoBBDD = new ActividadesPorGrupo();
@@ -93,7 +116,7 @@ public class ModeloActividadesGrupo extends Conector{
 	}
 	
 	public ArrayList<ActividadesPorGrupo> getAllActividadesPorGrupo() {
-		String st = "SELECT * FROM actividades_grupo";
+		String st = "SELECT * FROM actividades_grupos";
 		ArrayList<ActividadesPorGrupo> actividadesPorGrupos = new ArrayList<>();
 		
 		try {
