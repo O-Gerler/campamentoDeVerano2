@@ -66,11 +66,17 @@ public class ModeloUsuarioVehiculo extends Conector{
 				vehiculos.add(rellenarUsuarioVehiculo(modeloUsuario, modeloVehiculos, rs).getVehiculo());
 			}
 			
+			modeloUsuario.cerrar();
+			modeloVehiculos.cerrar();
+			
 			return vehiculos;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		modeloUsuario.cerrar();
+		modeloVehiculos.cerrar();
 		
 		return null;
 	}
@@ -92,11 +98,17 @@ public class ModeloUsuarioVehiculo extends Conector{
 				usuarioVehiculos.add(rellenarUsuarioVehiculo(modeloUsuario, modeloVehiculos, rs));
 			}
 			
+			modeloUsuario.cerrar();
+			modeloVehiculos.cerrar();
+			
 			return usuarioVehiculos;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		modeloUsuario.cerrar();
+		modeloVehiculos.cerrar();
 		
 		return null;
 	}
