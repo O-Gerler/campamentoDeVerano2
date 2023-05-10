@@ -10,17 +10,17 @@ public class Conector {
 	public Conector() {
 		connection = null;
 
-		try {
-			Class.forName("com.mysql.cj.jdbc.Driver");
-			connection = DriverManager.getConnection("jdbc:mysql://localhost/campamento", "root", "");
-			System.out.println("funciona");
-
-		} catch (Exception e) {
-			// TODO: handle exception
-			e.printStackTrace();
-			System.out.println("no funciona");
-
-		}
+//		try {
+//			Class.forName("com.mysql.cj.jdbc.Driver");
+//			connection = DriverManager.getConnection("jdbc:mysql://localhost/campamento", "root", "");
+//			System.out.println("funciona");
+//
+//		} catch (Exception e) {
+//			// TODO: handle exception
+//			e.printStackTrace();
+//			System.out.println("no funciona");
+//
+//		}
 	}
 	
 	public void conectar() {
