@@ -100,12 +100,47 @@ public class ModeloUsuarioVehiculo extends Conector{
 		
 		return null;
 	}
+	
+	public ArrayList<UsuarioVehiculo> getAllUsuarioVehiculoConUsuario() {
+		String st = "SELECT * FROM usuarios_vehiculos";
+		ArrayList<UsuarioVehiculo> usuarioVehiculos = new ArrayList<>();
+		ModeloUsuario modeloUsuario = new ModeloUsuario();
+		ModeloVehiculos modeloVehiculos = new ModeloVehiculos();
+		
+		modeloUsuario.conectar();
+		modeloVehiculos.conectar();
+		
+		try {
+			PreparedStatement pst = super.connection.prepareStatement(st);
+			
+			ResultSet rs = pst.executeQuery();
+			while(rs.next()) {
+				usuarioVehiculos.add(rellenarUsuarioVehiculoConUsuario(modeloUsuario, modeloVehiculos, rs));
+			}
+			
+			return usuarioVehiculos;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
 
 	private UsuarioVehiculo rellenarUsuarioVehiculo(ModeloUsuario modeloUsuario, ModeloVehiculos modeloVehiculos,
 			ResultSet rs) throws SQLException {
 		UsuarioVehiculo usuarioVehiculo = new UsuarioVehiculo();
 		
 		//usuarioVehiculo.setUsuario(modeloUsuario.getUsuarios(rs.getInt("id_usuario")));
+		usuarioVehiculo.setVehiculo(modeloVehiculos.getVehiculo(rs.getInt("id_vehiculo")));
+		return usuarioVehiculo;
+	}
+	
+	private UsuarioVehiculo rellenarUsuarioVehiculoConUsuario(ModeloUsuario modeloUsuario, ModeloVehiculos modeloVehiculos,
+			ResultSet rs) throws SQLException {
+		UsuarioVehiculo usuarioVehiculo = new UsuarioVehiculo();
+		
+		usuarioVehiculo.setUsuario(modeloUsuario.getUsuarios(rs.getInt("id_usuario")));
 		usuarioVehiculo.setVehiculo(modeloVehiculos.getVehiculo(rs.getInt("id_vehiculo")));
 		return usuarioVehiculo;
 	}
