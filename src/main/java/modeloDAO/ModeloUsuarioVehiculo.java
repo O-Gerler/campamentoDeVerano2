@@ -75,7 +75,7 @@ public class ModeloUsuarioVehiculo extends Conector{
 		return null;
 	}
 	
-	public ArrayList<UsuarioVehiculo> getAllUsuarioVehiculoIDUsuario() {
+	public ArrayList<UsuarioVehiculo> getAllUsuarioVehiculo() {
 		String st = "SELECT * FROM usuarios_vehiculos";
 		ArrayList<UsuarioVehiculo> usuarioVehiculos = new ArrayList<>();
 		ModeloUsuario modeloUsuario = new ModeloUsuario();

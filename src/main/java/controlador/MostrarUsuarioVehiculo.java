@@ -35,7 +35,7 @@ public class MostrarUsuarioVehiculo extends HttpServlet {
 		ModeloUsuarioVehiculo modeloUsuarioVehiculo = new ModeloUsuarioVehiculo();
 		modeloUsuarioVehiculo.conectar();
 		
-		ArrayList<UsuarioVehiculo> usuarioVehiculos = modeloUsuarioVehiculo.getAllUsuarioVehiculoIDUsuario();
+		ArrayList<UsuarioVehiculo> usuarioVehiculos = modeloUsuarioVehiculo.getAllUsuarioVehiculo();
 		
 		modeloUsuarioVehiculo.cerrar();
 		
