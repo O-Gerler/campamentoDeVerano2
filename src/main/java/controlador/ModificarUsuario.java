@@ -10,8 +10,12 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import modeloDAO.ModeloUsuario;
+import modeloDTO.Limpieza;
+import modeloDTO.Monitor;
+import modeloDTO.Recepcion;
 import modeloDTO.Usuario;
 
 /**
@@ -56,6 +60,7 @@ public class ModificarUsuario extends HttpServlet {
 		String nombre = request.getParameter("nombre");
 		String apellidos = request.getParameter("apellidos");
 		String dni = request.getParameter("dni");
+		String email = request.getParameter("email");
 		String contrasena = request.getParameter("contrasena");
 		String telefono = request.getParameter("telf");
 		String fecha = request.getParameter("fecha_nacimiento");
@@ -75,6 +80,7 @@ public class ModificarUsuario extends HttpServlet {
 		usuario.setNombre(nombre);
 		usuario.setApellido(apellidos);
 		usuario.setDni(dni);
+		usuario.setEmail(email);
 		usuario.setContrasena(contrasena);
 		usuario.setTelefono(telefono);
 		usuario.setFechaNacimiento(fechaNacimineto);
@@ -86,7 +92,28 @@ public class ModificarUsuario extends HttpServlet {
 		
 		modeloUsuario.cerrar();
 		
-		request.getRequestDispatcher("MostrarUsuarios").forward(request, response);
+		HttpSession session = request.getSession();
+		
+		Recepcion vistaRecepcion = (Recepcion) session.getAttribute("recepcion");
+		
+		Usuario vistaUsuario = (Usuario) session.getAttribute("usuario");
+		
+		Monitor vistaMonitor = (Monitor) session.getAttribute("monitor");
+		
+		Limpieza vistaLimpieza = (Limpieza) session.getAttribute("limpieza");
+		
+		if (vistaUsuario != null) {
+			response.sendRedirect("VistaUsuario");
+		}else if (vistaMonitor != null) {
+			response.sendRedirect("VistaMonitor");
+		}else if (vistaLimpieza != null) {
+			response.sendRedirect("VistaLimpieza");
+		}else if (vistaRecepcion != null) {
+			response.sendRedirect("VistaRecepcion");
+		}else {
+			request.getRequestDispatcher("error404.jsp").forward(request, response);
+		}
+		
 	}
 
 }
