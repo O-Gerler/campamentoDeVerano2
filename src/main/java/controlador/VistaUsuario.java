@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import modeloDAO.ModeloUsuario;
 import modeloDTO.Usuario;
 
 /**
@@ -35,6 +36,14 @@ public class VistaUsuario extends HttpServlet {
 		Usuario usuario = (Usuario) session.getAttribute("usuario");
 		
 		if (usuario != null) {
+			ModeloUsuario modeloUsuario = new ModeloUsuario();
+			modeloUsuario.conectar();
+			
+			usuario = modeloUsuario.getUsuarios(usuario.getId());
+			
+			modeloUsuario.cerrar();
+			
+			request.setAttribute("usuario", usuario);
 			request.getRequestDispatcher("vistaUsuario/homeUsuario.jsp").forward(request, response);
 		}else {
 			request.getRequestDispatcher("error404.jsp").forward(request, response);
