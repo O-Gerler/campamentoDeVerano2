@@ -18,6 +18,7 @@ import modeloDAO.ModeloUsuario;
 import modeloDTO.Usuario;
 import modeloDTO.Cliente;
 import modeloDTO.Grupo;
+import modeloDTO.Manager;
 import modeloDTO.Recepcion;
 
 /**
@@ -104,9 +105,13 @@ public class InsertarNuevoCliente extends HttpServlet {
 		
 		Recepcion recepcion = (Recepcion) session.getAttribute("recepcion");
 		
+		Manager manager = (Manager) session.getAttribute("manager");
+		
 		if (recepcion != null) {
 			request.getRequestDispatcher("VistaRecepcion").forward(request, response);
-		}else {
+		}else if (manager != null) {
+			request.getRequestDispatcher("VistaManager").forward(request, response);
+		}else{
 			request.getRequestDispatcher("MostrarUsuarios").forward(request, response);
 		}
 	}
