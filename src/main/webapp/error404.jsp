@@ -14,7 +14,7 @@
 <title>ERROR</title>
 </head>
 <body class="d-flex justify-content-center align-items-center gap-4" style="height: 100vh">
-  <div>
+  <div class="container">
   	<h1>ERROR!!!</h1>
 	<h2>Parece que no tienes permiso para acceder a esta pagina</h2>
 	<a class="btn btn-primary" href="ComprobarLogin">Volver</a>
