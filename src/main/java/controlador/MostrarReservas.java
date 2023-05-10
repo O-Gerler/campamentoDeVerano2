@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import modeloDAO.ModeloReserva;
+import modeloDAO.ModeloUsuario;
 import modeloDTO.Recepcion;
 import modeloDTO.Reserva;
 import modeloDTO.Usuario;
@@ -47,6 +48,14 @@ public class MostrarReservas extends HttpServlet {
 			
 			modeloReserva.cerrar();
 			
+			ModeloUsuario modeloUsuario = new ModeloUsuario();
+			modeloUsuario.conectar();
+			
+			usuario = modeloUsuario.getUsuarios(usuario.getId());
+			
+			modeloUsuario.cerrar();
+			
+			request.setAttribute("usuario", usuario);
 			request.setAttribute("reservas", reservas);
 			request.getRequestDispatcher("reservas/verReservas.jsp").forward(request, response);
 		}else {
