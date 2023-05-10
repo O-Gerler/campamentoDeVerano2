@@ -102,9 +102,10 @@ public class ComprobarLoginPersonal extends HttpServlet implements Roles{
 			break;
 		case Roles.ADMIN: 
 			break;
-		default:
-			response.sendRedirect("login/loginPersonal.jsp");
 		}
+		
+		request.setAttribute("incorrecto", true);
+		request.getRequestDispatcher("login/loginPersonal.jsp").forward(request, response);
 	}
 
 }
