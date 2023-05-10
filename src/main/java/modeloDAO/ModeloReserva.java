@@ -94,6 +94,29 @@ public class ModeloReserva extends Conector{
 		return reserva;
 	}
 	
+	public ArrayList<Reserva> getReservasUsuario(int id_usuario) {
+		String st = "SELECT * FROM reservas WHERE id_usuario=?";
+		ArrayList<Reserva> reservas = new ArrayList<>();
+		
+		try {
+			PreparedStatement pst = super.connection.prepareStatement(st);
+			
+			pst.setInt(1, id_usuario);
+			
+			ResultSet rs = pst.executeQuery();
+			while (rs.next()) {
+				reservas.add(rellernarReserva(rs));
+			}
+			
+			return reservas;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
+	
 	public ArrayList<Reserva> getAllReservas() {
 		String st = "SELECT * FROM reservas";
 		ArrayList<Reserva> reservas = new ArrayList<>();
