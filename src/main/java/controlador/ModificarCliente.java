@@ -1,6 +1,8 @@
 package controlador;
 
 import java.io.IOException;
+import java.util.ArrayList;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -9,7 +11,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import modeloDAO.ModeloCliente;
+import modeloDAO.ModeloGrupo;
 import modeloDTO.Cliente;
+import modeloDTO.Grupo;
 import modeloDTO.Manager;
 import modeloDTO.Recepcion;
 
@@ -49,7 +53,15 @@ public class ModificarCliente extends HttpServlet {
 			
 			modeloCliente.cerrar();
 			
+			ModeloGrupo modeloGrupo = new ModeloGrupo();
+			modeloGrupo.conectar();
+			
+			ArrayList<Grupo> grupos = modeloGrupo.getAllGrupos();
+			
+			modeloGrupo.cerrar();
+			
 			request.setAttribute("cliente", cliente);
+			request.setAttribute("grupos", grupos);
 			request.getRequestDispatcher("clientes/modificarCliente.jsp").forward(request, response);
 		}else {
 			request.getRequestDispatcher("error404.jsp").forward(request, response);
