@@ -14,6 +14,7 @@ import modeloDAO.ModeloLimpieza;
 import modeloDAO.ModeloMonitor;
 import modeloDAO.ModeloRecepcion;
 import modeloDTO.Limpieza;
+import modeloDTO.Manager;
 import modeloDTO.Monitor;
 import modeloDTO.Recepcion;
 
@@ -105,6 +106,16 @@ public class ComprobarLoginPersonal extends HttpServlet implements Roles{
 			}
 			break;
 		case Roles.ADMIN: 
+			if (dni.equals(Manager.USER_ADMIN) && contrasena.equals(Manager.PASSWORD_ADMIN)) {
+				Manager manager = new Manager();
+				
+				HttpSession session = request.getSession();
+				
+				session.setAttribute("manager", manager);
+				
+				response.sendRedirect("VistaManager");
+				sesionCorrecta = true;
+			}
 			break;
 		}
 		
