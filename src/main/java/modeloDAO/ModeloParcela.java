@@ -68,6 +68,25 @@ public class ModeloParcela extends Conector{
 		
 		return false;
 	}
+	
+	public boolean limpiarParcela(int id_parcela) {
+		String st = "UPDATE parcelas SET limpia=? WHERE id_parcela=?";
+		
+		try {
+			PreparedStatement pst = super.connection.prepareStatement(st);
+			
+			pst.setBoolean(1, true);
+			pst.setInt(2, id_parcela);
+			
+			pst.execute();
+			return true;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return false;
+	}
 
 	public Parcela getParcela(int id) {
 		String st = "SELECT * FROM parcelas WHERE id_parcela=?";
