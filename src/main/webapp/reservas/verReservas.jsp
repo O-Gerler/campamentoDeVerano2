@@ -39,12 +39,6 @@
        	<c:if test="${ vistaUsuario != null }">
        		<a class="btn btn-primary" href="VistaUsuario">Volver</a>
        	</c:if>
-       	<c:if test="${ vistaMonitor != null }">
-       		<a class="btn btn-primary" href="VistaMonitor">Volver</a>
-       	</c:if>
-       	<c:if test="${ vistaLimpieza != null }">
-       		<a class="btn btn-primary" href="VistaLimpieza">Volver</a>
-       	</c:if>
        	<c:if test="${ vistaRecepcion != null }">
        		<a class="btn btn-primary" href="VistaRecepcion">Volver</a>
        	</c:if>
