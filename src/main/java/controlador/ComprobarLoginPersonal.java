@@ -48,6 +48,7 @@ public class ComprobarLoginPersonal extends HttpServlet implements Roles{
 		String dni = request.getParameter("dni");
 		String contrasena = request.getParameter("contrasena");
 		int id_rol = Integer.parseInt(request.getParameter("id_rol"));
+		boolean sesionCorrecta = false;
 		
 		switch (id_rol) {
 		case Roles.MONITOR: 
@@ -64,6 +65,7 @@ public class ComprobarLoginPersonal extends HttpServlet implements Roles{
 					System.out.println("b");
 					
 					response.sendRedirect("VistaMonitor");
+					sesionCorrecta = true;
 //					request.getRequestDispatcher("vistaMonitor/vistaMonitor.jsp").forward(request, response);
 				}
 			}
@@ -82,6 +84,7 @@ public class ComprobarLoginPersonal extends HttpServlet implements Roles{
 					sesion.setAttribute("limpieza", limpieza);
 					
 					response.sendRedirect("VistaLimpieza");
+					sesionCorrecta = true;
 				}
 			}
 		case Roles.RECEPCION: 
@@ -97,6 +100,7 @@ public class ComprobarLoginPersonal extends HttpServlet implements Roles{
 					sesion.setAttribute("recepcion", recepcion);
 					
 					response.sendRedirect("VistaRecepcion");
+					sesionCorrecta = true;
 				}
 			}
 			break;
@@ -104,8 +108,10 @@ public class ComprobarLoginPersonal extends HttpServlet implements Roles{
 			break;
 		}
 		
-		request.setAttribute("incorrecto", true);
-		request.getRequestDispatcher("login/loginPersonal.jsp").forward(request, response);
+		if (!sesionCorrecta) {
+			request.setAttribute("incorrecto", true);
+			request.getRequestDispatcher("login/loginPersonal.jsp").forward(request, response);
+		}		
 	}
 
 }
