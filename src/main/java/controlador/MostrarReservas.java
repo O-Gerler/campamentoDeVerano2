@@ -13,6 +13,7 @@ import javax.servlet.http.HttpSession;
 import modeloDAO.ModeloReserva;
 import modeloDTO.Recepcion;
 import modeloDTO.Reserva;
+import modeloDTO.Usuario;
 
 /**
  * Servlet implementation class MostrarReservas
@@ -36,29 +37,21 @@ public class MostrarReservas extends HttpServlet {
 		// TODO Auto-generated method stub
 		HttpSession session = request.getSession();
 		
-		Recepcion recepcion = (Recepcion) session.getAttribute("recepcion");
+		Usuario usuario = (Usuario) session.getAttribute("usuario");
 		
-		if (recepcion != null) {
+		if (usuario != null) {
 			ModeloReserva modeloReserva = new ModeloReserva();
 			modeloReserva.conectar();
 			
-			ArrayList<Reserva> reservas = modeloReserva.getAllReservas();
+			ArrayList<Reserva> reservas = modeloReserva.getReservasUsuario(usuario.getId());
 			
 			modeloReserva.cerrar();
 			
 			request.setAttribute("reservas", reservas);
 			request.getRequestDispatcher("reservas/verReservas.jsp").forward(request, response);
+		}else {
+			request.getRequestDispatcher("error404.jsp").forward(request, response);
 		}
-		
-		ModeloReserva modeloReserva = new ModeloReserva();
-		modeloReserva.conectar();
-		
-		ArrayList<Reserva> reservas = modeloReserva.getAllReservas();
-		
-		modeloReserva.cerrar();
-		
-		request.setAttribute("reservas", reservas);
-		request.getRequestDispatcher("reservas/verReservas.jsp").forward(request, response);
 	}
 
 	/**
