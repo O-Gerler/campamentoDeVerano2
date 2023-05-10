@@ -15,6 +15,8 @@ public class ModeloMonitor extends Conector{
 		
 		Personal personal = modeloPersonal.getPersonal(id);
 		
+		modeloPersonal.cerrar();
+		
 		Monitor monitor = new Monitor();
 
 		monitor.setId(personal.getId());
