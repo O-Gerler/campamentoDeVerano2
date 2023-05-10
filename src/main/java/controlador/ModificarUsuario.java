@@ -119,6 +119,8 @@ public class ModificarUsuario extends HttpServlet {
 		
 		Limpieza vistaLimpieza = (Limpieza) session.getAttribute("limpieza");
 		
+		Manager vistaManager = (Manager) session.getAttribute("manager");
+		
 		if (vistaUsuario != null) {
 			response.sendRedirect("VistaUsuario");
 		}else if (vistaMonitor != null) {
@@ -127,7 +129,9 @@ public class ModificarUsuario extends HttpServlet {
 			response.sendRedirect("VistaLimpieza");
 		}else if (vistaRecepcion != null) {
 			response.sendRedirect("VistaRecepcion");
-		}else {
+		}else if (vistaManager != null) {
+			response.sendRedirect("VistaManager");
+		}else{
 			request.getRequestDispatcher("error404.jsp").forward(request, response);
 		}
 		
