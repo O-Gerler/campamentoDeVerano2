@@ -17,6 +17,8 @@ public class ModeloPersonal extends Conector{
 		
 		Usuario usuario = modeloUsuario.getUsuarios(id);
 		
+		modeloUsuario.cerrar();
+		
 		Personal personal = new Personal();
 		
 		personal.setId(usuario.getId());
