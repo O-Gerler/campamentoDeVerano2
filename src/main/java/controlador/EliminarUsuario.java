@@ -6,8 +6,11 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import modeloDAO.ModeloUsuario;
+import modeloDTO.Manager;
+import modeloDTO.Usuario;
 
 /**
  * Servlet implementation class EliminarUsuario
@@ -29,16 +32,36 @@ public class EliminarUsuario extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		int id = Integer.parseInt(request.getParameter("id"));
 		
-		ModeloUsuario modeloUsuario = new ModeloUsuario();
-		modeloUsuario.conectar();
+		HttpSession session = request.getSession();
 		
-		modeloUsuario.eliminarUsuario(id);
+		Manager manager = (Manager) session.getAttribute("manager");
 		
-		modeloUsuario.cerrar();
+		Usuario usuario = (Usuario) session.getAttribute("usuario");
 		
-		request.getRequestDispatcher("MostrarUsuarios").forward(request, response);
+		if (usuario != null) {
+			ModeloUsuario modeloUsuario = new ModeloUsuario();
+			modeloUsuario.conectar();
+			
+			modeloUsuario.eliminarUsuario(usuario.getId());
+			
+			modeloUsuario.cerrar();
+			
+			response.sendRedirect("CerrarSesion");
+		}else if (manager != null) {
+			int id = Integer.parseInt(request.getParameter("id"));
+			
+			ModeloUsuario modeloUsuario = new ModeloUsuario();
+			modeloUsuario.conectar();
+			
+			modeloUsuario.eliminarUsuario(id);
+			
+			modeloUsuario.cerrar();
+			
+			response.sendRedirect("VistaManager");
+		}else {
+			request.getRequestDispatcher("error404.jsp").forward(request, response);
+		}
 	}
 
 	/**
