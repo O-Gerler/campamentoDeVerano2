@@ -12,7 +12,7 @@
     
 </head>
 <body>
-	<c:set var="limpieza" value="${ sessionScope.recepcion }"/>
+	<c:set var="usuario" value="${ requestScope.usuario }"/>
   	<nav class="navbar navbar-expand-lg navbar-light bg-light d-fixed top-0" style="width: 100vw">
 	  <div class="container-fluid">
 	    <div class="navbar-brand">Campamento</div>
@@ -27,7 +27,7 @@
 	      </div>
 	      <div class="nav-item dropdown">
 	          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-	            ${ recepcion.nombre } ${ recepcion.apellido }
+	            ${ usuario.nombre } ${ usuario.apellido }
 	          </a>
 	          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
 	            <li><a class="dropdown-item" href="MostrarPerfil">Mi Perfil</a></li>
