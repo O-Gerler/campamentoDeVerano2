@@ -1,6 +1,8 @@
 package controlador;
 
 import java.io.IOException;
+import java.util.ArrayList;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -8,7 +10,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import modeloDAO.ModeloParcela;
 import modeloDTO.Limpieza;
+import modeloDTO.Parcela;
 
 /**
  * Servlet implementation class VistaLimpieza
@@ -35,6 +39,13 @@ public class VistaLimpieza extends HttpServlet {
 		Limpieza limpieza = (Limpieza) session.getAttribute("limpieza");
 		
 		if (limpieza != null) {
+			ModeloParcela modeloParcela = new ModeloParcela();
+			modeloParcela.conectar();
+			
+			ArrayList<Parcela> parcelas = modeloParcela.getParcelasPorZona(limpieza.getZona().getId());
+			
+			modeloParcela.cerrar();
+			request.setAttribute("parcelas", parcelas);
 			request.getRequestDispatcher("vistaLimpieza/vistaLimpieza.jsp").forward(request, response);
 		}else {
 			request.getRequestDispatcher("vistaLimpieza/vistaLimpieza.jsp").forward(request, response);
