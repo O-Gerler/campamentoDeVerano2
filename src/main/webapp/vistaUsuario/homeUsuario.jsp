@@ -14,7 +14,7 @@
     <title>Home</title>
   </head>
   <body class="d-flex justify-content-center align-items-center flex-column">
-  	<c:set var="usuario" value="${ sessionScope.usuario }"/>
+  	<c:set var="usuario" value="${ requestScope.usuario }"/>
   	<nav class="navbar navbar-expand-lg navbar-light bg-light d-fixed top-0" style="width: 100vw">
 	  <div class="container-fluid">
 	    <div class="navbar-brand">Campamento</div>
@@ -31,8 +31,9 @@
 	            ${ usuario.nombre } ${ usuario.apellido }
 	          </a>
 	          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-	            <li><a class="dropdown-item" href="#">Mi Perfil</a></li>
-	            <li><a class="dropdown-item" href="#">Mis Reservas</a></li>
+	            <li><a class="dropdown-item" href="#">Home</a></li>
+	            <li><a class="dropdown-item" href="MostrarPerfil">Mi Perfil</a></li>
+	            <li><a class="dropdown-item" href="MostrarReservas">Mis Reservas</a></li>
 	            <li><a class="dropdown-item" href="#">Vehiculos</a></li>
 	            <li><hr class="dropdown-divider"></li>
 	            <li><a class="dropdown-item" href="CerrarSesion">Salir</a></li>
