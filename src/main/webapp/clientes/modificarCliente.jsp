@@ -11,7 +11,7 @@
   </head>
   <body class="d-flex justify-content-center align-items-center my-5 my-md-0" style="min-height: 100vh; width: 100vw">
   	<div class="d-flex justify-content-center align-items-center flex-column gap-3" style="max-width: 700px">
-	  	<h1>Insertar Cliente</h1>
+	  	<h1>Modificar Cliente</h1>
 	    <form class="container" method="POST" action="InsertarCliente" id="formUser" style="max-width: 700px">
 	        <div class="mb-3 d-flex gap-3 justify-content-center align-items-center">
 	        <label for="id_usuario" class="form-label" style="max-width: 120px">Usuario</label>
