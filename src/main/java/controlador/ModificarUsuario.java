@@ -14,6 +14,7 @@ import javax.servlet.http.HttpSession;
 
 import modeloDAO.ModeloUsuario;
 import modeloDTO.Limpieza;
+import modeloDTO.Manager;
 import modeloDTO.Monitor;
 import modeloDTO.Recepcion;
 import modeloDTO.Usuario;
@@ -48,7 +49,9 @@ public class ModificarUsuario extends HttpServlet {
 		
 		Limpieza vistaLimpieza = (Limpieza) session.getAttribute("limpieza");
 		
-		if (vistaLimpieza == null && vistaMonitor == null && vistaRecepcion == null && vistaUsuario == null) {
+		Manager manager = (Manager) session.getAttribute("manager");
+		
+		if (vistaLimpieza == null && vistaMonitor == null && vistaRecepcion == null && vistaUsuario == null && manager == null) {
 			request.getRequestDispatcher("error404.jsp").forward(request, response);
 		}else {
 			int id = Integer.parseInt(request.getParameter("id"));
