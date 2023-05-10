@@ -12,9 +12,11 @@ import javax.servlet.http.HttpSession;
 
 import modeloDAO.ModeloCliente;
 import modeloDAO.ModeloReserva;
+import modeloDAO.ModeloUsuario;
 import modeloDTO.Cliente;
 import modeloDTO.Recepcion;
 import modeloDTO.Reserva;
+import modeloDTO.Usuario;
 
 /**
  * Servlet implementation class VistaRecepcion
@@ -55,6 +57,14 @@ public class VistaRecepcion extends HttpServlet {
 			
 			modeloReserva.cerrar();
 			
+			ModeloUsuario modeloUsuario = new ModeloUsuario();
+			modeloUsuario.conectar();
+			
+			Usuario usuario = modeloUsuario.getUsuarios(recepcion.getId());
+			
+			modeloUsuario.cerrar();
+			
+			request.setAttribute("usuario", usuario);
 			request.setAttribute("clientes", clientes);
 			request.setAttribute("reservas", reservas);
 			request.getRequestDispatcher("vistaRecepcion/vistaRecepcion.jsp").forward(request, response);
