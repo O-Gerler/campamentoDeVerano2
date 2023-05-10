@@ -135,6 +135,29 @@ public class ModeloParcela extends Conector{
 		return parcela;
 	}
 	
+	public ArrayList<Parcela> getParcelasPorZona(int id_zona) {
+		String st = "SELECT * FROM parcelas WHERE id_zona=?";
+		ArrayList<Parcela> parcelas = new ArrayList<>();
+		
+		try {
+			PreparedStatement pst = super.connection.prepareStatement(st);
+			
+			pst.setInt(1, id_zona);
+			
+			ResultSet rs = pst.executeQuery();
+			while (rs.next()) {
+				parcelas.add(rellenarParcela(rs));
+			}
+			
+			return parcelas;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
+	
 	public ArrayList<Parcela> getAllParcelas() {
 		String st = "SELECT * FROM parcelas";
 		ArrayList<Parcela> parcelas = new ArrayList<>();
