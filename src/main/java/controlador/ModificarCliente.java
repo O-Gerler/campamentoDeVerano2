@@ -72,8 +72,40 @@ public class ModificarCliente extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		int id_cliente = Integer.parseInt(request.getParameter("id_cliente"));
+		int id_grupo = Integer.parseInt(request.getParameter("id_grupo"));
+		
+		ModeloCliente modeloCliente = new ModeloCliente();
+		modeloCliente.conectar();
+		
+		Cliente cliente = modeloCliente.getCliente(id_cliente);
+		
+		ModeloGrupo modeloGrupo = new ModeloGrupo();
+		modeloGrupo.conectar();
+		
+		Grupo grupo = modeloGrupo.getGrupo(id_grupo);
+		
+		modeloGrupo.cerrar();
+		
+		cliente.setGrupo(grupo);
+		
+		modeloCliente.modificarCliente(cliente);
+		
+		modeloCliente.cerrar();
+		
+		HttpSession session = request.getSession();
+		
+		Manager manager = (Manager) session.getAttribute("manager");
+		
+		Recepcion recepcion = (Recepcion) session.getAttribute("recepcion");
+		
+		if (manager != null) {
+			response.sendRedirect("VistaManager");
+		}else if (recepcion != null) {
+			response.sendRedirect("VistaRecepcion");
+		}else {
+			request.getRequestDispatcher("error404.jsp").forward(request, response);
+		}
 	}
 
 }

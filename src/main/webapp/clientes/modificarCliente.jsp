@@ -12,20 +12,21 @@
   <body class="d-flex justify-content-center align-items-center my-5 my-md-0" style="min-height: 100vh; width: 100vw">
   	<div class="d-flex justify-content-center align-items-center flex-column gap-3" style="max-width: 700px">
 	  	<h1>Modificar Cliente</h1>
-	    <form class="container" method="POST" action="InsertarCliente" id="formUser" style="max-width: 700px">
+	    <form class="container" method="POST" action="ModificarCliente" id="formUser" style="max-width: 700px">
 	        <div class="mb-3 d-flex gap-3 justify-content-center align-items-center">
-	        <label for="id_usuario" class="form-label" style="max-width: 120px">Usuario</label>
-	          <select id="id_usuario" name="id_cliente" class="form-select">
-	          	<c:forEach items="${ usuarios }" var="usuario">
-	          		<option value="${usuario.id}">${usuario.dni} - ${usuario.nombre} ${usuario.apellido}</option>
-	          	</c:forEach>
-	          </select>
+		        <label for="id_cliente" class="form-label" style="max-width: 120px">Usuario</label>
+		        <input type="text" disabled="" value="${ requestScope.cliente.id }" name="id_cliente" id="id_cliente">
 	        </div>
 	        <div class="mb-3 d-flex gap-3 justify-content-center align-items-center">
 	          <label for="id_grupo" class="form-label" sty>Grupo</label>
 	          <select id="id_grupo" name="id_grupo" class="form-select">
 	          	<c:forEach items="${ grupos }" var="grupo">
-	          		<option value="${grupo.id}">${grupo.id}</option>
+	          		<c:if test="${ requestScope.cliente.grupo.id == grupo.id }">
+	          			<option value="${grupo.id}" selected>${grupo.id}</option>
+	          		</c:if>
+	          		<c:if test="${ requestScope.cliente.grupo.id != grupo.id }">
+	          			<option value="${grupo.id}">${grupo.id}</option>
+	          		</c:if>
 	          	</c:forEach>
 	          </select>
 	        </div>
@@ -36,7 +37,7 @@
 				<c:if test="${sessionScope.manager != null}">
     				<a class="btn btn-primary" href="VistaManager" >Volver</a>
 				</c:if>		
-	        	<button type="submit" class="btn btn-primary">Insertar</button>
+	        	<button type="submit" class="btn btn-primary">Modificar</button>
 	        </div>
 	     </form>
   	</div>
