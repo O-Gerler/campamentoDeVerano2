@@ -11,8 +11,10 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import modeloDAO.ModeloParcela;
+import modeloDAO.ModeloUsuario;
 import modeloDTO.Limpieza;
 import modeloDTO.Parcela;
+import modeloDTO.Usuario;
 
 /**
  * Servlet implementation class VistaLimpieza
@@ -45,6 +47,15 @@ public class VistaLimpieza extends HttpServlet {
 			ArrayList<Parcela> parcelas = modeloParcela.getParcelasPorZona(limpieza.getZona().getId());
 			
 			modeloParcela.cerrar();
+			
+			ModeloUsuario modeloUsuario = new ModeloUsuario();
+			modeloUsuario.conectar();
+			
+			Usuario usuario = modeloUsuario.getUsuarios(limpieza.getId());
+			
+			modeloUsuario.cerrar();
+			
+			request.setAttribute("usuario", usuario);
 			request.setAttribute("parcelas", parcelas);
 			request.getRequestDispatcher("vistaLimpieza/vistaLimpieza.jsp").forward(request, response);
 		}else {
