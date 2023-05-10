@@ -1,6 +1,8 @@
 package controlador;
 
 import java.io.IOException;
+import java.util.ArrayList;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -8,7 +10,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import modeloDAO.ModeloActividadesGrupo;
+import modeloDAO.ModeloCliente;
+import modeloDAO.ModeloUsuario;
+import modeloDTO.ActividadesPorGrupo;
+import modeloDTO.Cliente;
 import modeloDTO.Monitor;
+import modeloDTO.Usuario;
 
 /**
  * Servlet implementation class VistaMonitor
@@ -34,6 +42,30 @@ public class VistaMonitor extends HttpServlet {
 		Monitor monitor = (Monitor) session.getAttribute("monitor");
 		
 		if (monitor != null) {
+			ModeloActividadesGrupo modeloActividadesGrupo = new ModeloActividadesGrupo();
+			modeloActividadesGrupo.conectar();
+			
+			ArrayList<ActividadesPorGrupo> actividadesPorGrupos = modeloActividadesGrupo.getActividadesViaMonitor(monitor.getId());
+			
+			modeloActividadesGrupo.cerrar();
+			
+			ModeloCliente modeloCliente = new ModeloCliente();
+			modeloCliente.conectar();
+			
+			ArrayList<Cliente> clientes = modeloCliente.getClientesPorMonitor(monitor.getId());
+			
+			modeloCliente.cerrar();
+			
+			ModeloUsuario modeloUsuario = new ModeloUsuario();
+			modeloUsuario.conectar();
+			
+			Usuario usuario = modeloUsuario.getUsuarios(monitor.getId());
+			
+			modeloUsuario.cerrar();
+			
+			request.setAttribute("clientes", clientes);
+			request.setAttribute("actividadesPorGrupos", actividadesPorGrupos);
+			request.setAttribute("usuario", usuario);
 			request.getRequestDispatcher("vistaMonitor/vistaMonitor.jsp").forward(request, response);
 		}else {
 			request.getRequestDispatcher("vistaMonitor/vistaMonitor.jsp").forward(request, response);
