@@ -8,6 +8,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import modeloDAO.ModeloLimpieza;
+import modeloDAO.ModeloMonitor;
+import modeloDAO.ModeloRecepcion;
+import modeloDAO.ModeloUsuario;
 import modeloDTO.Usuario;
 
 /**
@@ -28,6 +32,7 @@ public class MostrarPerfil extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
+    
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		HttpSession session = request.getSession();
@@ -41,20 +46,40 @@ public class MostrarPerfil extends HttpServlet {
 		Usuario limpieza = (Usuario) session.getAttribute("limpieza");
 		
 		if (usuario != null) {
+			ModeloUsuario modeloUsuario = new ModeloUsuario();
+			modeloUsuario.conectar();
+			
+			usuario = modeloUsuario.getUsuarios(usuario.getId());
+			
+			modeloUsuario.cerrar();
 			request.setAttribute("usuario", usuario);
-			System.out.println("a");
 			request.getRequestDispatcher("usuarios/modificarUsuario.jsp").forward(request, response);
 		}else if (monitor != null) {
+			ModeloMonitor modeloMonitor = new ModeloMonitor();
+			modeloMonitor.conectar();
+			
+			monitor = modeloMonitor.getMonitor(monitor.getId());
+			
+			modeloMonitor.cerrar();
 			request.setAttribute("usuario", monitor);
-			System.out.println("b");
 			request.getRequestDispatcher("usuarios/modificarUsuario.jsp").forward(request, response);
 		}else if (recepcion != null) {
+			ModeloRecepcion modeloRecepcion = new ModeloRecepcion();
+			modeloRecepcion.conectar();
+			
+			recepcion = modeloRecepcion.getRecepcion(recepcion.getId());
+			
+			modeloRecepcion.cerrar();
 			request.setAttribute("usuario", recepcion);
-			System.out.println("c");
 			request.getRequestDispatcher("usuarios/modificarUsuario.jsp").forward(request, response);
 		}else if (limpieza != null) {
+			ModeloLimpieza modeloLimpieza = new ModeloLimpieza();
+			modeloLimpieza.conectar();
+			
+			limpieza = modeloLimpieza.getLimpieza(limpieza.getId());
+			
+			modeloLimpieza.cerrar();
 			request.setAttribute("usuario", limpieza);
-			System.out.println("d");
 			request.getRequestDispatcher("usuarios/modificarUsuario.jsp").forward(request, response);
 		}else {
 			request.getRequestDispatcher("error404.jsp").forward(request, response);
