@@ -81,12 +81,19 @@ public class InsertarActividad extends HttpServlet {
 		ModeloActividad modeloActividad = new ModeloActividad();
 		modeloActividad.conectar();
 		
-		if(modeloActividad.insertarActividad(actividad)) {
-			request.getRequestDispatcher("MostrarActividades").forward(request, response);
-		}
+		modeloActividad.insertarActividad(actividad);
 		
 		modeloActividad.cerrar();
 		
+		HttpSession session = request.getSession();
+		
+		Manager manager = (Manager) session.getAttribute("manager");
+		
+		if (manager != null) {
+			response.sendRedirect("VistaManager");
+		}else {
+			request.getRequestDispatcher("error404.jsp").forward(request, response);
+		}
 		
 	}
 
