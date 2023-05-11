@@ -8,10 +8,12 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import modeloDAO.ModeloActividad;
 import modeloDAO.ModeloZona;
 import modeloDTO.Actividad;
+import modeloDTO.Manager;
 import modeloDTO.Zona;
 
 /**
@@ -33,22 +35,25 @@ public class InsertarActividad extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		ModeloZona modeloZona = new ModeloZona();
-		modeloZona.conectar();
+		HttpSession session = request.getSession();
 		
-		ArrayList<Zona> zonas = modeloZona.getAllZonas();
+		Manager manager = (Manager) session.getAttribute("manager");
+		
+		if (manager != null) {
+			ModeloZona modeloZona = new ModeloZona();
+			modeloZona.conectar();
+			
+			ArrayList<Zona> zonas = modeloZona.getAllZonas();
+			
+			modeloZona.cerrar();
+			
+			request.setAttribute("zonas", zonas);
+			request.getRequestDispatcher("actividades/insertarActividad.jsp").forward(request, response);
+		}else {
+			request.getRequestDispatcher("error404.jsp").forward(request, response);
+		}
 		
 		
-		
-		System.out.println(modeloZona.getZona(1));
-		System.out.println(zonas);
-		
-		modeloZona.cerrar();
-		
-		request.setAttribute("zonas", zonas);
-		
-		request.getRequestDispatcher("actividades/insertarActividad.jsp").forward(request, response);
 	}
 
 	/**
