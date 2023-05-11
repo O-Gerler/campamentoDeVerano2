@@ -20,7 +20,7 @@
 	        <div class="mb-3 d-flex gap-3 justify-content-center align-items-center">
 	        <label for="id_usuario" class="form-label" style="max-width: 120px">Usuario</label>
 	          <select id="id_usuario" name="id_usuario" class="form-select">
-	          	<c:forEach items="${ usuarios }" var="usuario">
+	          	<c:forEach items="${ usuarios }" var="personal">
 	          		<option value="${personal.id}">${personal.dni} - ${personal.nombre} ${personal.apellido}</option>
 	          	</c:forEach>
 	          </select>
@@ -32,7 +32,7 @@
 	        <div class="mb-3 d-flex gap-3 justify-content-center align-items-center">
 	        <label for="dirige" class="form-label" style="max-width: 120px">Director</label>
 	          <select id="dirige" name="dirige" class="form-select">
-	          	<c:forEach items="${ usuarios }" var="usuario">
+	          	<c:forEach items="${ personales }" var="personal">
 	          		<option value="${personal.id}">${personal.dni} - ${personal.nombre} ${personal.apellido}</option>
 	          	</c:forEach>
 	          </select>
@@ -44,7 +44,7 @@
 	        	<button type="submit" class="btn btn-primary">Insertar</button>
 	        </div>
 	     </form>
-	     <form class="container d-none" method="POST" action="InsertarNuevoCliente" id="formNewUser" style="min-width: 400px">
+	     <form class="container d-none" method="POST" action="InsertarNuevoPersonal" id="formNewPersonal" style="min-width: 400px">
 	        <div class="mb-3">
 	          <label for="nombre" class="form-label">Nombre</label>
 	          <input type="text" class="form-control" id="nombre" name="nombre">
@@ -80,7 +80,7 @@
 	        <div class="mb-3 d-flex gap-3 justify-content-center align-items-center">
 	        <label for="dirige" class="form-label" style="max-width: 120px">Director</label>
 	          <select id="dirige" name="dirige" class="form-select">
-	          	<c:forEach items="${ usuarios }" var="usuario">
+	          	<c:forEach items="${ personales }" var="personal">
 	          		<option value="${personal.id}">${personal.dni} - ${personal.nombre} ${personal.apellido}</option>
 	          	</c:forEach>
 	          </select>
@@ -95,10 +95,10 @@
   	</div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
   	<script >
-  		const btnUser = document.getElementById('btnUser')
-  		const btnNewUser = document.getElementById('btnNewUser')
-  		const formUser = document.getElementById('formUser')
-  		const formNewUser = document.getElementById('formNewUser')
+  		const btnUser = document.getElementById('btnPersonal')
+  		const btnNewUser = document.getElementById('btnNewPersonal')
+  		const formUser = document.getElementById('formPersonal')
+  		const formNewUser = document.getElementById('formNewPersonal')
   		
   		btnUser.addEventListener('click', () => {
   			if (formUser.classList.contains('d-none')) {

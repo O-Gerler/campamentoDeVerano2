@@ -140,7 +140,7 @@
 				</div>
   			</div>
   			<div class="d-none" id="containerAccordionPersonal">
-  				 <a class="btn btn-primary" href="InsertarPersonal">Insertar</a>
+  				 <a class="btn btn-primary mb-2" href="InsertarPersonal">Insertar</a>
 				 <div class="accordion" id="accordionPersonal">
 			  	   <c:forEach items="${ personales }" var="personal">
 				    

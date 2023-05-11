@@ -1,7 +1,10 @@
 package controlador;
 
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -60,8 +63,40 @@ public class ModificarPersonal extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		int id_personal = Integer.parseInt(request.getParameter("id_personal"));
+		String fecha_ingreso = request.getParameter("fecha_ingreso");
+		int dirige = Integer.parseInt(request.getParameter("dirige"));
+		
+		Date fechaIngreso = null;
+		try {
+			fechaIngreso = new SimpleDateFormat("yyyy-MM-dd").parse(fecha_ingreso);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		Personal personal = new Personal();
+		
+		personal.setId(id_personal);
+		personal.setFechaIngreso(fechaIngreso);
+		personal.setDirector(dirige);
+		
+		ModeloPersonal modeloPersonal = new ModeloPersonal();
+		modeloPersonal.conectar();
+		
+		modeloPersonal.modificarPersonal(personal);
+		
+		modeloPersonal.cerrar();
+		
+		HttpSession session = request.getSession();
+		
+		Manager manager = (Manager) session.getAttribute("manager");
+		
+		if (manager != null) {
+			response.sendRedirect("VistaManager");
+		}else {
+			request.getRequestDispatcher("error404.jsp").forward(request, response);
+		}
 	}
 
 }

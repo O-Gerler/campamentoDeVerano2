@@ -171,6 +171,29 @@ public class ModeloUsuario extends Conector{
 		return false;
 	}
 	
+	public ArrayList<Usuario> getUsuariosNoPersonal() {
+		
+		ArrayList<Usuario> usuarios = new ArrayList<>();
+		String st = "SELECT * FROM usuarios WHERE id_usuario not in (SELECT id_personal FROM personal)";
+		
+		try {
+			PreparedStatement pst = super.connection.prepareStatement(st);
+			
+			ResultSet rs = pst.executeQuery();
+			
+			while (rs.next()) {
+				usuarios.add(rellenarUsuario(rs));
+			}
+			
+			return usuarios;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
+	
 	public ArrayList<Usuario> getAllUsuarios() {
 		
 		ArrayList<Usuario> usuarios = new ArrayList<>();

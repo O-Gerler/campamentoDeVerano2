@@ -14,10 +14,12 @@ import javax.servlet.http.HttpSession;
 
 import modeloDAO.ModeloCliente;
 import modeloDAO.ModeloGrupo;
+import modeloDAO.ModeloPersonal;
 import modeloDAO.ModeloUsuario;
 import modeloDTO.Cliente;
 import modeloDTO.Grupo;
 import modeloDTO.Manager;
+import modeloDTO.Personal;
 import modeloDTO.Recepcion;
 import modeloDTO.Usuario;
 
@@ -54,8 +56,9 @@ public class InsertarNuevoPersonal extends HttpServlet {
 		String email = request.getParameter("email");
 		String contrasena = request.getParameter("contrasena");
 		String telf = request.getParameter("telf");
+		int dirige = Integer.parseInt(request.getParameter("dirige"));
+		String fecha_ingreso = request.getParameter("fecha_ingreso");
 		String fecha = request.getParameter("fecha_nacimiento");
-		int id_grupo = Integer.parseInt(request.getParameter("id_grupo"));
 		
 		Date fechaNacimiento = null;
 		try {
@@ -65,26 +68,27 @@ public class InsertarNuevoPersonal extends HttpServlet {
 			e.printStackTrace();
 		}
 		
-		Cliente cliente = new Cliente();
+		Date fechaIngreso = null;
+		try {
+			fechaIngreso = new SimpleDateFormat("yyyy-MM-dd").parse(fecha_ingreso);
+		} catch (ParseException e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
 		
-		cliente.setNombre(nombre);
-		cliente.setApellido(apellidos);
-		cliente.setDni(dni);
-		cliente.setEmail(email);
-		cliente.setContrasena(contrasena);
-		cliente.setTelefono(telf);
-		cliente.setFechaNacimiento(fechaNacimiento);
+		Personal personal = new Personal();
 		
-		ModeloGrupo modeloGrupo = new ModeloGrupo();
-		modeloGrupo.conectar();
+		personal.setNombre(nombre);
+		personal.setApellido(apellidos);
+		personal.setDni(dni);
+		personal.setEmail(email);
+		personal.setContrasena(contrasena);
+		personal.setTelefono(telf);
+		personal.setFechaNacimiento(fechaNacimiento);
+		personal.setDirector(dirige);
+		personal.setFechaIngreso(fechaIngreso);
 		
-		Grupo grupo = modeloGrupo.getGrupo(id_grupo);
-		
-		modeloGrupo.cerrar();
-		
-		cliente.setGrupo(grupo);
-		
-		Usuario usuario = cliente;
+		Usuario usuario = personal;
 		
 		ModeloUsuario modeloUsuario = new ModeloUsuario();
 		modeloUsuario.conectar();
@@ -93,23 +97,19 @@ public class InsertarNuevoPersonal extends HttpServlet {
 		
 		modeloUsuario.cerrar();
 		
-		ModeloCliente modeloCliente = new ModeloCliente();
-		modeloCliente.conectar();
+		ModeloPersonal modeloPersonal = new ModeloPersonal();
+		modeloPersonal.conectar();
 		
-		modeloCliente.insertarCliente(cliente);
+		modeloPersonal.insertarPersonal(personal);
 		
-		modeloCliente.cerrar();
+		modeloPersonal.cerrar();
 		
 		HttpSession session = request.getSession();
 		
-		Recepcion recepcion = (Recepcion) session.getAttribute("recepcion");
-		
 		Manager manager = (Manager) session.getAttribute("manager");
 		
-		if (recepcion != null) {
-			request.getRequestDispatcher("VistaRecepcion").forward(request, response);
-		}else if (manager != null) {
-			request.getRequestDispatcher("VistaManager").forward(request, response);
+		if (manager != null) {
+			response.sendRedirect("VistaManager");
 		}else{
 			request.getRequestDispatcher("error404.jsp").forward(request, response);
 		}
