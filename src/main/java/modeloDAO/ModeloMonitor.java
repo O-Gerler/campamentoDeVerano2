@@ -35,12 +35,6 @@ public class ModeloMonitor extends Conector{
 	}
 	
 	public boolean insertarMonitor(int id) {
-		Monitor monitor = monitorHeredaUsuario(id);
-		
-		if (monitor == null) {
-			return false;
-		}
-		
 		String st = "INSERT INTO monitores VALUES (?)";
 		
 		try {
