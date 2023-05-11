@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import modeloDAO.ModeloCliente;
+import modeloDTO.Manager;
 import modeloDTO.Recepcion;
 
 /**
@@ -31,24 +32,40 @@ public class EliminarCliente extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		int id = Integer.parseInt(request.getParameter("id"));
-		
-		ModeloCliente modeloCliente = new ModeloCliente();
-		modeloCliente.conectar();
-		
-		modeloCliente.eliminarCliente(id);
-		
-		modeloCliente.cerrar();
-		
 		HttpSession session = request.getSession();
 		
 		Recepcion recepcion = (Recepcion) session.getAttribute("recepcion");
 		
+		Manager manager = (Manager) session.getAttribute("manager");
+		
+		int id = Integer.parseInt(request.getParameter("id"));
+		
 		if (recepcion != null) {
-			request.getRequestDispatcher("VistaRecepcion").forward(request, response);
-		}else {
-			request.getRequestDispatcher("MostrarUsuarios").forward(request, response);
+			ModeloCliente modeloCliente = new ModeloCliente();
+			modeloCliente.conectar();
+			
+			modeloCliente.eliminarCliente(id);
+			
+			modeloCliente.cerrar();
+			
+			response.sendRedirect("VistaRecepcion");
+		}else if(manager != null) {
+			ModeloCliente modeloCliente = new ModeloCliente();
+			modeloCliente.conectar();
+			
+			modeloCliente.eliminarCliente(id);
+			
+			modeloCliente.cerrar();
+			
+			response.sendRedirect("VistaRecepcion");
+		}else{
+			request.getRequestDispatcher("Error404.jsp").forward(request, response);
 		}
+		
+		
+		
+		
+		
 	}
 
 	/**
