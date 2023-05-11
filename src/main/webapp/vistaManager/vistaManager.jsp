@@ -121,15 +121,6 @@
 				            <strong>Nombre:</strong> ${ cliente.grupo.monitor.nombre } ${ cliente.grupo.monitor.apellido }<br>
 				          </div>
 				          <div>
-				          	<br>
-				            <h3>Mascotas</h3>
-				            <c:forEach items="${ cliente.mascotas }" var="mascota">
-				              <strong>Numero:</strong> ${ mascota.nombre }<br>
-				              <strong>Raza:</strong> ${ mascota.raza } <br>
-				          	  <strong>Numero del chip:</strong> ${ mascota.numChip } <br><br>
-				            </c:forEach>
-				          </div>
-				          <div>
 				            <h3>Vehiculo</h3>
 				          	<c:forEach items="${ cliente.vehiculos }" var="vehiculo">
 				              <strong>Matricula:</strong> ${ vehiculo.matricula }<br>
