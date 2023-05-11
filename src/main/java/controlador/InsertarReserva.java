@@ -16,6 +16,7 @@ import javax.servlet.http.HttpSession;
 import modeloDAO.ModeloParcela;
 import modeloDAO.ModeloReserva;
 import modeloDAO.ModeloUsuario;
+import modeloDTO.Manager;
 import modeloDTO.Parcela;
 import modeloDTO.Recepcion;
 import modeloDTO.Reserva;
@@ -47,7 +48,9 @@ public class InsertarReserva extends HttpServlet {
 		
 		Usuario usuario = (Usuario) session.getAttribute("usuario");
 		
-		if(recepcion != null) {
+		Manager manager = (Manager) session.getAttribute("manager");
+		
+		if(recepcion != null || manager != null) {
 			ModeloUsuario modeloUsuario = new ModeloUsuario();
 			modeloUsuario.conectar();
 			
@@ -65,9 +68,7 @@ public class InsertarReserva extends HttpServlet {
 			request.setAttribute("usuarios", usuarios);
 			request.setAttribute("parcelas", parcelas);
 			request.getRequestDispatcher("reservas/insertarReserva.jsp").forward(request, response);
-		}
-		
-		if(usuario != null) {
+		}else if(usuario != null) {
 			ModeloParcela modeloParcela = new ModeloParcela();
 			modeloParcela.conectar();
 			
@@ -78,6 +79,8 @@ public class InsertarReserva extends HttpServlet {
 			request.setAttribute("usuario", usuario);
 			request.setAttribute("parcelas", parcelas);
 			request.getRequestDispatcher("reservas/insertarReserva.jsp").forward(request, response);
+		}else {
+			request.getRequestDispatcher("error404.jsp").forward(request, response);
 		}
 	}
 
