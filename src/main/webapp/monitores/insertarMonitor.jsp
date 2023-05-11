@@ -20,7 +20,7 @@
 		class="d-flex justify-content-center align-items-center flex-column gap-3"
 		style="max-width: 700px">
 		<h1>Insertar Monitor</h1>
-		<form class="container" method="POST" action="InsertarPersonal"
+		<form class="container" method="POST" action="InsertarMonitor"
 			id="formPersonal" style="max-width: 700px">
 			<div
 				class="mb-3 d-flex gap-3 justify-content-center align-items-center">
