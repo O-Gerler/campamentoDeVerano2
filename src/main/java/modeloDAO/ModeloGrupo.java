@@ -8,13 +8,13 @@ import java.util.ArrayList;
 import modeloDTO.Grupo;
 
 public class ModeloGrupo extends Conector{
-	public boolean insertarGrupo(Grupo grupo) {
-		String st = "INSERT INTO grupos (id_monitor) VALUES ?";
+	public boolean insertarGrupo(int id_monitor) {
+		String st = "INSERT INTO grupos (id_monitor) VALUES (?)";
 		
 		try {
 			PreparedStatement pst = super.connection.prepareStatement(st);
 			
-			pst.setInt(1, grupo.getMonitor().getId());
+			pst.setInt(1, id_monitor);
 			
 			pst.execute();
 			return true;
@@ -26,13 +26,13 @@ public class ModeloGrupo extends Conector{
 		return false;
 	}
 	
-	public boolean eliminarGrupo(int id) {
-		String st = "DELETE FROM grupos WHERE id=?";
+	public boolean eliminarGrupo(int id_grupo) {
+		String st = "DELETE FROM grupos WHERE id_grupo=?";
 		
 		try {
 			PreparedStatement pst = super.connection.prepareStatement(st);
 			
-			pst.setInt(1, id);
+			pst.setInt(1, id_grupo);
 			
 			pst.execute();
 			return true;
@@ -45,7 +45,7 @@ public class ModeloGrupo extends Conector{
 	}
 	
 	public boolean modificarGrupo(Grupo grupo) {
-		String st = "UPDATE grupos SET id_monito=? WHERE id=?";
+		String st = "UPDATE grupos SET id_monitor=? WHERE id_grupo=?";
 		
 		try {
 			PreparedStatement pst = super.connection.prepareStatement(st);
