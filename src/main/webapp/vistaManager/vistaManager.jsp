@@ -239,7 +239,7 @@
 				</div>
   			</div>
   			<div class="d-none" id="containerAccordionRecepcion">
-  				<a class="btn btn-primary" href="InsertarPersonal">Insertar</a>
+  				<a class="btn btn-primary mb-2" href="InsertarRecepcion">Insertar</a>
 				 <div class="accordion" id="accordionRecepcion">
 			  	   <c:forEach items="${ recepciones }" var="recepcion">
 				    
@@ -262,8 +262,7 @@
 				          <strong>Vehiculos:</strong> ${ recepcion.dni } <br>
 				          
 				          <br><br>
-				          <a class="btn btn-primary" href="ModificarPersonal?id=${recepcion.id}">Modificar</a>
-				          <a class="btn btn-danger" href="EliminarPersonal?id=${recepcion.id}">Eliminar</a>
+				          <a class="btn btn-danger" href="EliminarRecepcion?id=${recepcion.id}">Eliminar</a>
 				        </div>
 				      </div>
 				    </div>
@@ -272,7 +271,7 @@
 				</div>
   			</div>
   			<div class="d-none" id="containerAccordionActividad">
-  			  <a class="btn btn-primary" href="InsertarActividad">Insertar</a>
+  			  <a class="btn btn-primary mb-2" href="InsertarActividad">Insertar</a>
 			  <div class="accordion" id="accordionActividad">
 			  	<c:forEach items="${ actividades }" var="actividad">
 				    
