@@ -6,6 +6,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import modeloDAO.ModeloMonitor;
+import modeloDTO.Manager;
 
 /**
  * Servlet implementation class EliminarMonitor
@@ -26,8 +30,24 @@ public class EliminarMonitor extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		HttpSession session = request.getSession();
+		
+		Manager manager= (Manager) session.getAttribute("manager");
+		
+		if (manager != null) {
+			int id = Integer.parseInt(request.getParameter("id"));
+			
+			ModeloMonitor modeloMonitor = new ModeloMonitor();
+			modeloMonitor.conectar();
+			
+			modeloMonitor.eliminarMonitor(id);
+			
+			modeloMonitor.cerrar();
+			
+			response.sendRedirect("VistaManager");
+		}else {
+			request.getRequestDispatcher("error404.jsp").forward(request, response);
+		}
 	}
 
 	/**
