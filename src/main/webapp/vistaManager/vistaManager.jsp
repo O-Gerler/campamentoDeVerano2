@@ -225,6 +225,7 @@
 				          <strong>Fecha nacimiento:</strong> ${ limpieza.fechaNacimiento } <br>
 				          <strong>Fecha Ingreso:</strong> ${ limpieza.fechaIngreso } <br>
 				          <strong>Jefe:</strong> ${ limpieza.director } <br>
+				          <strong>Zona:</strong> ${ limpieza.zona.nombre } <br>
 				          <strong>Vehiculos:</strong> ${ limpieza.dni } <br>
 				          
 				          <br><br>
