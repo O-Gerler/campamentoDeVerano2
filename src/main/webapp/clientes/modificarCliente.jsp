@@ -15,7 +15,7 @@
 	    <form class="container" method="POST" action="ModificarCliente" id="formUser" style="max-width: 700px">
 	        <div class="mb-3 d-flex gap-3 justify-content-center align-items-center">
 		        <label for="id_cliente" class="form-label" style="max-width: 120px">Usuario</label>
-		        <input type="text" disabled="" value="${ requestScope.cliente.id }" name="id_cliente" id="id_cliente">
+		        <input type="text" readonly="readonly" value="${ requestScope.cliente.id }" name="id_cliente" id="id_cliente">
 	        </div>
 	        <div class="mb-3 d-flex gap-3 justify-content-center align-items-center">
 	          <label for="id_grupo" class="form-label" sty>Grupo</label>
