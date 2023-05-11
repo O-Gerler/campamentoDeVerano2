@@ -30,7 +30,7 @@ public class ModeloActividad extends Conector{
 	}
 	
 	public boolean eliminarActividad(int id) {
-		String st = "DELETE FROM actividades WHERE id=?";
+		String st = "DELETE FROM actividades WHERE id_actividad=?";
 		
 		try {
 			PreparedStatement pst = super.connection.prepareStatement(st);
@@ -48,7 +48,7 @@ public class ModeloActividad extends Conector{
 	}
 	
 	public boolean modificarActividad(Actividad actividad) {
-		String st = "UPDATE actividades SET id_zona=?,nombre=?,cantidad_max=?,edad_min=? WHERE id=?";
+		String st = "UPDATE actividades SET id_zona=?,nombre=?,cantidad_max=?,edad_min=? WHERE id_actividad=?";
 		
 		try {
 			PreparedStatement pst = super.connection.prepareStatement(st);
