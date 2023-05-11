@@ -8,10 +8,12 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import modeloDAO.ModeloActividad;
 import modeloDAO.ModeloZona;
 import modeloDTO.Actividad;
+import modeloDTO.Manager;
 import modeloDTO.Zona;
 
 /**
@@ -33,27 +35,32 @@ public class ModificarActividad extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		int id = Integer.parseInt(request.getParameter("id"));
+		HttpSession session = request.getSession();
 		
-		ModeloActividad modeloActividad = new ModeloActividad();
-		ModeloZona modeloZona = new ModeloZona();
+		Manager manager = (Manager) session.getAttribute("manager");
 		
-		modeloActividad.conectar();
-		modeloZona.conectar();
-		
-		Actividad actividad = modeloActividad.getActividad(id);
-		ArrayList<Zona> zonas = modeloZona.getAllZonas();
-		
-		modeloActividad.cerrar();
-		modeloZona.cerrar();
-		
-		System.out.println(actividad.getNombre());
-		
-		request.setAttribute("actividad", actividad);
-		request.setAttribute("zonas", zonas);
-		
-		request.getRequestDispatcher("actividades/modificarActividad.jsp").forward(request, response);
+		if (manager != null) {
+			int id = Integer.parseInt(request.getParameter("id"));
+			
+			ModeloActividad modeloActividad = new ModeloActividad();
+			ModeloZona modeloZona = new ModeloZona();
+			
+			modeloActividad.conectar();
+			modeloZona.conectar();
+			
+			Actividad actividad = modeloActividad.getActividad(id);
+			ArrayList<Zona> zonas = modeloZona.getAllZonas();
+			
+			modeloActividad.cerrar();
+			modeloZona.cerrar();
+			
+			request.setAttribute("actividad", actividad);
+			request.setAttribute("zonas", zonas);
+			
+			request.getRequestDispatcher("actividades/modificarActividad.jsp").forward(request, response);
+		}else {
+			request.getRequestDispatcher("error404.jsp").forward(request, response);
+		}
 	}
 
 	/**
