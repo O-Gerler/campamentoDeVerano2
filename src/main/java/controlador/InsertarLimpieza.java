@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import modeloDAO.ModeloLimpieza;
 import modeloDAO.ModeloPersonal;
 import modeloDAO.ModeloZona;
 import modeloDTO.Manager;
@@ -66,8 +67,25 @@ public class InsertarLimpieza extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		int id_limpieza = Integer.parseInt(request.getParameter("id_limpieza"));
+		int id_zona = Integer.parseInt(request.getParameter("id_zona"));
+		
+		ModeloLimpieza modeloLimpieza = new ModeloLimpieza();
+		modeloLimpieza.conectar();
+		
+		modeloLimpieza.insertarLimpieza(id_limpieza, id_zona);
+		
+		modeloLimpieza.cerrar();
+		
+		HttpSession session = request.getSession();
+		
+		Manager manager = (Manager) session.getAttribute("manager");
+		
+		if (manager != null) {
+			response.sendRedirect("VistaManager");
+		}else {
+			request.getRequestDispatcher("error404.jsp").forward(request, response);
+		}
 	}
 
 }
