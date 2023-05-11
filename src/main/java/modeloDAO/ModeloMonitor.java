@@ -114,6 +114,27 @@ public class ModeloMonitor extends Conector{
 		return null;
 	}
 	
+	public ArrayList<Monitor> getMonitoresSinGrupo() {
+		String st = "SELECT * FROM monitores WHERE id_monitor not in (SELECT id_monitor FROM grupos)";
+		ArrayList<Monitor> monitores = new ArrayList<>();
+		
+		try {
+			PreparedStatement pst = super.connection.prepareStatement(st);
+			
+			ResultSet rs = pst.executeQuery();
+			while(rs.next()) {
+				monitores.add(monitorHeredaUsuario(rs.getInt("id_monitor")));
+			}
+			
+			return monitores;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
+	
 	public ArrayList<Monitor> getAllMonitor() {
 		String st = "SELECT * FROM monitores";
 		ArrayList<Monitor> monitores = new ArrayList<>();
