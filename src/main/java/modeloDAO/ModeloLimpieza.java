@@ -71,7 +71,7 @@ public class ModeloLimpieza extends Conector{
 	}
 	
 	public boolean modificarLimpieza(int id_limpieza, int id_zona) {
-		String st = "UPDATE FROM limpieza SET id_zona=? WHERE id_limpieza=?";
+		String st = "UPDATE limpieza SET id_zona=? WHERE id_limpieza=?";
 		
 		try {
 			PreparedStatement pst = super.connection.prepareStatement(st);
