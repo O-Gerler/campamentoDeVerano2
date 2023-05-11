@@ -92,6 +92,8 @@ public class InsertarNuevoCliente extends HttpServlet {
 		
 		modeloUsuario.insertarUsuario(usuario);
 		
+		cliente.setId(modeloUsuario.getUsuariosViaDNI(cliente.getDni()).getId());
+		
 		modeloUsuario.cerrar();
 		
 		ModeloCliente modeloCliente = new ModeloCliente();
