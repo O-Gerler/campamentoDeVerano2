@@ -6,8 +6,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import modeloDAO.ModeloTipo;
+import modeloDTO.Manager;
 
 /**
  * Servlet implementation class EliminarTipo
@@ -28,17 +30,23 @@ public class EliminarTipo extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		int id = Integer.parseInt(request.getParameter("id"));
+		HttpSession session = request.getSession();
 		
-		ModeloTipo modeloTipo = new ModeloTipo();
-		modeloTipo.conectar();
+		Manager manager = (Manager) session.getAttribute("manager");
 		
-		modeloTipo.eliminarTipo(id);
+		if (manager != null) {
+			int id = Integer.parseInt(request.getParameter("id"));
+			
+			ModeloTipo modeloTipo = new ModeloTipo();
+			modeloTipo.conectar();
+			
+			modeloTipo.eliminarTipo(id);
+			
+			modeloTipo.cerrar();
+			
+			response.sendRedirect("VistaManager");
+		}
 		
-		modeloTipo.cerrar();
-		
-		request.getRequestDispatcher("MostrarTipos").forward(request, response);
 	}
 
 	/**
