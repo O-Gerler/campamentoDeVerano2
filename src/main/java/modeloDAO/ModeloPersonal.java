@@ -73,7 +73,7 @@ public class ModeloPersonal extends Conector{
 	}
 	
 	public boolean modificarPersonal(Personal personal) {
-		String st = "UPDATE personal SET fech_ingreso=?, dirige=? WHERE id_personal=?";
+		String st = "UPDATE personal SET fecha_ingreso=?, dirige=? WHERE id_personal=?";
 		
 		try {
 			PreparedStatement pst = super.connection.prepareStatement(st);
