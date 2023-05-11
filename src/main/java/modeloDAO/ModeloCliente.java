@@ -69,7 +69,7 @@ public class ModeloCliente extends Conector{
 	}
 	
 	public boolean modificarCliente(Cliente cliente) {
-		String st = "UPDATE clientes SET id_grupo WHERE id_cliente=?";
+		String st = "UPDATE clientes SET id_grupo=? WHERE id_cliente=?";
 		
 		try {
 			PreparedStatement pst = super.connection.prepareStatement(st);
