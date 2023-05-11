@@ -44,7 +44,7 @@ public class EliminarRecepcion extends HttpServlet {
 			
 			modeloRecepcion.cerrar();
 			
-			response.sendRedirect("VistaMonitor");
+			response.sendRedirect("VistaManager");
 		}else {
 			request.getRequestDispatcher("error404.jsp").forward(request, response);
 		}
