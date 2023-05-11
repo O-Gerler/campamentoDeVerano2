@@ -47,17 +47,16 @@ public class ModeloParcela extends Conector{
 		return false;
 	}
 	
-	public boolean modificarParcela(Parcela parcela) {
-		String st = "UPDATE parcelas SET id_tipo = ?, id_zona = ?, id_grupo = ?, limpia = ? WHERE id_parcela = ?";
+	public boolean modificarParcela(int id_parcela, int id_grupo, int id_tipo, int id_zona) {
+		String st = "UPDATE parcelas SET id_tipo = ?, id_zona = ?, id_grupo = ? WHERE id_parcela = ?";
 		
 		try {
 			PreparedStatement pst = super.connection.prepareStatement(st);
 			
-			pst.setInt(1, parcela.getTipo().getId());
-			pst.setInt(2, parcela.getZona().getId());
-			pst.setInt(3, parcela.getGrupo().getId());
-			pst.setBoolean(4, parcela.getLimpia());
-			pst.setInt(5, parcela.getId());
+			pst.setInt(1, id_tipo);
+			pst.setInt(2, id_zona);
+			pst.setInt(3, id_grupo);
+			pst.setInt(4, id_parcela);
 			
 			pst.execute();
 			return true;
