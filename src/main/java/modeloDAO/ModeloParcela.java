@@ -8,16 +8,16 @@ import java.util.ArrayList;
 import modeloDTO.Parcela;
 
 public class ModeloParcela extends Conector{
-	public boolean insertarParcela(Parcela parcela) {
-		String st = "INSERT INTO parcelas (id_tipo, id_zona, id_grupo, limpia) values ?,?,?,?";
+	public boolean insertarParcela(int id_tipo, int id_zona, int id_grupo) {
+		String st = "INSERT INTO parcelas (id_tipo, id_zona, id_grupo, limpia) values (?,?,?,?)";
 		
 		try {
 			PreparedStatement pst = super.connection.prepareStatement(st);
 			
-			pst.setInt(1, parcela.getTipo().getId());
-			pst.setInt(2, parcela.getZona().getId());
-			pst.setInt(3, parcela.getGrupo().getId());
-			pst.setBoolean(4, parcela.getLimpia());
+			pst.setInt(1, id_tipo);
+			pst.setInt(2, id_zona);
+			pst.setInt(3, id_grupo);
+			pst.setBoolean(4, false);
 			
 			pst.execute();
 			return true;
