@@ -6,8 +6,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import modeloDAO.ModeloTipo;
+import modeloDTO.Manager;
 import modeloDTO.Tipo;
 
 /**
@@ -29,8 +31,17 @@ public class InsertarTipo extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		request.getRequestDispatcher("tipos/insertarTipo.jsp").forward(request, response);
+		HttpSession session = request.getSession();
+		
+		Manager manager = (Manager) session.getAttribute("manager");
+		
+		if (manager != null) {
+			request.getRequestDispatcher("tipos/insertarTipo.jsp").forward(request, response);
+		}else {
+			request.getRequestDispatcher("error404.jsp").forward(request, response);
+		}
+		
+		
 	}
 
 	/**
@@ -55,7 +66,15 @@ public class InsertarTipo extends HttpServlet {
 		
 		modeloTipo.cerrar();
 		
-		request.getRequestDispatcher("MostrarTipos").forward(request, response);
+		HttpSession session = request.getSession();
+		
+		Manager manager = (Manager) session.getAttribute("manager");
+		
+		if (manager != null) {
+			response.sendRedirect("VistaManager");
+		}else {
+			request.getRequestDispatcher("error404.jsp").forward(request, response);
+		}
 	}
 
 }

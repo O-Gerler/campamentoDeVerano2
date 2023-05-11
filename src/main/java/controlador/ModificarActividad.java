@@ -93,7 +93,15 @@ public class ModificarActividad extends HttpServlet {
 		modeloZona.cerrar();
 		modeloActividad.cerrar();
 		
-		request.getRequestDispatcher("MostrarActividades").forward(request, response);
+		HttpSession session = request.getSession();
+		
+		Manager manager = (Manager) session.getAttribute("manager");
+		
+		if (manager != null) {
+			response.sendRedirect("VistaManager");
+		}else {
+			request.getRequestDispatcher("error.jsp").forward(request, response);
+		}
 	}
 
 }
