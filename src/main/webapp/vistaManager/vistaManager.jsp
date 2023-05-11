@@ -173,7 +173,7 @@
 				</div>
   			</div>
   			<div class="d-none" id="containerAccordionMonitor">
-  				<a class="btn btn-primary" href="InsertarMonitor">Insertar</a>
+  				<a class="btn btn-primary mb-2" href="InsertarMonitor">Insertar</a>
 				 <div class="accordion" id="accordionMonitor">
 			  	   <c:forEach items="${ monitores }" var="monitor">
 				    
@@ -196,8 +196,7 @@
 				          <strong>Vehiculos:</strong> ${ monitor.dni } <br>
 				          
 				          <br><br>
-				          <a class="btn btn-primary" href="ModificarPersonal?id=${monitor.id}">Modificar</a>
-				          <a class="btn btn-danger" href="EliminarPersonal?id=${monitor.id}">Eliminar</a>
+				          <a class="btn btn-danger" href="EliminarMonitor?id=${monitor.id}">Eliminar</a>
 				        </div>
 				      </div>
 				    </div>
