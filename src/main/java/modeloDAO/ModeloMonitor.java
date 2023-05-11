@@ -41,7 +41,7 @@ public class ModeloMonitor extends Conector{
 			return false;
 		}
 		
-		String st = "INSERT INTO monitor VALUES ?";
+		String st = "INSERT INTO monitores VALUES (?)";
 		
 		try {
 			PreparedStatement pst = super.connection.prepareStatement(st);
