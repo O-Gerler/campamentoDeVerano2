@@ -113,6 +113,27 @@ public class ModeloPersonal extends Conector{
 		
 		return null;
 	}
+	
+	public ArrayList<Personal> getPersonalSinRol() {
+		String st = "select * from personal where id_personal not in (select id_monitor from monitores) and id_personal not in (select id_limpieza from limpieza) and id_personal not in (select id_recepcion from recepcion)";
+		ArrayList<Personal> personales = new ArrayList<>();
+		
+		try {
+			PreparedStatement pst = super.connection.prepareStatement(st);
+			
+			ResultSet rs = pst.executeQuery();
+			while (rs.next()) {
+				personales.add(rellenarPersonal(rs));
+			}
+			
+			return personales;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
 
 	private Personal rellenarPersonal(ResultSet rs) throws SQLException {
 		Personal personal = personalHeredaUsuario(rs.getInt("id_personal"));
