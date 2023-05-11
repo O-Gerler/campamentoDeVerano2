@@ -53,7 +53,7 @@ public class ModeloMonitor extends Conector{
 	}
 	
 	public boolean eliminarMonitor(int id) {
-		String st = "DELETE FROM monitores WHERE id=?";
+		String st = "DELETE FROM monitores WHERE id_monitor=?";
 		
 		try {
 			PreparedStatement pst = super.connection.prepareStatement(st);
