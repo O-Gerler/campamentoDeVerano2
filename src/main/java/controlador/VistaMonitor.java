@@ -68,7 +68,7 @@ public class VistaMonitor extends HttpServlet {
 			request.setAttribute("usuario", usuario);
 			request.getRequestDispatcher("vistaMonitor/vistaMonitor.jsp").forward(request, response);
 		}else {
-			request.getRequestDispatcher("vistaMonitor/vistaMonitor.jsp").forward(request, response);
+			request.getRequestDispatcher("error404.jsp").forward(request, response);
 		}
 		
 		
