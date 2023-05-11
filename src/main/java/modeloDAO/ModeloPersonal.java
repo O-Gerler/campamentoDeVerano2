@@ -55,7 +55,7 @@ public class ModeloPersonal extends Conector{
 	}
 	
 	public boolean eliminarPersonal(int id) {
-		String st = "DELETE FROM personal WHERE id=?";
+		String st = "DELETE FROM personal WHERE id_personal=?";
 		
 		try {
 			PreparedStatement pst = super.connection.prepareStatement(st);
