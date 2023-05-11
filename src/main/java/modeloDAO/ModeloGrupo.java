@@ -99,6 +99,27 @@ public class ModeloGrupo extends Conector{
 		return grupo;
 	}
 	
+	public ArrayList<Grupo> getGruposSinParcela() {
+		String st = "SELECT * FROM grupos WHERE id_grupo not in (SELECT id_grupo FROM parcelas)";
+		ArrayList<Grupo> grupos = new ArrayList<>();
+		
+		try {
+			PreparedStatement pst = super.connection.prepareStatement(st);
+			
+			ResultSet rs = pst.executeQuery();
+			while (rs.next()) {
+				grupos.add(rellenarGrupo(rs));
+			}
+			
+			return grupos;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
+	
 	public ArrayList<Grupo> getAllGrupos() {
 		String st = "SELECT * FROM grupos";
 		ArrayList<Grupo> grupos = new ArrayList<>();
