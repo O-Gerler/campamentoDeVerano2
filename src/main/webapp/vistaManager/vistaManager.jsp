@@ -205,7 +205,7 @@
 				</div>
   			</div>
   			<div class="d-none" id="containerAccordionLimpieza">
-  				<a class="btn btn-primary" href="InsertarPersonal">Insertar</a>
+  				<a class="btn btn-primary mb-2" href="InsertarLimpieza">Insertar</a>
 				 <div class="accordion" id="accordionLimpieza">
 			  	   <c:forEach items="${ limpiezas }" var="limpieza">
 				    
@@ -228,8 +228,8 @@
 				          <strong>Vehiculos:</strong> ${ limpieza.dni } <br>
 				          
 				          <br><br>
-				          <a class="btn btn-primary" href="ModificarPersonal?id=${limpieza.id}">Modificar</a>
-				          <a class="btn btn-danger" href="EliminarPersonal?id=${limpieza.id}">Eliminar</a>
+				          <a class="btn btn-primary" href="ModificarLimpieza?id=${limpieza.id}">Modificar</a>
+				          <a class="btn btn-danger" href="EliminarLimpieza?id=${limpieza.id}">Eliminar</a>
 				        </div>
 				      </div>
 				    </div>
