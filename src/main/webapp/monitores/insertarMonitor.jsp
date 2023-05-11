@@ -24,8 +24,8 @@
 			id="formPersonal" style="max-width: 700px">
 			<div
 				class="mb-3 d-flex gap-3 justify-content-center align-items-center">
-				<label for="id_usuario" class="form-label" style="max-width: 120px">Usuario</label>
-				<select id="id_usuario" name="id_usuario" class="form-select">
+				<label for="id_monitor" class="form-label" style="max-width: 120px">Usuario</label>
+				<select id="id_monitor" name="id_monitor" class="form-select">
 					<c:forEach items="${ personales }" var="personal">
 						<option value="${personal.id}">${personal.dni}-
 							${personal.nombre} ${personal.apellido}</option>
