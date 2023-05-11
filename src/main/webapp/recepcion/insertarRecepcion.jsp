@@ -20,12 +20,12 @@
 		class="d-flex justify-content-center align-items-center flex-column gap-3"
 		style="max-width: 700px">
 		<h1>Insertar Recepcion</h1>
-		<form class="container" method="POST" action="InsertarMonitor"
+		<form class="container" method="POST" action="InsertarRecepcion"
 			id="formPersonal" style="max-width: 700px">
 			<div
 				class="mb-3 d-flex gap-3 justify-content-center align-items-center">
-				<label for="id_monitor" class="form-label" style="max-width: 120px">Usuario</label>
-				<select id="id_monitor" name="id_monitor" class="form-select">
+				<label for="id_recepcion" class="form-label" style="max-width: 120px">Usuario</label>
+				<select id="id_recepcion" name="id_recepcion" class="form-select">
 					<c:forEach items="${ personales }" var="personal">
 						<option value="${personal.id}">${personal.dni}-
 							${personal.nombre} ${personal.apellido}</option>
