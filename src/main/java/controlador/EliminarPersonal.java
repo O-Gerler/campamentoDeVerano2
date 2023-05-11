@@ -6,8 +6,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import modeloDAO.ModeloPersonal;
+import modeloDTO.Manager;
 
 /**
  * Servlet implementation class EliminarPersonal
@@ -28,17 +30,25 @@ public class EliminarPersonal extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		int id = Integer.parseInt(request.getParameter("id"));
+		HttpSession session = request.getSession();
 		
-		ModeloPersonal modeloPersonal = new ModeloPersonal();
-		modeloPersonal.conectar();
+		Manager manager = (Manager) session.getAttribute("manager");
 		
-		modeloPersonal.eliminarPersonal(id);
+		if (manager != null) {
+			int id = Integer.parseInt(request.getParameter("id"));
+			
+			ModeloPersonal modeloPersonal = new ModeloPersonal();
+			modeloPersonal.conectar();
+			
+			modeloPersonal.eliminarPersonal(id);
+			
+			modeloPersonal.cerrar();
+			
+			response.sendRedirect("VistaManager");
+		}else {
+			request.getRequestDispatcher("error404.jsp").forward(request, response);
+		}
 		
-		modeloPersonal.cerrar();
-		
-		request.getRequestDispatcher("MostrarPersonal").forward(request, response);
 	}
 
 	/**
