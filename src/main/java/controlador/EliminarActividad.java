@@ -6,8 +6,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import modeloDAO.ModeloActividad;
+import modeloDTO.Manager;
 
 /**
  * Servlet implementation class EliminarActividad
@@ -28,17 +30,25 @@ public class EliminarActividad extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		int id = Integer.parseInt(request.getParameter("id"));
+		HttpSession session = request.getSession();
 		
-		ModeloActividad modeloActividad = new ModeloActividad();
-		modeloActividad.conectar();
+		Manager manager = (Manager) session.getAttribute("manager");
 		
-		if(modeloActividad.eliminarActividad(id)) {
-			request.getRequestDispatcher("MostrarActividades").forward(request, response);
+		if (manager != null) {
+			int id = Integer.parseInt(request.getParameter("id"));
+			
+			ModeloActividad modeloActividad = new ModeloActividad();
+			modeloActividad.conectar();
+			
+			modeloActividad.eliminarActividad(id);
+			
+			modeloActividad.cerrar();
+			
+			response.sendRedirect("VistaManager");
 		}else {
-			request.getRequestDispatcher("actividades/error.jsp").forward(request, response);
+			request.getRequestDispatcher("error404.jsp").forward(request, response);
 		}
+
 	}
 
 	/**
