@@ -33,20 +33,14 @@ public class ModeloLimpieza extends Conector{
 		return limpieza;
 	}
 	
-	public boolean insertarLimpieza(int id) {
-		Limpieza limpieza = limpiezaHeredaPersonal(id);
-		
-		if (limpieza == null) {
-			return false;
-		}
-		
+	public boolean insertarLimpieza(int id_limpieza, int id_zona) {
 		String st = "INSERT INTO limpieza VALUES (?,?)";
 		
 		try {
 			PreparedStatement pst = super.connection.prepareStatement(st);
 			
-			pst.setInt(1, limpieza.getId());
-			pst.setInt(2, limpieza.getZona().getId());
+			pst.setInt(1, id_limpieza);
+			pst.setInt(2, id_zona);
 			
 			pst.execute();
 			return true;
