@@ -32,13 +32,13 @@ public class ModeloRecepcion extends Conector{
 		return recepcion;
 	}
 	
-	public boolean insertarRecepcion(Recepcion recepcionista) {
+	public boolean insertarRecepcion(int id_recepcion) {
 		String st = "INSERT INTO recepcion VALUES (?)";
 		
 		try {
 			PreparedStatement pst = super.connection.prepareStatement(st);
 			
-			pst.setInt(1, recepcionista.getId());
+			pst.setInt(1, id_recepcion);
 			
 			pst.execute();
 			return true;
