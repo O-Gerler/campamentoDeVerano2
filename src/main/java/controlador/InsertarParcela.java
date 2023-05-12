@@ -11,10 +11,12 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import modeloDAO.ModeloGrupo;
+import modeloDAO.ModeloParcela;
 import modeloDAO.ModeloTipo;
 import modeloDAO.ModeloZona;
 import modeloDTO.Grupo;
 import modeloDTO.Manager;
+import modeloDTO.Parcela;
 import modeloDTO.Tipo;
 import modeloDTO.Zona;
 
@@ -71,8 +73,26 @@ public class InsertarParcela extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		int id_grupo = Integer.parseInt(request.getParameter("id_grupo"));
+		int id_zona = Integer.parseInt(request.getParameter("id_zona"));
+		int id_tipo = Integer.parseInt(request.getParameter("id_tipo"));
+		
+		ModeloParcela modeloParcela = new ModeloParcela();
+		modeloParcela.conectar();
+		
+		modeloParcela.insertarParcela(id_tipo, id_zona, id_grupo);
+		
+		modeloParcela.cerrar();
+		
+		HttpSession session = request.getSession();
+		
+		Manager manager = (Manager) session.getAttribute("manager");
+		
+		if (manager != null) {
+			response.sendRedirect("VistaManager");
+		}else {
+			request.getRequestDispatcher("error404.jsp").forward(request, response);
+		}
 	}
 
 }
