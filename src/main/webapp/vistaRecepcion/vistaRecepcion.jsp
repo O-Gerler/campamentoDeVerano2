@@ -106,10 +106,11 @@
 	      </h2>
 	      <div id="a${reserva.parcela.id}${reserva.usuario.id}${reserva.fecha_ingreso}${reserva.fecha_salida}" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample2">
 	        <div class="accordion-body">
-	          aaaaaaaa
+	          <strong>Tipo: </strong>${reserva.parcela.tipo.nombre} <br>
+	          <strong>Fecha Ingreso: </strong>${reserva.fecha_ingreso} <br>
+	          <strong>Fecha Salida: </strong>${reserva.fecha_salida} 
 	          <br><br>
-	          <a class="btn btn-primary" href="ModificarZona?id_parcela=${reserva.parcela.id}&id_cliente${reserva.usuario.id}&fecha_ingreso${reserva.fecha_ingreso}&fecha_salida${reserva.fecha_salida}">Modificar</a>
-	          <a class="btn btn-danger" href="EliminarZona?id_parcela=${reserva.parcela.id}&id_cliente${reserva.usuario.id}&fecha_ingreso${reserva.fecha_ingreso}&fecha_salida${reserva.fecha_salida}">Eliminar</a>
+	          <a class="btn btn-danger" href="EliminarReserva?id_parcela=${reserva.parcela.id}&id_usuario=${reserva.usuario.id}&fecha_ingreso=${reserva.fecha_ingreso}&fecha_salida=${reserva.fecha_salida}">Eliminar</a>
 	        </div>
 	      </div>
 	      

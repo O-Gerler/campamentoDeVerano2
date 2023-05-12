@@ -394,7 +394,7 @@
 	          				<strong>Fecha Salida: </strong>${reserva.fecha_salida} 
 				          <br><br>
 				          <c:if test="${ sessionScope.usuario == null }">
-				            <a class="btn btn-danger" href="EliminarReserva?id_parcela=${reserva.parcela.id}&id_cliente${reserva.usuario.id}&fecha_ingreso${reserva.fecha_ingreso}&fecha_salida${reserva.fecha_salida}">Eliminar</a>
+				            <a class="btn btn-danger" href="EliminarReserva?id_parcela=${reserva.parcela.id}&id_usuario=${reserva.usuario.id}&fecha_ingreso=${reserva.fecha_ingreso}&fecha_salida=${reserva.fecha_salida}">Eliminar</a>
 				          </c:if>
 				        </div>
 				      </div>
