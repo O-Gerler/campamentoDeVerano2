@@ -26,7 +26,7 @@
         </div>
         <div class="mb-3">
           <label for="contrasena" class="form-label">Contraseña</label>
-          <input type="text" class="form-control" id="contrasena" name="contrasena">
+          <input type="password" class="form-control" id="contrasena" name="contrasena">
         </div>
         <div class="mb-3">
           <label for="rol" class="form-label">Rol</label>

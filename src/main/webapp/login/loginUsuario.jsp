@@ -22,7 +22,7 @@
         </div>
         <div class="mb-3">
           <label for="contrasena" class="form-label">Contraseña</label>
-          <input type="text" class="form-control" id="contrasena" name="contrasena">
+          <input type="password" class="form-control" id="contrasena" name="contrasena">
         </div>
         <div class="d-flex justify-content-end gap-3 align-items-center w-100 mt-2">
         	<a class="btn btn-primary" href="Registro">Registro</a>
