@@ -145,10 +145,14 @@ public class InsertarReserva extends HttpServlet {
 		
 		Usuario VistaUsuario = (Usuario) session.getAttribute("usuario");
 		
-		if(VistaRecepcion != null) {
-			request.getRequestDispatcher("VistaRecepcion").forward(request, response);
-		}if(VistaUsuario != null) {
-			request.getRequestDispatcher("VistaUsuario").forward(request, response);
+		Manager manager = (Manager) session.getAttribute("manager");
+		
+		if (VistaRecepcion != null) {
+			response.sendRedirect("VistaRecepcion");
+		}else if (VistaUsuario != null) {
+			response.sendRedirect("VistaUsuario");
+		}else if (manager != null) {
+			response.sendRedirect("VistaManager");
 		}
 	}
 
