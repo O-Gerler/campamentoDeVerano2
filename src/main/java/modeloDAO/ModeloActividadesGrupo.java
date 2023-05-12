@@ -30,13 +30,16 @@ public class ModeloActividadesGrupo extends Conector{
 		return false;
 	}
 	
-	public boolean eliminarActividadGrupo(int id) {
-		String st = "DELETE FROM actividades_grupos WHERE id=?";
+	public boolean eliminarActividadGrupo(int id_actividad, int id_grupo, java.util.Date fecha, String hora) {
+		String st = "DELETE FROM actividades_grupos WHERE id_actividad=? and id_grupo=? and fecha=? and hora=?";
 		
 		try {
 			PreparedStatement pst = super.connection.prepareStatement(st);
 			
-			pst.setInt(1, id);
+			pst.setInt(1, id_actividad);
+			pst.setInt(2, id_grupo);
+			pst.setDate(3, new Date(fecha.getTime()));
+			pst.setString(4, hora);
 			
 			pst.execute();
 			return true;
