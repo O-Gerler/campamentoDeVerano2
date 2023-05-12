@@ -6,8 +6,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import modeloDAO.ModeloZona;
+import modeloDTO.Manager;
 import modeloDTO.Zona;
 
 /**
@@ -29,18 +31,26 @@ public class ModificarZona extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		int id = Integer.parseInt(request.getParameter("id"));
+		HttpSession session = request.getSession();
 		
-		ModeloZona modeloZona = new ModeloZona();
-		modeloZona.conectar();
+		Manager manager = (Manager) session.getAttribute("manager");
 		
-		Zona zona = modeloZona.getZona(id);
+		if (manager != null) {
+			int id = Integer.parseInt(request.getParameter("id"));
+			
+			ModeloZona modeloZona = new ModeloZona();
+			modeloZona.conectar();
+			
+			Zona zona = modeloZona.getZona(id);
+			
+			modeloZona.cerrar();
+			
+			request.setAttribute("zona", zona);
+			request.getRequestDispatcher("zonas/modificarZona.jsp").forward(request, response);;
+		}else {
+			request.getRequestDispatcher("error404.jsp").forward(request, response);
+		}
 		
-		modeloZona.cerrar();
-		
-		request.setAttribute("zona", zona);
-		request.getRequestDispatcher("zonas/modificarZona.jsp").forward(request, response);;
 	}
 
 	/**
@@ -65,7 +75,15 @@ public class ModificarZona extends HttpServlet {
 		
 		modeloZona.cerrar();
 		
-		request.getRequestDispatcher("MostrarZonas").forward(request, response);
+		HttpSession session = request.getSession();
+		
+		Manager manager = (Manager) session.getAttribute("manager");
+		
+		if (manager != null) { 
+			response.sendRedirect("VistaManager");
+		}else {
+			request.getRequestDispatcher("error404.jsp").forward(request, response);
+		}
 	}
 
 }
