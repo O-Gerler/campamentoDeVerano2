@@ -76,6 +76,30 @@ public class ModeloActividadesGrupo extends Conector{
 		return null;
 	}
 	
+	public ActividadesPorGrupo getActividadesPorGrupoRepetida(ActividadesPorGrupo actividadesPorGrupo) {
+		String st = "SELECT * FROM actividades_grupos WHERE id_actividad=?, fecha=?, hora=?";
+		
+		try {
+			PreparedStatement pst = super.connection.prepareStatement(st);
+			
+			pst.setInt(1, actividadesPorGrupo.getActividad().getId());
+			pst.setDate(2, new Date(actividadesPorGrupo.getFecha().getTime()));
+			pst.setString(3, actividadesPorGrupo.getHora());
+			
+			ResultSet rs = pst.executeQuery();
+			rs.next();
+			
+			ActividadesPorGrupo actividadesPorGrupoBBDD = rellenarActividadGrupo(rs);
+			
+			return actividadesPorGrupoBBDD;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
+	
 	public ArrayList<ActividadesPorGrupo> getActividadesViaMonitor(int id) {
 		String st = "SELECT * FROM actividades_grupos WHERE id_grupo = (SELECT id_grupo FROM grupos WHERE id_monitor=?)";
 		ArrayList<ActividadesPorGrupo> actividadesPorGrupos = new ArrayList<>();
