@@ -6,8 +6,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import modeloDAO.ModeloUsuarioVehiculo;
+import modeloDTO.Manager;
 
 /**
  * Servlet implementation class EliminarUsuarioVehiculo
@@ -29,17 +31,26 @@ public class EliminarUsuarioVehiculo extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		int id_usuario = Integer.parseInt(request.getParameter("id_usuario"));
-		int id_vehiculo = Integer.parseInt(request.getParameter("id_vehiculo"));
+		HttpSession session = request.getSession();
 		
-		ModeloUsuarioVehiculo modeloUsuarioVehiculo = new ModeloUsuarioVehiculo();
-		modeloUsuarioVehiculo.conectar();
+		Manager manager = (Manager) session.getAttribute("manager");
 		
-		modeloUsuarioVehiculo.eliminarUsuarioVehiculo(id_usuario, id_vehiculo);
+		if (manager != null) {
+			int id_usuario = Integer.parseInt(request.getParameter("id_usuario"));
+			int id_vehiculo = Integer.parseInt(request.getParameter("id_vehiculo"));
+			
+			ModeloUsuarioVehiculo modeloUsuarioVehiculo = new ModeloUsuarioVehiculo();
+			modeloUsuarioVehiculo.conectar();
+			
+			modeloUsuarioVehiculo.eliminarUsuarioVehiculo(id_usuario, id_vehiculo);
+			
+			modeloUsuarioVehiculo.cerrar();
+			
+			response.sendRedirect("VistaManager");
+		}else {
+			request.getRequestDispatcher("error404.jsp").forward(request, response);
+		}
 		
-		modeloUsuarioVehiculo.cerrar();
-		
-		request.getRequestDispatcher("MostrarUsuarioVehiculo").forward(request, response);
 	}
 
 	/**
