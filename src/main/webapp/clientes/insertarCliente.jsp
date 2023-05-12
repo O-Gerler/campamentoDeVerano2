@@ -10,13 +10,13 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
   </head>
   <body class="d-flex justify-content-center align-items-center my-5 my-md-0" style="min-height: 100vh; width: 100vw">
-  	<div class="d-flex justify-content-center align-items-center flex-column gap-3" style="max-width: 700px">
+  	<div class="d-flex justify-content-center align-items-center flex-column gap-3 w-100 container">
 	  	<h1>Insertar Cliente</h1>
 	  	<div class="d-flex justify-content-center align-items-center gap-3 w-100">
 	  		<button id="btnUser" class="btn btn-primary w-50">Usuario existente</button>
 	  		<button id="btnNewUser" class="btn btn-primary w-50">Nuevo usuario</button>
 	  	</div>
-	    <form class="container" method="POST" action="InsertarCliente" id="formUser" style="max-width: 700px">
+	    <form class="container" method="POST" action="InsertarCliente" id="formUser"">
 	        <div class="mb-3 d-flex gap-3 justify-content-center align-items-center">
 	        <label for="id_usuario" class="form-label" style="max-width: 120px">Usuario</label>
 	          <select id="id_usuario" name="id_cliente" class="form-select">
@@ -36,6 +36,9 @@
 	        <div class="d-flex justify-content-between align-items-center">
 	        	<c:if test="${sessionScope.recepcion != null}">
     				<a class="btn btn-primary" href="VistaRecepcion" >Volver</a>
+				</c:if>
+				<c:if test="${sessionScope.manager != null}">
+    				<a class="btn btn-primary" href="VistaManager" >Volver</a>
 				</c:if>		
 	        	<button type="submit" class="btn btn-primary">Insertar</button>
 	        </div>
@@ -80,7 +83,10 @@
 	        <div class="d-flex justify-content-between align-items-center">
 	        	<c:if test="${sessionScope.recepcion != null}">
     				<a class="btn btn-primary" href="VistaRecepcion" >Volver</a>
-				</c:if>		
+				</c:if>	
+				<c:if test="${sessionScope.manager != null}">
+    				<a class="btn btn-primary" href="VistaManager" >Volver</a>
+				</c:if>	
 	        	<button type="submit" class="btn btn-primary">Insertar</button>
 	        </div>
 	        
