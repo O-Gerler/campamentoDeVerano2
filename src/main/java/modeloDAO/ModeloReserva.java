@@ -143,7 +143,7 @@ public class ModeloReserva extends Conector{
 				reservas.add(rellernarReserva(rs));
 			}
 			
-			return reservas.size() > 0 ? true : false;
+			return reservas.size() > 0 ? false : true;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
