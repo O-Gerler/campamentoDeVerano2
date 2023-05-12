@@ -8,12 +8,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import modeloDAO.ModeloUsuario;
+import modeloDAO.ModeloUsuarioVehiculo;
 import modeloDAO.ModeloVehiculos;
 import modeloDTO.Limpieza;
 import modeloDTO.Manager;
 import modeloDTO.Monitor;
 import modeloDTO.Recepcion;
 import modeloDTO.Usuario;
+import modeloDTO.UsuarioVehiculo;
 import modeloDTO.Vehiculo;
 
 /**
@@ -70,14 +73,77 @@ public class InsertarVehiculo extends HttpServlet {
 		vehiculo.setModelo(modelo);
 		vehiculo.setColor(color);
 		
+		HttpSession session = request.getSession();
+		
+		Usuario usuario = (Usuario) session.getAttribute("usuario");
+		
+		Monitor monitor = (Monitor) session.getAttribute("monitor");
+		
+		Limpieza limpieza = (Limpieza) session.getAttribute("limpieza");
+		
+		Recepcion recepcion = (Recepcion) session.getAttribute("recepcion");
+		
+		Manager manager = (Manager) session.getAttribute("manager");
+		
 		ModeloVehiculos modeloVehiculos = new ModeloVehiculos();
 		modeloVehiculos.conectar();
 		
 		modeloVehiculos.insertarVehiculo(vehiculo);
 		
+		vehiculo.setId(modeloVehiculos.getVehiculoViaMatricula(matricula).getId());
+		
 		modeloVehiculos.cerrar();
 		
-		request.getRequestDispatcher("MostrarVehiculos").forward(request, response);
+		ModeloUsuarioVehiculo modeloUsuarioVehiculo = new ModeloUsuarioVehiculo();
+		modeloUsuarioVehiculo.conectar();
+		
+		if (usuario != null) {
+			
+			UsuarioVehiculo usuarioVehiculo = new UsuarioVehiculo();
+			
+			usuarioVehiculo.setUsuario(usuario);
+			usuarioVehiculo.setVehiculo(vehiculo);
+			
+			modeloUsuarioVehiculo.insertarUsuarioVehiculo(usuarioVehiculo);
+			
+			response.sendRedirect("MostrarUsuarioVehiculo");
+		}else if (monitor != null) {
+			
+			UsuarioVehiculo usuarioVehiculo = new UsuarioVehiculo();
+			
+			usuarioVehiculo.setUsuario((Usuario) monitor);
+			usuarioVehiculo.setVehiculo(vehiculo);
+			
+			modeloUsuarioVehiculo.insertarUsuarioVehiculo(usuarioVehiculo);
+			
+			response.sendRedirect("MostrarUsuarioVehiculo");
+		}else if (limpieza != null) {
+			
+			UsuarioVehiculo usuarioVehiculo = new UsuarioVehiculo();
+			
+			usuarioVehiculo.setUsuario((Usuario) limpieza);
+			usuarioVehiculo.setVehiculo(vehiculo);
+			
+			modeloUsuarioVehiculo.insertarUsuarioVehiculo(usuarioVehiculo);
+			
+			response.sendRedirect("MostrarUsuarioVehiculo");
+		}else if (recepcion != null) {
+			
+			UsuarioVehiculo usuarioVehiculo = new UsuarioVehiculo();
+			
+			usuarioVehiculo.setUsuario((Usuario) recepcion);
+			usuarioVehiculo.setVehiculo(vehiculo);
+			
+			modeloUsuarioVehiculo.insertarUsuarioVehiculo(usuarioVehiculo);
+			
+			response.sendRedirect("MostrarUsuarioVehiculo");
+		}else if (manager != null) {
+			response.sendRedirect("VistaManager");
+		}else {
+			request.getRequestDispatcher("error404.jsp").forward(request, response);
+		}
+		
+		modeloUsuarioVehiculo.cerrar();
 	}
 
 }
