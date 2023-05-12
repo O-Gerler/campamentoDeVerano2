@@ -19,7 +19,7 @@
 		</div>
   	</c:if>
   	<h1>Inicio Sesion del Personal</h1>
-  	<form class="container" method="POST" action="ComprobarLoginPersonal" style="max-width: 600px">
+  	<form class="container d-flex flex-column" method="POST" action="ComprobarLoginPersonal" style="max-width: 600px">
         <div class="mb-3">
           <label for="usuario" class="form-label">DNI</label>
           <input type="text" class="form-control" id="usuario" name="dni">
@@ -37,7 +37,7 @@
 	        <option value="4">ADMIN</option>
 	      </select>
         </div>
-        <button type="submit" class="btn btn-primary">Iniciar Sesion</button>
+        <button type="submit" class="btn btn-primary my-2 align-self-end">Iniciar Sesion</button>
       </form>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 
