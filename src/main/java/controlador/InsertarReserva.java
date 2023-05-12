@@ -135,25 +135,32 @@ public class InsertarReserva extends HttpServlet {
 		ModeloReserva modeloReserva = new ModeloReserva();
 		modeloReserva.conectar();
 		
-		modeloReserva.insertarReserva(reserva);
-		
-		modeloReserva.cerrar();
-		
-		HttpSession session = request.getSession();
-		
-		Recepcion VistaRecepcion = (Recepcion) session.getAttribute("recepcion");
-		
-		Usuario VistaUsuario = (Usuario) session.getAttribute("usuario");
-		
-		Manager manager = (Manager) session.getAttribute("manager");
-		
-		if (VistaRecepcion != null) {
-			response.sendRedirect("VistaRecepcion");
-		}else if (VistaUsuario != null) {
-			response.sendRedirect("VistaUsuario");
-		}else if (manager != null) {
-			response.sendRedirect("VistaManager");
+		if (modeloReserva.reservaLibre(reserva)) {
+			modeloReserva.insertarReserva(reserva);
+			
+			modeloReserva.cerrar();
+			
+			HttpSession session = request.getSession();
+			
+			Recepcion VistaRecepcion = (Recepcion) session.getAttribute("recepcion");
+			
+			Usuario VistaUsuario = (Usuario) session.getAttribute("usuario");
+			
+			Manager manager = (Manager) session.getAttribute("manager");
+			
+			if (VistaRecepcion != null) {
+				response.sendRedirect("VistaRecepcion");
+			}else if (VistaUsuario != null) {
+				response.sendRedirect("VistaUsuario");
+			}else if (manager != null) {
+				response.sendRedirect("VistaManager");
+			}
+		}else {
+			request.setAttribute("incorrecto", true);
+			doGet(request, response);
 		}
+		
+		
 	}
 
 }
