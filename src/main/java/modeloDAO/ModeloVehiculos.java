@@ -90,6 +90,28 @@ public class ModeloVehiculos extends Conector{
 		
 		return null;
 	}
+	
+	public Vehiculo getVehiculoViaMatricula(String matricula) {
+		String st = "SELECT * FROM vehiculos WHERE matricula=?";
+		
+		try {
+			PreparedStatement pst = super.connection.prepareStatement(st);
+			
+			pst.setString(1, matricula);
+			
+			ResultSet rs = pst.executeQuery();
+			rs.next();
+			
+			Vehiculo vehiculo = rellenarVehiculo(rs);
+			
+			return vehiculo;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
 
 	private Vehiculo rellenarVehiculo(ResultSet rs) throws SQLException {
 		Vehiculo vehiculo = new Vehiculo();
