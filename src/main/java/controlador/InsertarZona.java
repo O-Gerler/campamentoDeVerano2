@@ -6,8 +6,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import modeloDAO.ModeloZona;
+import modeloDTO.Manager;
 import modeloDTO.Zona;
 
 /**
@@ -29,8 +31,15 @@ public class InsertarZona extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		request.getRequestDispatcher("zonas/insertarZona.jsp").forward(request, response);
+		HttpSession session = request.getSession();
+		
+		Manager manager = (Manager) session.getAttribute("manager");
+		
+		if (manager != null) {
+			request.getRequestDispatcher("zonas/insertarZona.jsp").forward(request, response);
+		}else {
+			request.getRequestDispatcher("error404.jsp").forward(request, response);
+		}
 	}
 
 	/**
@@ -53,7 +62,15 @@ public class InsertarZona extends HttpServlet {
 		
 		modeloZona.cerrar();
 		
-		request.getRequestDispatcher("MostrarZonas").forward(request, response);
+		HttpSession session = request.getSession();
+		
+		Manager manager = (Manager) session.getAttribute("manager");
+		
+		if (manager != null) {
+			response.sendRedirect("VistaManager");
+		}else {
+			request.getRequestDispatcher("error404.jsp").forward(request, response);
+		}
 	}
 
 }
