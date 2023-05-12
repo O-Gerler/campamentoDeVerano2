@@ -34,7 +34,7 @@
 	            <li><a class="dropdown-item" href="#">Home</a></li>
 	            <li><a class="dropdown-item" href="MostrarPerfil">Mi Perfil</a></li>
 	            <li><a class="dropdown-item" href="MostrarReservas">Mis Reservas</a></li>
-	            <li><a class="dropdown-item" href="#">Vehiculos</a></li>
+	            <li><a class="dropdown-item" href="MostrarUsuarioVehiculo">Vehiculos</a></li>
 	            <li><hr class="dropdown-divider"></li>
 	            <li><a class="dropdown-item" href="CerrarSesion">Salir</a></li>
 	          </ul>
