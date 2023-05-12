@@ -299,7 +299,6 @@
   			</div>
   			<div class="d-none" id="containerAccordionActividadesGrupo">
 	  			<div class="accordion" id="accordionActividadesGrupos">
-				   <h2 class="text-center">Actividades</h2>
 			  	   <c:forEach items="${ actividadesPorGrupos }" var="aGrupos">
 				    
 				    <div class="accordion-item">
@@ -324,8 +323,8 @@
 				</div>
   			</div>
   			<div class="d-none" id="containerAccordionGrupo">
+  				<a class="btn btn-primary mb-2" href="InsertarGrupo">Insertar</a>
   				<div class="accordion" id="accordionGrupo">
-				   <h2 class="text-center">Grupo</h2>
 			  	   <c:forEach items="${ grupos }" var="grupo">
 				    
 				    <div class="accordion-item">
@@ -337,10 +336,10 @@
 				      <div id="h${grupo.id}" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionGrupo">
 				        <div class="accordion-body">
 				          <div>
-				            <strong>Monitor: </strong>${ grupo.monitor.nombre }
+				            <strong>Monitor: </strong>${ grupo.monitor.nombre } ${ grupo.monitor.apellido }
 				          </div>
 				          <br><br>
-				          <a class="btn btn-danger" href="EliminarCliente?id=${cliente.id}">Eliminar</a>
+				          <a class="btn btn-danger" href="EliminarGrupo?id=${grupo.id}">Eliminar</a>
 				        </div>
 				      </div>
 				      
@@ -351,22 +350,27 @@
   			</div>
   			<div class="d-none" id="containerAccordionParcela">
   				<div class="accordion" id="accordionParcela">
-				   <h2 class="text-center">Grupo</h2>
+  				<a class="btn btn-primary mb-2" href="InsertarParcela">Insertar</a>
 			  	   <c:forEach items="${ parcelas }" var="parcela">
 				    
 				    <div class="accordion-item">
 				      <h2 class="accordion-header" id="headingOne">
 				        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#j${parcela.id}" aria-expanded="true" aria-controls="j${parcela.id}">
-				          <strong>Parcela:</strong> ${parcela.id }
+				          <strong>Parcela: </strong> ${parcela.id }
+				          
 				        </button>
 				      </h2>
 				      <div id="j${parcela.id}" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionParcela">
 				        <div class="accordion-body">
 				          <div>
-				            <strong>Tipo: </strong>${ parcela.tipo.nombre }
+					          <strong>Tipo: </strong> ${parcela.tipo.nombre } <br>
+					          <strong>Zona: </strong> ${parcela.zona.nombre } <br>
+					          <strong>Grupo: </strong> ${parcela.grupo.id } <br>
+					          <strong>Limpia :</strong> ${parcela.limpia }
 				          </div>
-				          <br><br>
-				          <a class="btn btn-danger" href="EliminarCliente?id=${parcela.id}">Eliminar</a>
+				          <br>
+						  <a class="btn btn-primary" href="ModificarParcela?id=${parcela.id}">Modificar</a>				          
+				          <a class="btn btn-danger" href="EliminarParcela?id=${parcela.id}">Eliminar</a>
 				        </div>
 				      </div>
 				      
@@ -376,7 +380,8 @@
 				</div>
   			</div>
   			<div class="d-none" id="containerAccordionReserva">
-	  			<div class="accordion container mt-3" id="accordionReserva">
+  				<a class="btn btn-primary mb-2" href="InsertarReserva">Insertar</a>
+	  			<div class="accordion" id="accordionReserva">
 			  	   <c:forEach items="${ reservas }" var="reserva">
 				    
 				    <div class="accordion-item">
@@ -390,7 +395,7 @@
 				          aaaaaaaa
 				          <br><br>
 				          <c:if test="${ sessionScope.usuario == null }">
-				            <a class="btn btn-danger" href="EliminarZona?id_parcela=${reserva.parcela.id}&id_cliente${reserva.usuario.id}&fecha_ingreso${reserva.fecha_ingreso}&fecha_salida${reserva.fecha_salida}">Eliminar</a>
+				            <a class="btn btn-danger" href="EliminarReserva?id_parcela=${reserva.parcela.id}&id_cliente${reserva.usuario.id}&fecha_ingreso${reserva.fecha_ingreso}&fecha_salida${reserva.fecha_salida}">Eliminar</a>
 				          </c:if>
 				        </div>
 				      </div>
@@ -399,7 +404,7 @@
 				 </div>
 	  		</div>
 	  		<div  class="d-none" id="containerAccordionTipo">
-	  			 <a class="btn btn-primary" href="InsertarTipo">Insertar</a>
+	  			 <a class="btn btn-primary mb-2" href="InsertarTipo">Insertar</a>
 				 <div class="accordion" id="accordionTipo">
 			  	   <c:forEach items="${ tipos }" var="tipo">
 				    
@@ -427,7 +432,7 @@
 				</div>
 	  		</div>
 	  		<div class="d-none" id="containerAccordionVehiculo">
-	  			<a class="btn btn-primary" href="InsertarVehiculo">Insertar</a>
+	  			<a class="btn btn-primary mb-2" href="InsertarVehiculo">Insertar</a>
 				 <div class="accordion" id="accordionVehiculo">
 			  	   <c:forEach items="${ vehiculos }" var="vehiculo">
 				    
@@ -454,7 +459,7 @@
 				</div>
 	  		</div>
 	  		<div  class="d-none" id="containerAccordionVehiculoUsuario">
-	  			 <a class="btn btn-primary" href="InsertarUsuarioVehiculo">Insertar</a>
+	  			 <a class="btn btn-primary mb-2" href="InsertarUsuarioVehiculo">Insertar</a>
 				 <div class="accordion" id="accordionVehiculoUsuario">
 			  	   <c:forEach items="${ usuarioVehiculos }" var="usuarioVehiculo">
 				    
@@ -493,7 +498,7 @@
 				</div>
 	  		</div>
 	  		<div class="d-none" id="containerAccordionZona">
-	  			 <a class="btn btn-primary" href="InsertarZona">Insertar</a>
+	  			 <a class="btn btn-primary mb-2" href="InsertarZona">Insertar</a>
 				 <div class="accordion" id="accordionZonas">
 			  	   <c:forEach items="${ zonas }" var="zona">
 				    

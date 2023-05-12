@@ -9,15 +9,15 @@
     <title>Modificar Usuario</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
   </head>
-  <body  class="d-flex justify-content-center align-items-center flex-column" style="height: 100vh; width: 100vw">
+  <body  class="d-flex justify-content-center align-items-center" style="height: 100vh; width: 100vw">
   <c:set var="usuario" value="${requestScope.usuario}" />
   <c:set var="vistaUsuario" value="${sessionScope.usuario}" />
   <c:set var="vistaMonitor" value="${sessionScope.monitor}" />
   <c:set var="vistaLimpieza" value="${sessionScope.limpieza}" />
   <c:set var="vistaRecepcion" value="${sessionScope.recepcion}" />
-  <div>
+  <div class="w-100 container">
     <h1 class="text-center">Modificar Usuario</h1>
-    <form class="container" method="POST" action="ModificarUsuario">
+    <form class="" method="POST" action="ModificarUsuario">
     	<input type="hidden" value="${ usuario.id }" name="id">
         <div class="mb-3">
           <label for="nombre" class="form-label">Nombre</label>
@@ -59,6 +59,9 @@
         	</c:if>
         	<c:if test="${ vistaRecepcion != null }">
         		<a class="btn btn-primary" href="VistaRecepcion">Volver</a>
+        	</c:if>
+        	<c:if test="${ sessionScope.manager != null }">
+        		<a class="btn btn-primary" href="VistaManager">Volver</a>
         	</c:if>
         	<button type="submit" class="btn btn-primary">Modificar</button>
         </div>

@@ -13,7 +13,7 @@
 	<h1 class="text-center">Reservar</h1>
 	<form class="container" method="POST" action="InsertarReserva">
 	  <div class="mb-3">
-			<c:if test = "${sessionScope.recepcion != null}">
+			<c:if test = "${sessionScope.recepcion != null || sessionScope.manager != null}">
 			  <label for="id_usuario" class="form-label" style="max-width: 120px">Usuario</label>
 			  <select id="id_usuario" name="id_usuario" class="form-select">
 		         <c:forEach items="${ usuarios }" var="usuario">

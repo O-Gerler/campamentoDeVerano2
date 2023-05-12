@@ -10,18 +10,18 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
   </head>
   <body class="d-flex justify-content-center align-items-center my-5 my-md-0" style="min-height: 100vh; width: 100vw">
-  	<div class="d-flex justify-content-center align-items-center flex-column gap-3" style="max-width: 700px">
+  	<div class="d-flex justify-content-center align-items-center flex-column gap-3 w-100 container">
 	  	<h1>Modificar Personal</h1>
-	    <form class="container d-flex justify-content-center align-items-start flex-column" method="POST" action="ModificarPersonal" id="formUser" style="max-width: 700px">
-	        <div class="mb-3 d-flex gap-3 justify-content-center align-items-center">
-		        <label for="id_personal" class="form-label" style="max-width: 120px">Personal</label>
-		        <input type="text" readonly="readonly" value="${ requestScope.personal.id }" name="id_personal" id="id_personal">
+	    <form class="container d-flex justify-content-center align-items-start flex-column w-100" method="POST" action="ModificarPersonal" id="formUser">
+	        <div class="mb-3 d-flex gap-3 justify-content-center align-items-center w-100">
+		        <label for="id_personal" class="form-label">Personal</label>
+		        <input type="text" class="form-control" readonly="readonly" value="${ requestScope.personal.id }" name="id_personal" id="id_personal">
 	        </div>
-	        <div class="mb-3 d-flex gap-3 justify-content-center align-items-center">
-		        <label for="fecha_ingreso" class="form-label" style="max-width: 120px">Fecha de Ingreso</label>
-		        <input type="date" value="${ requestScope.personal.fechaIngreso }" name="fecha_ingreso" id="fecha_ingreso">
+	        <div class="mb-3 d-flex gap-3 justify-content-center align-items-center w-100">
+		        <label for="fecha_ingreso" class="form-label">Fecha Ingreso</label>
+		        <input type="date" class="form-control" value="${ requestScope.personal.fechaIngreso }" name="fecha_ingreso" id="fecha_ingreso">
 	        </div>
-	        <div class="mb-3 d-flex gap-3 justify-content-center align-items-center">
+	        <div class="mb-3 d-flex gap-3 justify-content-center align-items-center w-100">
 	          <label for="id_grupo" class="form-label" sty>Jefe</label>
 	          <select id="dirige" name="dirige" class="form-select">
 	          	<c:forEach items="${ personales }" var="personal">

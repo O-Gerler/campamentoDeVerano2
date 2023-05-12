@@ -10,12 +10,12 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
   </head>
   <body class="d-flex justify-content-center align-items-center my-5 my-md-0" style="min-height: 100vh; width: 100vw">
-  	<div class="d-flex justify-content-center align-items-center flex-column gap-3" style="max-width: 700px">
+  	<div class="d-flex justify-content-center align-items-center flex-column gap-3 w-100 container" >
 	  	<h1>Modificar Cliente</h1>
-	    <form class="container" method="POST" action="ModificarCliente" id="formUser" style="max-width: 700px">
+	    <form class="w-100" method="POST" action="ModificarCliente" id="formUser">
 	        <div class="mb-3 d-flex gap-3 justify-content-center align-items-center">
-		        <label for="id_cliente" class="form-label" style="max-width: 120px">Usuario</label>
-		        <input type="text" readonly="readonly" value="${ requestScope.cliente.id }" name="id_cliente" id="id_cliente">
+		        <label for="id_cliente" class="form-label">Usuario</label>
+		        <input type="text" class="form-control" readonly="readonly" value="${ requestScope.cliente.id }" name="id_cliente" id="id_cliente">
 	        </div>
 	        <div class="mb-3 d-flex gap-3 justify-content-center align-items-center">
 	          <label for="id_grupo" class="form-label" sty>Grupo</label>
