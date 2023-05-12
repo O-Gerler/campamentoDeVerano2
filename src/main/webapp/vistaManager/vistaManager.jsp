@@ -389,7 +389,9 @@
 				      </h2>
 				      <div id="a${reserva.parcela.id}${reserva.usuario.id}${reserva.fecha_ingreso}${reserva.fecha_salida}" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionReserva">
 				        <div class="accordion-body">
-				          aaaaaaaa
+				            <strong>Tipo: </strong>${reserva.parcela.tipo.nombre} <br>
+	          				<strong>Fecha Ingreso: </strong>${reserva.fecha_ingreso} <br>
+	          				<strong>Fecha Salida: </strong>${reserva.fecha_salida} 
 				          <br><br>
 				          <c:if test="${ sessionScope.usuario == null }">
 				            <a class="btn btn-danger" href="EliminarReserva?id_parcela=${reserva.parcela.id}&id_cliente${reserva.usuario.id}&fecha_ingreso${reserva.fecha_ingreso}&fecha_salida${reserva.fecha_salida}">Eliminar</a>

@@ -36,7 +36,7 @@
 		          <li><a class="dropdown-item" href="VistaUsuario">Home</a></li>
 		            <li><a class="dropdown-item" href="MostrarPerfil">Mi Perfil</a></li>
 		            <li><a class="dropdown-item" href="MostrarReservas">Mis Reservas</a></li>
-		            <li><a class="dropdown-item" href="#">Vehiculos</a></li>
+		            <li><a class="dropdown-item" href="MostrarUsuarioVehiculo">Vehiculos</a></li>
 		            <li><hr class="dropdown-divider"></li>
 		            <li><a class="dropdown-item" href="CerrarSesion">Salir</a></li>
 		          </ul>
@@ -56,9 +56,11 @@
 	      </h2>
 	      <div id="a${reserva.parcela.id}${reserva.usuario.id}${reserva.fecha_ingreso}${reserva.fecha_salida}" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
 	        <div class="accordion-body">
-	          aaaaaaaa
+	          <strong>Tipo: </strong>${reserva.parcela.tipo.nombre} <br>
+	          <strong>Fecha Ingreso: </strong>${reserva.fecha_ingreso} <br>
+	          <strong>Fecha Salida: </strong>${reserva.fecha_salida} 
 	          <br><br>
-	          <c:if test="${ sessionScope.usuario == null }">
+	          <c:if test="${ sessionScope.usuario != null }">
 	            <a class="btn btn-danger" href="EliminarZona?id_parcela=${reserva.parcela.id}&id_cliente${reserva.usuario.id}&fecha_ingreso${reserva.fecha_ingreso}&fecha_salida${reserva.fecha_salida}">Eliminar</a>
 	          </c:if>
 	        </div>

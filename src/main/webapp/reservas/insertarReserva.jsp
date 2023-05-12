@@ -51,8 +51,11 @@
 				<c:if test="${sessionScope.manager != null}">
 					<a class="btn btn-primary" href="VistaManager">Volver</a>
 				</c:if>
-				<c:if test="${sessionScope.monitor != null}">
-					<a class="btn btn-primary" href="VistaMonitor">Volver</a>
+				<c:if test="${sessionScope.recepcion != null}">
+					<a class="btn btn-primary" href="VistaRecepcion">Volver</a>
+				</c:if>
+				<c:if test="${sessionScope.usuario != null}">
+					<a class="btn btn-primary" href="VistaUsuario">Volver</a>
 				</c:if>
 				<button type="submit" class="btn btn-primary">Insertar</button>
 			</div>

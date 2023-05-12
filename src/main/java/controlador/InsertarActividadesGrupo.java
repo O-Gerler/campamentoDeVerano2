@@ -47,7 +47,7 @@ public class InsertarActividadesGrupo extends HttpServlet {
 		
 		Manager manager = (Manager) session.getAttribute("manager");
 		
-		if (manager != null) {
+		if (manager != null || monitor != null) {
 			ModeloActividad modeloActividad = new ModeloActividad();
 			modeloActividad.conectar();
 			

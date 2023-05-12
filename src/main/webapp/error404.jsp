@@ -17,7 +17,7 @@
   <div class="container">
   	<h1>ERROR!!!</h1>
 	<h2>Parece que no tienes permiso para acceder a esta pagina</h2>
-	<a class="btn btn-primary" href="ComprobarLogin">Volver</a>
+	<a class="btn btn-primary" href="CerrarSesion">Volver</a>
   </div>
 </body>
 </html>

@@ -41,6 +41,7 @@
 	</nav>
 	<div class="d-flex flex-column flex-md-row mt-5 w-100 justify-content-between container gap-3">
 		<div class="accordion" id="accordionActividadesGrupos" style="max-height: 100vh;width: 65%">
+		<a class="btn btn-primary mb-2" href="InsertarActividadesGrupo">Insertar</a>
 		   <h2 class="text-center">Actividades</h2>
 	  	   <c:forEach items="${ actividadesPorGrupos }" var="aGrupos">
 		    

@@ -97,15 +97,24 @@ header .elecciones .active {
     height: 600px;
     margin: auto;
     margin-top: 10vh;
-    background-image: url("https://picsum.photos/800/600");
-    background-repeat: no-repeat;
-    background-size: cover;
     color: black;
     display: flex;
     align-items: center;
     justify-content: center;
     position: relative;
     transition: all .3s ease;
+}
+
+#bungalow-card {
+    background-image: url("resources/imagenes/imagenBungalow.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+#parcela-card {
+    background-image: url("/campamento/resources/imagenes/parcela.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 .alojamiento-info {
@@ -137,9 +146,27 @@ header .elecciones .active {
 
 /*ACTIVIDADES*/
 #actividades {
-    margin-top: 20vh;
+    margin:10vh 0;
     width: 100%;
-    height: auto;
+    min-height: 100vh;
+}
+
+.a1{
+    background-image: url("/campamento/resources/imagenes/actividad1.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.a2{
+    background-image: url("/campamento/resources/imagenes/actividad2.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.a3{
+    background-image: url("/campamento/resources/imagenes/actividad3.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 .card-container {
@@ -154,18 +181,29 @@ header .elecciones .active {
     width: 300px;
     height: 420px;
     box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.301);
-    background-image: url("https://picsum.photos/300/500");
+    display: flex;
+    align-items: flex-end;
+    text-align: justify;
+    overflow: hidden;
+}
+
+.actividad-card:hover .texto {
+    transform: translateY(0);
 }
 
 .texto{
+    position: relative;
     width: auto;
     /*cuando se haga mas txiki ponerle un width fijo como 450px*/
     height: auto;
     background: #fafafa9c;
+    padding: 0 10px;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    transform: translateY(100%);
+    transition: all .7s;
 }
 
 .texto h3{
@@ -174,15 +212,14 @@ header .elecciones .active {
 
 /*Sobre nosotros*/
 #sobre-nosotros {
-    margin-top: 20vh;
     width: 100%;
-    height: auto;
+    min-height: 100vh;
+    background-image: url("https://picsum.photos/1920/1080");
 }
 
 .container-sobre-nosotros {
     width: 100%;
-    height: 700px;
-    background-image: url("https://picsum.photos/1920/1080");
+    height: 100%;
     background-size: cover;
     display: flex;
     justify-content: flex-end;
@@ -190,10 +227,11 @@ header .elecciones .active {
 }
 
 .info-sobre-nosotros {
-    width: 50%;
+    width: 60%;
     /*cuando se haga mas txiki ponerle un width fijo como 450px*/
-    height: 100%;
+    min-height: 100vh;
     background: #fafafa9c;
+    padding: 0 20px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -216,14 +254,13 @@ header .elecciones .active {
 
 /*Pet-Friendly*/
 #pet-friendly {
-    margin-top: 10vh;
     width: 100%;
-    height: auto;
+    min-height: 100vh;
 }
 
 .container-pet-friendly {
     width: auto;
-    height: 900px;
+    height: 100%;
     background-image: url("https://source.unsplash.com/1920x1080/?animals");
     background-size: cover;
     display: flex;
@@ -233,8 +270,9 @@ header .elecciones .active {
 .info-pet-friendly {
     width: 60%;
     /*cuando se haga mas txiki ponerle un width fijo como 450px*/
-    height: 70%;
+    min-height: 100vh;
     background: #fafafa9c;
+    text-align: justify;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -243,7 +281,7 @@ header .elecciones .active {
 
 .info-pet-friendly p {
     margin-top: 20px;
-    margin-left: 30px;
+    width: 80%;
 }
 
 /*ZONAS*/
@@ -270,7 +308,7 @@ header .elecciones .active {
 
 /*Logo Campamento*/
 .navbar-brand{
-    background:url("/campamento/resources/logoCampamento/cover-min.png");
+    background:url("resources/logoCampamento/cover-min.png");
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
