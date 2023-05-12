@@ -77,7 +77,7 @@ public class ModeloActividadesGrupo extends Conector{
 	}
 	
 	public ActividadesPorGrupo getActividadesPorGrupoRepetida(ActividadesPorGrupo actividadesPorGrupo) {
-		String st = "SELECT * FROM actividades_grupos WHERE id_actividad=?, fecha=?, hora=?";
+		String st = "SELECT * FROM actividades_grupos WHERE id_actividad=? and fecha=? and hora=?";
 		
 		try {
 			PreparedStatement pst = super.connection.prepareStatement(st);
