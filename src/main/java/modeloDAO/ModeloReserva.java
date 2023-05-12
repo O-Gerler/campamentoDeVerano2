@@ -117,6 +117,41 @@ public class ModeloReserva extends Conector{
 		return null;
 	}
 	
+	public boolean reservaLibre(Reserva reserva) {
+		String st = "select * from reservas\r\n"
+				+ "where \r\n"
+				+ "  ?  between (select fecha_ingreso\r\n"
+				+ "                 where id_parcela = ?) and (select fecha_salida\r\n"
+				+ "                 where id_parcela = ?) \r\n"
+				+ "or ?  between (select fecha_ingreso\r\n"
+				+ "                 where id_parcela = ?) and (select fecha_salida\r\n"
+				+ "                 where id_parcela = ?)  ";
+		ArrayList<Reserva> reservas = new ArrayList<>();
+		
+		try {
+			PreparedStatement pst = super.connection.prepareStatement(st);
+			
+			pst.setDate(1, new Date(reserva.getFecha_ingreso().getTime()));
+			pst.setInt(2, reserva.getParcela().getId());
+			pst.setInt(3, reserva.getParcela().getId());
+			pst.setDate(4, new Date(reserva.getFecha_salida().getTime()));
+			pst.setInt(5, reserva.getParcela().getId());
+			pst.setInt(6, reserva.getParcela().getId());
+			
+			ResultSet rs = pst.executeQuery();
+			while (rs.next()) {
+				reservas.add(rellernarReserva(rs));
+			}
+			
+			return reservas.size() > 0 ? true : false;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return false;
+	}
+	
 	public ArrayList<Reserva> getAllReservas() {
 		String st = "SELECT * FROM reservas";
 		ArrayList<Reserva> reservas = new ArrayList<>();
