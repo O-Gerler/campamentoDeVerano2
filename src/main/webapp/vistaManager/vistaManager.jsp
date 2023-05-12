@@ -298,22 +298,19 @@
 				</div>
   			</div>
   			<div class="d-none" id="containerAccordionActividadesGrupo">
+  				<a class="btn btn-primary mb-2" href="InsertarActividadesGrupo">Insertar</a>
 	  			<div class="accordion" id="accordionActividadesGrupos">
 			  	   <c:forEach items="${ actividadesPorGrupos }" var="aGrupos">
 				    
 				    <div class="accordion-item">
 				      <h2 class="accordion-header" id="headingOne">
-				        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#a${aGrupos.actividad.id}${aGrupos.grupo.id}${aGrupos.fecha}${aGrupos.hora}" aria-expanded="true" aria-controls="a${aGrupos.actividad.id}${aGrupos.grupo.id}${aGrupos.fecha}${aGrupos.hora}">
+				        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#a${aGrupos.actividad.id}${aGrupos.grupo.id}${aGrupos.fecha}${aGrupos.hora.replace(':','_')}" aria-expanded="true" aria-controls="a${aGrupos.actividad.id}${aGrupos.grupo.id}${aGrupos.fecha}${aGrupos.hora.replace(':','_')}">
 				          ${aGrupos.actividad.nombre} -> ${aGrupos.actividad.zona.nombre} //<strong> ${aGrupos.fecha} ${aGrupos.hora}</strong>
 				        </button>
 				      </h2>
-				      <div id="a${aGrupos.actividad.id}${aGrupos.grupo.id}${aGrupos.fecha}${aGrupos.hora}" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionActividadesGrupos">
+				      <div id="a${aGrupos.actividad.id}${aGrupos.grupo.id}${aGrupos.fecha}${aGrupos.hora.replace(':','_')}" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionActividadesGrupos">
 				        <div class="accordion-body">
-				          <div>
-				            
-				          </div>
-				          <br><br>
-				          <a class="btn btn-danger" href="EliminarCliente?id=${cliente.id}">Eliminar</a>
+				          <a class="btn btn-danger" href="EliminarActividadesGrupo?id_actividad=${aGrupos.actividad.id}&id_grupo=${aGrupos.grupo.id}&fecha=${aGrupos.fecha}&hora=${aGrupos.hora}">Eliminar</a>
 				        </div>
 				      </div>
 				      
