@@ -126,6 +126,8 @@ public class ModeloActividadesGrupo extends Conector{
 			while (rs.next()) {
 				actividadesPorGrupos.add(rellenarActividadGrupo(rs));
 			}
+			
+			return actividadesPorGrupos;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
