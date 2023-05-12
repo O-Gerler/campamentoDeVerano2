@@ -6,8 +6,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import modeloDAO.ModeloZona;
+import modeloDTO.Manager;
 
 /**
  * Servlet implementation class EliminarZona
@@ -28,17 +30,25 @@ public class EliminarZona extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		int id = Integer.parseInt(request.getParameter("id"));
+		HttpSession session = request.getSession();
 		
-		ModeloZona modeloZona = new ModeloZona();
-		modeloZona.conectar();
+		Manager manager = (Manager) session.getAttribute("manager");
 		
-		modeloZona.eliminarZona(id);
+		if (manager != null) {
+			int id = Integer.parseInt(request.getParameter("id"));
+			
+			ModeloZona modeloZona = new ModeloZona();
+			modeloZona.conectar();
+			
+			modeloZona.eliminarZona(id);
+			
+			modeloZona.cerrar();
+			
+			response.sendRedirect("VistaManager");
+		}else {
+			request.getRequestDispatcher("error404.jsp").forward(request, response);
+		}
 		
-		modeloZona.cerrar();
-		
-		request.getRequestDispatcher("MostrarZonas").forward(request, response);
 	}
 
 	/**
