@@ -6,8 +6,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import modeloDAO.ModeloTipo;
+import modeloDTO.Manager;
 import modeloDTO.Tipo;
 
 /**
@@ -29,18 +31,26 @@ public class ModificarTipo extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		int id = Integer.parseInt(request.getParameter("id"));
+		HttpSession session = request.getSession();
 		
-		ModeloTipo modeloTipo = new ModeloTipo();
-		modeloTipo.conectar();
+		Manager manager = (Manager) session.getAttribute("manager");
 		
-		Tipo tipo = modeloTipo.getTipo(id);
+		if (manager != null) {
+			int id = Integer.parseInt(request.getParameter("id"));
+			
+			ModeloTipo modeloTipo = new ModeloTipo();
+			modeloTipo.conectar();
+			
+			Tipo tipo = modeloTipo.getTipo(id);
+			
+			modeloTipo.cerrar();
+			
+			request.setAttribute("tipo", tipo);
+			request.getRequestDispatcher("tipos/modificarTipo.jsp").forward(request, response);
+		}else {
+			request.getRequestDispatcher("error404.jsp").forward(request, response);
+		}
 		
-		modeloTipo.cerrar();
-		
-		request.setAttribute("tipo", tipo);
-		request.getRequestDispatcher("tipos/modificarTipo.jsp").forward(request, response);
 	}
 
 	/**
@@ -67,7 +77,16 @@ public class ModificarTipo extends HttpServlet {
 		
 		modeloTipo.cerrar();
 		
-		request.getRequestDispatcher("MostrarTipos").forward(request, response);
+		HttpSession session = request.getSession();
+		
+		Manager manager = (Manager) session.getAttribute("manager");
+		
+		if (manager != null) {
+			response.sendRedirect("VistaManager");
+		}else {
+			request.getRequestDispatcher("error404.jsp").forward(request, response);
+		}
+		
 	}
 
 }
