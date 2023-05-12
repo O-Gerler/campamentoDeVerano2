@@ -8,9 +8,17 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import modeloDAO.ModeloUsuarioVehiculo;
+import modeloDAO.ModeloVehiculos;
+import modeloDTO.Limpieza;
+import modeloDTO.Manager;
+import modeloDTO.Monitor;
+import modeloDTO.Recepcion;
+import modeloDTO.Usuario;
 import modeloDTO.UsuarioVehiculo;
+import modeloDTO.Vehiculo;
 
 /**
  * Servlet implementation class MostrarUsuarioVehiculo
@@ -31,16 +39,40 @@ public class MostrarUsuarioVehiculo extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		HttpSession session = request.getSession();
+		
+		Usuario usuario = (Usuario) session.getAttribute("usuario");
+		
+		Monitor monitor = (Monitor) session.getAttribute("monitor");
+		
+		Limpieza limpieza = (Limpieza) session.getAttribute("limpieza");
+		
+		Recepcion recepcion = (Recepcion) session.getAttribute("recepcion");
+		
 		ModeloUsuarioVehiculo modeloUsuarioVehiculo = new ModeloUsuarioVehiculo();
 		modeloUsuarioVehiculo.conectar();
 		
-		ArrayList<UsuarioVehiculo> usuarioVehiculos = modeloUsuarioVehiculo.getAllUsuarioVehiculo();
+		ArrayList<Vehiculo> vehiculos = null;
+		
+		if (usuario != null) {
+			vehiculos = modeloUsuarioVehiculo.getUsuarioVehiculo(usuario.getId());
+		}else if (monitor != null) {
+			vehiculos = modeloUsuarioVehiculo.getUsuarioVehiculo(monitor.getId());
+		}else if (limpieza != null) {
+			vehiculos = modeloUsuarioVehiculo.getUsuarioVehiculo(limpieza.getId());
+		}else if (recepcion != null) {
+			vehiculos = modeloUsuarioVehiculo.getUsuarioVehiculo(recepcion.getId());
+		}
 		
 		modeloUsuarioVehiculo.cerrar();
+
+		if (usuario != null || monitor != null || limpieza != null || recepcion != null) {
+			request.setAttribute("usuarioVehiculos", vehiculos);
+			request.getRequestDispatcher("usuariosVehiculos/ver.jsp").forward(request, response);
+		}else {
+			request.getRequestDispatcher("error404.jsp").forward(request, response);
+		}
 		
-		request.setAttribute("usuarioVehiculos", usuarioVehiculos);
-		request.getRequestDispatcher("usuariosVehiculos/ver.jsp").forward(request, response);
 	}
 
 	/**
