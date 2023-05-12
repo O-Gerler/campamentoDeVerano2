@@ -6,8 +6,14 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import modeloDAO.ModeloVehiculos;
+import modeloDTO.Limpieza;
+import modeloDTO.Manager;
+import modeloDTO.Monitor;
+import modeloDTO.Recepcion;
+import modeloDTO.Usuario;
 import modeloDTO.Vehiculo;
 
 /**
@@ -29,8 +35,23 @@ public class InsertarVehiculo extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		request.getRequestDispatcher("vehiculos/insertarVehiculo.jsp").forward(request, response);
+		HttpSession session = request.getSession();
+		
+		Usuario usuario = (Usuario) session.getAttribute("usuario");
+		
+		Monitor monitor = (Monitor) session.getAttribute("monitor");
+		
+		Limpieza limpieza = (Limpieza) session.getAttribute("limpieza");
+		
+		Recepcion recepcion = (Recepcion) session.getAttribute("recepcion");
+		
+		Manager manager = (Manager) session.getAttribute("manager");
+		
+		if (manager != null || usuario != null || monitor != null || limpieza != null || recepcion != null) {
+			request.getRequestDispatcher("vehiculos/insertarVehiculo.jsp").forward(request, response);
+		}else {
+			request.getRequestDispatcher("error404.jsp").forward(request, response);
+		}
 	}
 
 	/**
