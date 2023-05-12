@@ -16,8 +16,13 @@
 <body
 	class="d-flex justify-content-center align-items-center flex-column"
 	style="min-height: 100vh">
+	<c:if test="${ requestScope.incorrecto }">
+		<div class="alert alert-danger position-absolute top-0 text-center" style="width: 100vw" role="alert">
+  			La actividad ya ha sido reservada
+		</div>
+	</c:if>
 	<h1 class="text-center">Insertar Actividades por Grupo</h1>
-	<form class="container" method="POST" action="InsertarReserva">
+	<form class="container" method="POST" action="InsertarActividadesGrupo">
 		<div class="mb-3">
 			<label for="id_actividad" class="form-label" style="max-width: 120px">Actividad</label>
 			<select id="id_actividad" name="id_actividad" class="form-select">
@@ -31,7 +36,7 @@
 				<label for="id_grupo" class="form-label" style="max-width: 120px">Grupo</label>
 				<select id="id_grupo" name="id_grupo" class="form-select">
 					<c:forEach items="${ grupos }" var="grupo">
-						<option value="${grupo.id}">${grupo.nombre}</option>
+						<option value="${grupo.id}">${grupo.id}</option>
 					</c:forEach>
 				</select>
 			</c:if>
