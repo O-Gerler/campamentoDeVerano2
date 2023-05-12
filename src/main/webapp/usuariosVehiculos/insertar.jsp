@@ -9,12 +9,12 @@
     <title>Insertar Usuario-Vehiculo</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
   </head>
-  <body>
+  <body class="d-flex justify-content-center align-items-center flex-column" style="min-height: 100vh">
     <h1 class="text-center">Insertar Usuario-Vehiculo</h1>
     <form class="container mt-4" method="POST" action="InsertarUsuarioVehiculo">
         <div class="mb-3">
         <label for="id_usuario" class="form-label">Usuario</label>
-          <select id="id_usuario" name="id_usuario">
+          <select id="id_usuario" name="id_usuario" class="form-select">
           	<c:forEach items="${ usuarios }" var="usuario">
           		<option value="${usuario.id}">${usuario.dni}</option>
           	</c:forEach>
@@ -22,7 +22,7 @@
         </div>
         <div class="mb-3">
           <label for="id_vehiculo" class="form-label">Vehiculo</label>
-          <select id="id_vehiculo" name="id_vehiculo">
+          <select id="id_vehiculo" name="id_vehiculo" class="form-select">
           	<c:forEach items="${ vehiculos }" var="vehiculo">
           		<option value="${vehiculo.id}">${vehiculo.matricula}</option>
           	</c:forEach>
