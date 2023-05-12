@@ -45,6 +45,8 @@ public class EliminarTipo extends HttpServlet {
 			modeloTipo.cerrar();
 			
 			response.sendRedirect("VistaManager");
+		}else {
+			request.getRequestDispatcher("error404.jsp").forward(request, response);
 		}
 		
 	}
