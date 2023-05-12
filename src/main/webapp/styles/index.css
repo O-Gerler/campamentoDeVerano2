@@ -106,13 +106,13 @@ header .elecciones .active {
 }
 
 #bungalow-card {
-    background-image: url("resources/imagenes/imagenBungalow.jpg");
+    background-image: url("https://source.unsplash.com/1920x1080/?bungalow");
     background-repeat: no-repeat;
     background-size: cover;
 }
 
 #parcela-card {
-    background-image: url("/campamento/resources/imagenes/parcela.jpg");
+    background-image: url("https://source.unsplash.com/1920x1080/?land");
     background-repeat: no-repeat;
     background-size: cover;
 }
@@ -152,19 +152,19 @@ header .elecciones .active {
 }
 
 .a1{
-    background-image: url("/campamento/resources/imagenes/actividad1.jpg");
+    background-image: url("https://source.unsplash.com/1920x1080/?sport");
     background-repeat: no-repeat;
     background-size: cover;
 }
 
 .a2{
-    background-image: url("/campamento/resources/imagenes/actividad2.jpg");
+    background-image: url("https://source.unsplash.com/1920x1080/?swim");
     background-repeat: no-repeat;
     background-size: cover;
 }
 
 .a3{
-    background-image: url("/campamento/resources/imagenes/actividad3.jpg");
+    background-image: url("https://source.unsplash.com/1920x1080/?hike");
     background-repeat: no-repeat;
     background-size: cover;
 }
