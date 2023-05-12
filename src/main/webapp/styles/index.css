@@ -1,0 +1,396 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins'
+}
+
+html {
+    width: 100vw;
+    overflow-x: hidden;
+}
+
+.material-symbols-outlined {
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 400,
+  'GRAD' 0,
+  'opsz' 48;
+  transform: scale(1.65);
+}
+
+/**
+El css del nav va en un archivo aparte
+**/
+
+video-section {
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+    overflow-y: hidden;
+}
+
+video {
+    object-fit: cover;
+    width: 100vw;
+    height: 100vh;
+    
+}
+
+.info-panel {
+    width: 100vw;
+    height: 5rem;
+    position: absolute;
+    bottom: 0;
+    background-color: orange;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.info {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    color: white;
+    font-size: 1.2em;
+    font-weight: 600;
+    line-height: 1.1;
+    width: 150px;
+    text-align: center;
+}
+
+/*Alojamiento*/
+#alojamiento {
+    margin-top: 20vh;
+}
+
+header {
+    width: 100%;
+}
+
+h2 {
+    font-size: 42px;
+    text-align: center;
+}
+
+header .elecciones {
+    text-align: center;
+    font-size: 28px;
+    
+}
+
+header .elecciones span {
+    margin: 0 30px;
+    cursor: pointer;
+    user-select: none;
+    transition: all .3s ease;
+}
+
+header .elecciones .active {
+    color: orange;
+    font-style: italic;
+}
+
+.image-container {
+    height: 600px;
+    margin: auto;
+    margin-top: 10vh;
+    background-image: url("https://picsum.photos/800/600");
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    transition: all .3s ease;
+}
+
+.alojamiento-info {
+    width: 50%;
+    padding: 8px;
+    position: absolute;
+    top: 45%;
+    left: 12%;
+    height: auto;
+    background-color: white;
+}
+
+.alojamiento-info button {
+    padding: 3px;
+    width: 80px;
+    border: 0;
+    background-color: orange;
+    transition: background-color .3s ease;
+}
+
+.alojamiento-info button:hover {
+    background-color: rgb(206, 134, 2);
+}
+
+.hidden {
+    display: none;
+    opacity: 0;
+}
+
+/*ACTIVIDADES*/
+#actividades {
+    margin-top: 20vh;
+    width: 100%;
+    height: auto;
+}
+
+.card-container {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-top: 100px;
+}
+
+.actividad-card {
+    width: 300px;
+    height: 420px;
+    box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.301);
+    background-image: url("https://picsum.photos/300/500");
+}
+
+.texto{
+    width: auto;
+    /*cuando se haga mas txiki ponerle un width fijo como 450px*/
+    height: auto;
+    background: #fafafa9c;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.texto h3{
+    text-align: center;
+}
+
+/*Sobre nosotros*/
+#sobre-nosotros {
+    margin-top: 20vh;
+    width: 100%;
+    height: auto;
+}
+
+.container-sobre-nosotros {
+    width: 100%;
+    height: 700px;
+    background-image: url("https://picsum.photos/1920/1080");
+    background-size: cover;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.info-sobre-nosotros {
+    width: 50%;
+    /*cuando se haga mas txiki ponerle un width fijo como 450px*/
+    height: 100%;
+    background: #fafafa9c;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.info-sobre-nosotros p {
+    margin-top: 20px;
+    margin-left: 30px;
+}
+
+/*Navbar de contenidos*/
+.drmenu{
+    padding-right: 20px;
+    list-style: none;
+}
+.login{
+    margin-left: 20px;
+}
+
+/*Pet-Friendly*/
+#pet-friendly {
+    margin-top: 10vh;
+    width: 100%;
+    height: auto;
+}
+
+.container-pet-friendly {
+    width: auto;
+    height: 900px;
+    background-image: url("https://source.unsplash.com/1920x1080/?animals");
+    background-size: cover;
+    display: flex;
+    align-items: center;
+}
+
+.info-pet-friendly {
+    width: 60%;
+    /*cuando se haga mas txiki ponerle un width fijo como 450px*/
+    height: 70%;
+    background: #fafafa9c;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.info-pet-friendly p {
+    margin-top: 20px;
+    margin-left: 30px;
+}
+
+/*ZONAS*/
+#zonas{
+    display: block;
+    text-align: center;
+    align-items: center;
+}
+
+#zonas h1{
+    margin-top: 2%;
+    margin-bottom: 3%;
+}
+
+.mapa-zonas{
+    background: url("/campamento/resources/mapaCampamento/Mapa-min.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    height: 75vh;
+    width: 70%;
+    margin: auto;
+}
+
+/*Logo Campamento*/
+.navbar-brand{
+    background:url("/campamento/resources/logoCampamento/cover-min.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 50px;
+    width: 300px;
+}
+
+/*Prestaciones*/
+#prestaciones{
+    display: block;
+    text-align: center;
+    align-items: center;
+}
+#prestaciones h1{
+    margin-top: 2%;
+    margin-bottom: 3%;
+}
+.container-prestaciones{
+    background: url("https://source.unsplash.com/1920x1080/?camping");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 750px;
+    width: 100%;
+}
+.info-prestaciones {
+    width: 70%;
+    /*cuando se haga mas txiki ponerle un width fijo como 450px*/
+    height: auto;
+    background: #fafafa9c;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin: auto;
+}
+
+.info-prestaciones p {
+    margin-top: 20px;
+    margin-left: 30px;
+}
+
+/*Footer*/
+#pie{
+    display: block;
+    text-align: center;
+    align-items: center;
+    width: 100%;
+    height: auto;
+}
+
+.logo{
+    background: url("/campamento/resources/logoCampamento/default-min.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 15vw;
+    width: 40vw;
+    margin: auto;
+    margin-top: 0;
+}
+
+.redes-sociales{
+    display: block;
+    padding: 0;
+}
+
+.instagram{
+    background: url("/campamento/resources/logosRedesSociales/instagram.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    margin: auto;
+    width: 2vw;
+    height: 1vw;
+    display: inline-block;
+}
+
+.facebook{
+    background: url("/campamento/resources/logosRedesSociales/facebook.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    margin: auto;
+    width: 2vw;
+    height: 1vw;
+    display: inline-block;
+}
+
+.twitter{
+    background: url("/campamento/resources/logosRedesSociales/twitter.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    margin: auto;
+    width: 2vw;
+    height: 1vw;
+    display: inline-block;
+}
+
+.youtube{
+    background: url("/campamento/resources/logosRedesSociales/youtube.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    margin: auto;
+    width: 2vw;
+    height: 1vw;
+    display: inline-block;
+}
+
+.contacto{
+    width: auto;
+}
+
+.telefono, .horario, .correo{
+    display: inline-block;
+    margin: 1vw;
+}
+
+ .vigencia, .terminos-condiciones, .politica-privacidad, .politica-cookies, .aviso-legal{
+    display: inline-block;
+ }
