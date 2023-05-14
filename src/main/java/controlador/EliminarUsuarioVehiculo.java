@@ -12,7 +12,7 @@ import modeloDAO.ModeloUsuarioVehiculo;
 import modeloDTO.Manager;
 
 /**
- * Servlet implementation class EliminarUsuarioVehiculo
+ * Eliminar vehiculo de usuario
  */
 @WebServlet("/EliminarUsuarioVehiculo")
 public class EliminarUsuarioVehiculo extends HttpServlet {
