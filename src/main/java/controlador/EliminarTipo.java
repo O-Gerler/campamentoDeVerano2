@@ -12,7 +12,7 @@ import modeloDAO.ModeloTipo;
 import modeloDTO.Manager;
 
 /**
- * Servlet implementation class EliminarTipo
+ * Eliminar tipo
  */
 @WebServlet("/EliminarTipo")
 public class EliminarTipo extends HttpServlet {
