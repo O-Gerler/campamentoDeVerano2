@@ -9,6 +9,12 @@ import java.util.ArrayList;
 import modeloDTO.Reserva;
 
 public class ModeloReserva extends Conector{
+	/**
+	 * Inserta una nueva fila en la tabla reservas en la base de datos.
+	 *
+	 * @param reserva el objeto Reserva que contiene los datos de la nueva fila
+	 * @return true si la inserción se realiza correctamente, false en caso contrario
+	 */
 	public boolean insertarReserva(Reserva reserva) {
 		String st = "INSERT INTO reservas (id_parcela,id_usuario,fecha_ingreso,fecha_salida,ocupado) VALUES (?,?,?,?,?)";
 
@@ -31,6 +37,12 @@ public class ModeloReserva extends Conector{
 		return false;
 	}
 	
+	/**
+	 * Elimina una fila de la tabla reservas en la base de datos.
+	 *
+	 * @param reserva el objeto Reserva que contiene los datos de la fila a eliminar
+	 * @return true si la eliminación se realiza correctamente, false en caso contrario
+	 */
 	public boolean eliminarReserva(Reserva reserva) {
 		String st = "DELETE FROM reservas WHERE id_parcela=? and id_usuario=? and fecha_ingreso=? and fecha_salida=?";
 		
@@ -52,6 +64,12 @@ public class ModeloReserva extends Conector{
 		return false;
 	}
 	
+	/**
+	 * Recupera una fila de la tabla reservas en la base de datos.
+	 *
+	 * @param id_cliente el valor de la columna id_usuario de la fila a recuperar
+	 * @return un objeto Reserva que representa la fila recuperada, o null si no se encuentra ninguna fila
+	 */
 	public Reserva getReserva(int id_cliente) {
 		String st = "SELECT * FROM reservas WHERE id_usuario=?";
 		
@@ -74,6 +92,13 @@ public class ModeloReserva extends Conector{
 		return null;
 	}
 
+	/**
+	 * Crea un objeto Reserva a partir de un ResultSet.
+	 *
+	 * @param rs el ResultSet que contiene los datos del objeto Reserva
+	 * @return un objeto Reserva con los datos del ResultSet
+	 * @throws SQLException si ocurre un error al acceder a los datos del ResultSet
+	 */
 	private Reserva rellernarReserva(ResultSet rs) throws SQLException {
 		ModeloUsuario modeloUsuario = new ModeloUsuario();
 		ModeloParcela modeloParcela = new ModeloParcela();
@@ -94,6 +119,12 @@ public class ModeloReserva extends Conector{
 		return reserva;
 	}
 	
+	/**
+	 * Este método devuelve una lista de reservas para un usuario específico.
+	 *
+	 * @param id_usuario El ID del usuario para el cual se quieren obtener las reservas.
+	 * @return Una lista de objetos Reserva para el usuario especificado.
+	 */
 	public ArrayList<Reserva> getReservasUsuario(int id_usuario) {
 		String st = "SELECT * FROM reservas WHERE id_usuario=?";
 		ArrayList<Reserva> reservas = new ArrayList<>();
@@ -117,6 +148,12 @@ public class ModeloReserva extends Conector{
 		return null;
 	}
 	
+	/**
+	 * Este método verifica si una reserva está disponible.
+	 *
+	 * @param reserva La reserva que se quiere verificar.
+	 * @return Un valor booleano que indica si la reserva está disponible (true) o no (false).
+	 */
 	public boolean reservaLibre(Reserva reserva) {
 		String st = "select * from reservas\r\n"
 				+ "where \r\n"
@@ -152,6 +189,11 @@ public class ModeloReserva extends Conector{
 		return false;
 	}
 	
+	/**
+	 * Este método devuelve una lista de todas las reservas.
+	 *
+	 * @return Una lista de objetos Reserva que contiene todas las reservas.
+	 */
 	public ArrayList<Reserva> getAllReservas() {
 		String st = "SELECT * FROM reservas";
 		ArrayList<Reserva> reservas = new ArrayList<>();
