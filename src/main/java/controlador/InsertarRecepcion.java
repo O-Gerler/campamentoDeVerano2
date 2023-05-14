@@ -16,7 +16,7 @@ import modeloDTO.Manager;
 import modeloDTO.Personal;
 
 /**
- * Servlet implementation class InsertarRecepcion
+ * Inserta una recepcion
  */
 @WebServlet("/InsertarRecepcion")
 public class InsertarRecepcion extends HttpServlet {
