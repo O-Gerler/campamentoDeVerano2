@@ -12,7 +12,7 @@ import modeloDAO.ModeloPersonal;
 import modeloDTO.Manager;
 
 /**
- * Servlet implementation class EliminarPersonal
+ * Elimina un personal
  */
 @WebServlet("/EliminarPersonal")
 public class EliminarPersonal extends HttpServlet {
