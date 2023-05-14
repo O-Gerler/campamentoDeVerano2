@@ -17,7 +17,7 @@ import modeloDTO.Parcela;
 import modeloDTO.Usuario;
 
 /**
- * Servlet implementation class VistaLimpieza
+ * Muestra la vista de usuario limpieza
  */
 @WebServlet("/VistaLimpieza")
 public class VistaLimpieza extends HttpServlet {
