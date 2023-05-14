@@ -20,7 +20,7 @@ import modeloDTO.Personal;
 import modeloDTO.Usuario;
 
 /**
- * Servlet implementation class InsertarPersonal
+ * Inserta un personal
  */
 @WebServlet("/InsertarPersonal")
 public class InsertarPersonal extends HttpServlet {
