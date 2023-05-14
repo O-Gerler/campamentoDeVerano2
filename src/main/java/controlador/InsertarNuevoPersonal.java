@@ -24,7 +24,7 @@ import modeloDTO.Recepcion;
 import modeloDTO.Usuario;
 
 /**
- * Servlet implementation class InsertarNuevoPersonal
+ * Inserta un nuevo personal con los datos de usuario incluidos
  */
 @WebServlet("/InsertarNuevoPersonal")
 public class InsertarNuevoPersonal extends HttpServlet {
