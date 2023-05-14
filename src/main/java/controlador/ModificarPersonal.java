@@ -18,7 +18,7 @@ import modeloDTO.Manager;
 import modeloDTO.Personal;
 
 /**
- * Servlet implementation class ModificarPersonal
+ * Modifica un personal
  */
 @WebServlet("/ModificarPersonal")
 public class ModificarPersonal extends HttpServlet {
