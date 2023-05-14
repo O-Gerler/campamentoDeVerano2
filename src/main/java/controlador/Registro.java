@@ -16,7 +16,7 @@ import modeloDAO.ModeloUsuario;
 import modeloDTO.Usuario;
 
 /**
- * Servlet implementation class Registro
+ * Registra un usuario
  */
 @WebServlet("/Registro")
 public class Registro extends HttpServlet {
