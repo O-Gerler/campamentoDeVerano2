@@ -12,7 +12,7 @@ import modeloDAO.ModeloUsuario;
 import modeloDTO.Usuario;
 
 /**
- * Servlet implementation class VistaUsuario
+ * Muestra la vista de usuario
  */
 @WebServlet("/VistaUsuario")
 public class VistaUsuario extends HttpServlet {
