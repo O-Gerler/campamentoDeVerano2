@@ -17,7 +17,7 @@ import modeloDTO.Reserva;
 import modeloDTO.Usuario;
 
 /**
- * Servlet implementation class MostrarReservas
+ * Muestra todas las reservas hechas por un usuario
  */
 @WebServlet("/MostrarReservas")
 public class MostrarReservas extends HttpServlet {
