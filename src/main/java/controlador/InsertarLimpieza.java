@@ -18,7 +18,7 @@ import modeloDTO.Personal;
 import modeloDTO.Zona;
 
 /**
- * Servlet implementation class InsertarLimpieza
+ * Inserta personal de limpieza
  */
 @WebServlet("/InsertarLimpieza")
 public class InsertarLimpieza extends HttpServlet {
