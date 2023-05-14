@@ -19,7 +19,7 @@ import modeloDTO.Monitor;
 import modeloDTO.Recepcion;
 
 /**
- * Servlet implementation class ComprobarLoginPersonal
+ * Comprueba el login del personal depende de cada rol
  */
 @WebServlet("/ComprobarLoginPersonal")
 public class ComprobarLoginPersonal extends HttpServlet implements Roles{
