@@ -16,7 +16,7 @@ import modeloDTO.Manager;
 import modeloDTO.Personal;
 
 /**
- * Servlet implementation class InsertarMonitor
+ * Inserta monitor
  */
 @WebServlet("/InsertarMonitor")
 public class InsertarMonitor extends HttpServlet {
