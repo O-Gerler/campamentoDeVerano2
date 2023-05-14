@@ -12,7 +12,7 @@ import modeloDAO.ModeloParcela;
 import modeloDTO.Limpieza;
 
 /**
- * Servlet implementation class LimpiarParcela
+ * Limpia una parcela que este sin limpiar
  */
 @WebServlet("/LimpiarParcela")
 public class LimpiarParcela extends HttpServlet {
