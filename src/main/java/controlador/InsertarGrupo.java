@@ -17,7 +17,7 @@ import modeloDTO.Manager;
 import modeloDTO.Monitor;
 
 /**
- * Servlet implementation class InsertarGrupo
+ * Inserta grupo
  */
 @WebServlet("/InsertarGrupo")
 public class InsertarGrupo extends HttpServlet {
