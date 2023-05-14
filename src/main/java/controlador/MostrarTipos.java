@@ -13,7 +13,7 @@ import modeloDAO.ModeloTipo;
 import modeloDTO.Tipo;
 
 /**
- * Servlet implementation class MostrarTipos
+ * Muestra todos los tipos
  */
 @WebServlet("/MostrarTipos")
 public class MostrarTipos extends HttpServlet {
