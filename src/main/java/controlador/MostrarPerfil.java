@@ -15,7 +15,7 @@ import modeloDAO.ModeloUsuario;
 import modeloDTO.Usuario;
 
 /**
- * Servlet implementation class MostrarPerfil
+ * Muestra el perfil de cada usuario 
  */
 @WebServlet("/MostrarPerfil")
 public class MostrarPerfil extends HttpServlet {
