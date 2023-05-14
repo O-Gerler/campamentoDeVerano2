@@ -12,7 +12,7 @@ import modeloDAO.ModeloZona;
 import modeloDTO.Manager;
 
 /**
- * Servlet implementation class EliminarZona
+ * Elimina una Zona
  */
 @WebServlet("/EliminarZona")
 public class EliminarZona extends HttpServlet {
