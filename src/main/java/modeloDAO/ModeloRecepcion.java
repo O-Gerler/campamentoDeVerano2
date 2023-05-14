@@ -9,6 +9,12 @@ import modeloDTO.Personal;
 import modeloDTO.Recepcion;
 
 public class ModeloRecepcion extends Conector{
+	/**
+	 * Crea un objeto Recepcion a partir de un objeto Personal.
+	 *
+	 * @param id el valor de la columna id_personal del objeto Personal
+	 * @return un objeto Recepcion con los mismos datos que el objeto Personal
+	 */
 	private Recepcion recepcionHeredaUsuario(int id) {
 		ModeloPersonal modeloPersonal = new ModeloPersonal();
 		modeloPersonal.conectar();
@@ -32,6 +38,12 @@ public class ModeloRecepcion extends Conector{
 		return recepcion;
 	}
 	
+	/**
+	 * Inserta una nueva fila en la tabla recepcion en la base de datos.
+	 *
+	 * @param id_recepcion el valor de la columna id_recepcion de la nueva fila
+	 * @return true si la inserción se realiza correctamente, false en caso contrario
+	 */
 	public boolean insertarRecepcion(int id_recepcion) {
 		String st = "INSERT INTO recepcion VALUES (?)";
 		
@@ -50,6 +62,12 @@ public class ModeloRecepcion extends Conector{
 		return false;
 	}
 	
+	/**
+	 * Elimina una fila de la tabla recepcion en la base de datos.
+	 *
+	 * @param id el valor de la columna id_recepcion de la fila a eliminar
+	 * @return true si la eliminación se realiza correctamente, false en caso contrario
+	 */
 	public boolean eliminarRecepcion(int id) {
 		String st = "DELETE FROM recepcion WHERE id_recepcion=?";
 		
@@ -68,6 +86,12 @@ public class ModeloRecepcion extends Conector{
 		return false;
 	}
 	
+	/**
+	 * Recupera una fila de la tabla recepcion en la base de datos.
+	 *
+	 * @param id el valor de la columna id_recepcion de la fila a recuperar
+	 * @return un objeto Recepcion que representa la fila recuperada, o null si no se encuentra ninguna fila
+	 */
 	public Recepcion getRecepcion(int id) {
 		String st = "SELECT * FROM recepcion WHERE id_recepcion=?";
 		
@@ -88,6 +112,11 @@ public class ModeloRecepcion extends Conector{
 		return null;
 	}
 	
+	/**
+	 * Recupera una lista de todos los objetos Recepcion en la tabla recepcion de la base de datos.
+	 *
+	 * @return una lista de todos los objetos Recepcion en la tabla recepcion
+	 */
 	public ArrayList<Recepcion> getAllRecepcion() {
 		String st = "SELECT * FROM recepcion";
 		ArrayList<Recepcion> recepcions = new ArrayList<>();
