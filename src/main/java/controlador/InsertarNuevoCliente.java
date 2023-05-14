@@ -22,7 +22,7 @@ import modeloDTO.Manager;
 import modeloDTO.Recepcion;
 
 /**
- * Servlet implementation class InsertarNuevoCliente
+ * Inserta un nuevo cliente con los datos de usuario incluidos
  */
 @WebServlet("/InsertarNuevoCliente")
 public class InsertarNuevoCliente extends HttpServlet {
