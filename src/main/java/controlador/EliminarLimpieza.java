@@ -12,7 +12,7 @@ import modeloDAO.ModeloLimpieza;
 import modeloDTO.Manager;
 
 /**
- * Servlet implementation class EliminarLimpieza
+ * Elimina un empleado de limpieza
  */
 @WebServlet("/EliminarLimpieza")
 public class EliminarLimpieza extends HttpServlet {
