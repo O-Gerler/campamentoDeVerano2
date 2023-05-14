@@ -12,7 +12,7 @@ import modeloDAO.ModeloActividad;
 import modeloDTO.Manager;
 
 /**
- * Servlet implementation class EliminarActividad
+ * Elimina una actividad
  */
 @WebServlet("/EliminarActividad")
 public class EliminarActividad extends HttpServlet {
