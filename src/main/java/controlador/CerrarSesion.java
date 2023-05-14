@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
- * Servlet implementation class CerrarSesion
+ * Cierra la sesion de usuario
  */
 @WebServlet("/CerrarSesion")
 public class CerrarSesion extends HttpServlet {
