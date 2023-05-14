@@ -12,7 +12,7 @@ import modeloDAO.ModeloGrupo;
 import modeloDTO.Manager;
 
 /**
- * Servlet implementation class EliminarGrupo
+ * Elimina un grupo
  */
 @WebServlet("/EliminarGrupo")
 public class EliminarGrupo extends HttpServlet {
