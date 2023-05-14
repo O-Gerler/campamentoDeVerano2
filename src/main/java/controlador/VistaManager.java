@@ -43,7 +43,7 @@ import modeloDTO.Vehiculo;
 import modeloDTO.Zona;
 
 /**
- * Servlet implementation class VistaManager
+ * Muestra la vista del usuario manager
  */
 @WebServlet("/VistaManager")
 public class VistaManager extends HttpServlet {
