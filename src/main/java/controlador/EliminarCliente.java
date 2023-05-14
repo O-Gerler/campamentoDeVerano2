@@ -13,7 +13,7 @@ import modeloDTO.Manager;
 import modeloDTO.Recepcion;
 
 /**
- * Servlet implementation class EliminarCliente
+ * Elimina un cliente
  */
 @WebServlet("/EliminarCliente")
 public class EliminarCliente extends HttpServlet {
