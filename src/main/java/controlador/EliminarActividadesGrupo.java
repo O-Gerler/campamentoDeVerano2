@@ -17,7 +17,7 @@ import modeloDTO.Manager;
 import modeloDTO.Monitor;
 
 /**
- * Servlet implementation class EliminarActividadesGrupo
+ * Elimina una actividadPorGrupo
  */
 @WebServlet("/EliminarActividadesGrupo")
 public class EliminarActividadesGrupo extends HttpServlet {
