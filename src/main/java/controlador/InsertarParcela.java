@@ -21,7 +21,7 @@ import modeloDTO.Tipo;
 import modeloDTO.Zona;
 
 /**
- * Servlet implementation class InsertarParcela
+ * Inserta una parcela
  */
 @WebServlet("/InsertarParcela")
 public class InsertarParcela extends HttpServlet {
