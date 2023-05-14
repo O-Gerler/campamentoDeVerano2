@@ -18,7 +18,7 @@ import modeloDTO.Manager;
 import modeloDTO.Recepcion;
 
 /**
- * Servlet implementation class ModificarCliente
+ * Modifica un cliente
  */
 @WebServlet("/ModificarCliente")
 public class ModificarCliente extends HttpServlet {
