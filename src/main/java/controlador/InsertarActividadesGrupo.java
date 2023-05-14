@@ -23,7 +23,7 @@ import modeloDTO.Manager;
 import modeloDTO.Monitor;
 
 /**
- * Servlet implementation class InsertarActividadesGrupo
+ * Inserta una actividad por grupo
  */
 @WebServlet("/InsertarActividadesGrupo")
 public class InsertarActividadesGrupo extends HttpServlet {
