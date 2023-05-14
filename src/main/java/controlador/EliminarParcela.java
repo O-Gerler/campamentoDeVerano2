@@ -12,7 +12,7 @@ import modeloDAO.ModeloParcela;
 import modeloDTO.Manager;
 
 /**
- * Servlet implementation class EliminarParcela
+ * Elimina una parcela
  */
 @WebServlet("/EliminarParcela")
 public class EliminarParcela extends HttpServlet {
