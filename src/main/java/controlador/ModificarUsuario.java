@@ -20,7 +20,7 @@ import modeloDTO.Recepcion;
 import modeloDTO.Usuario;
 
 /**
- * Servlet implementation class ModificarUsuario
+ * Modificar un usuario
  */
 @WebServlet("/ModificarUsuario")
 public class ModificarUsuario extends HttpServlet {
