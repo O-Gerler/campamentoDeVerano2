@@ -12,7 +12,7 @@ import modeloDAO.ModeloRecepcion;
 import modeloDTO.Manager;
 
 /**
- * Servlet implementation class EliminarRecepcion
+ * Elimina a una recepcion
  */
 @WebServlet("/EliminarRecepcion")
 public class EliminarRecepcion extends HttpServlet {
