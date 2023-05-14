@@ -17,7 +17,7 @@ import modeloDAO.ModeloUsuarioVehiculo;
 import modeloDTO.Usuario;
 
 /**
- * Servlet implementation class ComprobarLogin
+ * Comprueba el login del usuario
  */
 @WebServlet("/ComprobarLogin")
 public class ComprobarLogin extends HttpServlet {
