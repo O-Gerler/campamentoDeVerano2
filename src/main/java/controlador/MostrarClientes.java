@@ -13,7 +13,7 @@ import modeloDAO.ModeloCliente;
 import modeloDTO.Cliente;
 
 /**
- * Servlet implementation class MostrarClientes
+ * Muestra los clientes
  */
 @WebServlet("/MostrarClientes")
 public class MostrarClientes extends HttpServlet {
