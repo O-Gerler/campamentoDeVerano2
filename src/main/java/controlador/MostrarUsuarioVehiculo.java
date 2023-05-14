@@ -21,7 +21,7 @@ import modeloDTO.UsuarioVehiculo;
 import modeloDTO.Vehiculo;
 
 /**
- * Servlet implementation class MostrarUsuarioVehiculo
+ * Muestra todos vehiculos por usuario
  */
 @WebServlet("/MostrarUsuarioVehiculo")
 public class MostrarUsuarioVehiculo extends HttpServlet {
