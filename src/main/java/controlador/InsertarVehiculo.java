@@ -20,7 +20,7 @@ import modeloDTO.UsuarioVehiculo;
 import modeloDTO.Vehiculo;
 
 /**
- * Servlet implementation class InsertarVehiculo
+ * Inserta un vehiculo
  */
 @WebServlet("/InsertarVehiculo")
 public class InsertarVehiculo extends HttpServlet {
