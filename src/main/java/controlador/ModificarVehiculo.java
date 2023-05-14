@@ -17,7 +17,7 @@ import modeloDTO.Usuario;
 import modeloDTO.Vehiculo;
 
 /**
- * Servlet implementation class ModificarVehiculo
+ * Modificar un vehiculo
  */
 @WebServlet("/ModificarVehiculo")
 public class ModificarVehiculo extends HttpServlet {
