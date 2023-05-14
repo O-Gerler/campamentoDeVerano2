@@ -19,7 +19,7 @@ import modeloDTO.Reserva;
 import modeloDTO.Usuario;
 
 /**
- * Servlet implementation class VistaRecepcion
+ * Muestra la vista del usuario recepcion
  */
 @WebServlet("/VistaRecepcion")
 public class VistaRecepcion extends HttpServlet {
