@@ -13,7 +13,7 @@ import modeloDTO.Manager;
 import modeloDTO.Zona;
 
 /**
- * Servlet implementation class ModificarZona
+ * Modificar una zona
  */
 @WebServlet("/ModificarZona")
 public class ModificarZona extends HttpServlet {
