@@ -17,7 +17,7 @@ import modeloDTO.Manager;
 import modeloDTO.Zona;
 
 /**
- * Servlet implementation class ModificarLimpieza
+ * Modifica la zona de limpieza
  */
 @WebServlet("/ModificarLimpieza")
 public class ModificarLimpieza extends HttpServlet {
