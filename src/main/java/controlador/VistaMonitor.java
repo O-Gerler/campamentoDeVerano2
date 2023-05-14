@@ -19,7 +19,7 @@ import modeloDTO.Monitor;
 import modeloDTO.Usuario;
 
 /**
- * Servlet implementation class VistaMonitor
+ * Muestra la vista del usuario Monitor
  */
 @WebServlet("/VistaMonitor")
 public class VistaMonitor extends HttpServlet {
