@@ -13,7 +13,7 @@ import modeloDTO.Manager;
 import modeloDTO.Usuario;
 
 /**
- * Servlet implementation class EliminarUsuario
+ * Eliminar usuario
  */
 @WebServlet("/EliminarUsuario")
 public class EliminarUsuario extends HttpServlet {
