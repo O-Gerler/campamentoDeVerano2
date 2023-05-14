@@ -22,7 +22,7 @@ import modeloDTO.Reserva;
 import modeloDTO.Usuario;
 
 /**
- * Servlet implementation class EliminarReserva
+ * Elimina una reserva
  */
 @WebServlet("/EliminarReserva")
 public class EliminarReserva extends HttpServlet {
