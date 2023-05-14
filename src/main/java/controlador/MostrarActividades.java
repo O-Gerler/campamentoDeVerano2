@@ -13,7 +13,7 @@ import modeloDAO.ModeloActividad;
 import modeloDTO.Actividad;
 
 /**
- * Servlet implementation class mostrarActividades
+ * Muestra todas las actividades
  */
 @WebServlet("/MostrarActividades")
 public class MostrarActividades extends HttpServlet {
