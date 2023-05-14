@@ -15,7 +15,7 @@ import modeloDAO.ModeloUsuario;
 import modeloDTO.Usuario;
 
 /**
- * Servlet implementation class InsertarUsuario
+ * Inserta un usuario
  */
 @WebServlet("/InsertarUsuario")
 public class InsertarUsuario extends HttpServlet {
