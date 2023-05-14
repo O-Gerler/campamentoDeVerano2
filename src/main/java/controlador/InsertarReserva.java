@@ -23,7 +23,7 @@ import modeloDTO.Reserva;
 import modeloDTO.Usuario;
 
 /**
- * Servlet implementation class InsertarReserva
+ * Inserta una reserva
  */
 @WebServlet("/InsertarReserva")
 public class InsertarReserva extends HttpServlet {
