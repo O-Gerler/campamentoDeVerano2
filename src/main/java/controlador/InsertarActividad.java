@@ -17,7 +17,7 @@ import modeloDTO.Manager;
 import modeloDTO.Zona;
 
 /**
- * Servlet implementation class insertarActividad
+ * Inserta una actividad
  */
 @WebServlet("/InsertarActividad")
 public class InsertarActividad extends HttpServlet {
