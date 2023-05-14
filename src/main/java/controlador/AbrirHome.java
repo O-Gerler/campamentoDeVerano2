@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class AbrirHome
+ * Abre la pagina home
  */
 @WebServlet("/AbrirHome")
 public class AbrirHome extends HttpServlet {
