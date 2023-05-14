@@ -12,7 +12,7 @@ import modeloDAO.ModeloMonitor;
 import modeloDTO.Manager;
 
 /**
- * Servlet implementation class EliminarMonitor
+ * Elimina un monitor
  */
 @WebServlet("/EliminarMonitor")
 public class EliminarMonitor extends HttpServlet {
