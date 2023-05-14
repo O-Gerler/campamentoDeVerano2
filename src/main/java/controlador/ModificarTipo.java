@@ -13,7 +13,7 @@ import modeloDTO.Manager;
 import modeloDTO.Tipo;
 
 /**
- * Servlet implementation class ModificarTipo
+ * Modifica un tipo
  */
 @WebServlet("/ModificarTipo")
 public class ModificarTipo extends HttpServlet {
