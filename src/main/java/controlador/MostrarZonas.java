@@ -13,7 +13,7 @@ import modeloDAO.ModeloZona;
 import modeloDTO.Zona;
 
 /**
- * Servlet implementation class MostrarZonas
+ * Muestra todas las zonas
  */
 @WebServlet("/MostrarZonas")
 public class MostrarZonas extends HttpServlet {
