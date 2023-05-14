@@ -13,7 +13,7 @@ import modeloDAO.ModeloPersonal;
 import modeloDTO.Personal;
 
 /**
- * Servlet implementation class MostrarPersonal
+ * Muestra todos los personales
  */
 @WebServlet("/MostrarPersonal")
 public class MostrarPersonal extends HttpServlet {
